@@ -6,6 +6,9 @@ This is the Background section.
 
 \subsection{Audio Feature Extraction}
 \label{subsec:feature_extraction}
+% TODO
+Make sure to quote \citet{lerch2012}, \citet{rawlinson2015},
+\citet{web:meyda2019}, \citet{mathieu2010} \citet{web:yaafe2019}.
 
 \subsubsection{Fundamentals}
 \label{subsubsec:feature_fundamentals}
@@ -16,21 +19,15 @@ This is the Background section.
 \subsubsection{Time-Domain Features}
 \label{subsubsec:temporal_features}
 
-% const featureList = [ 'rms',
-%                     'zcr',
-%                     'spectralCentroid',
-%                     'spectralFlatness',
-%                     'spectralSlope',
-%                     'spectralRolloff',
-%                     'spectralSpread',
-%                     'spectralSkewness',
-%                     'spectralKurtosis',
-%                     'loudness']
-
-
 \paragraph{Root Mean Square (RMS)}
 \label{para:rms}
-\gls{rms} goes here.
+measures the power of a signal \citep[p.73f]{lerch2012}. It describes sound intensity and is sometimes used as a simple measure for loudness
+\citep{web:meyda2019_features} that does not take the nonlinearity of human
+hearing into account \citep{fletcher1933}. It is calculated for an audio
+frame $x$ consisting of $n$ samples such that
+\begin{equation}
+  v_{RMS} = \sqrt{ \frac{ \sum_{i=1}^{n} x(i)^2} {n}}.
+\end{equation}
 
 \paragraph{Zero-Crossing Rate (ZCR)}
 \label{para:zcr}
