@@ -1,0 +1,152 @@
+\documentclass[12pt, a4paper, oneside, titlepage, nextpage, listof=totoc,
+headinclude, open=right, glossaries=totoc, captions=tableheading, final,
+BCOR=10mm, parskip=never]{paper}
+\usepackage[ngerman,english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[usenames,dvipsnames,rgb,svgnames,table]{xcolor}
+
+\usepackage[newfloat=true]{minted}
+\usepackage{mdframed}
+
+\usepackage{fancyhdr}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{mathtools}
+
+\usepackage{float}
+\floatstyle{boxed}
+\restylefloat{figure}
+
+\usepackage{tocloft}
+\setcounter{secnumdepth}{4}
+
+\usepackage[toc,page]{appendix}
+\usepackage[nottoc,numbib]{tocbibind}
+
+\usepackage{hyperref}
+\hypersetup{hidelinks,
+colorlinks = false,
+pdfauthor={Jonas Margraf},
+pdftitle={Master's Thesis: Self-Organizing Maps for Sound Corpus Organization},
+pdfsubject={A Networking Extension for the SoundScape Renderer},
+pdfkeywords={Self-Organizing Map, Sample Library, Audio Content Analysis,
+Music Information Retrieval, Web Audio, JavaScript, Electron,
+Technische Universität Berlin}
+}
+
+\usepackage[authoryear,round]{natbib}
+
+% caption
+\usepackage[font=scriptsize]{caption}
+% glossary
+\usepackage[acronym,nonumberlist,toc,xindy]{glossaries}
+\makeglossaries
+\newacronym{api}{API}{Application Programming Interface}
+\newacronym{gui}{GUI}{Graphical User Interface}
+\newacronym{ip}{IP}{Internet Protocol}
+\newacronym{ircam}{IRCAM}{Institut de recherche et coordination acoustique/musique}
+\newacronym{midi}{MIDI}{Musical Instrument Digital Interface}
+\newacronym{oop}{OOP}{Object-Oriented Programming}
+\newacronym{osc}{OSC}{Open Sound Control}
+\newacronym{rms}{RMS}{Root Mean Square}
+\newacronym{som}{SOM}{Self-Organizing Map}
+\newacronym{tu-berlin}{TU Berlin}{Technische Universität Berlin}
+\newacronym{zcr}{ZCR}{Zero-Crossing Rate}
+\newglossaryentry{id}{
+name={ID},
+description={A name or number that identifies an object},
+plural=IDs
+}
+
+\graphicspath{{images/}}
+
+\input{chapters/hyphenation}
+
+\begin{document}
+
+\input{chapters/cover}
+
+\newpage
+\mbox{}
+\cleardoublepage
+\newpage
+
+\input{chapters/erklaerung}
+\input{chapters/abstract}
+\input{chapters/acknowledgements}
+
+\pagestyle{empty}
+{
+\setcounter{tocdepth}{4}
+\renewcommand{\thispagestyle}[1]{}
+\tableofcontents
+\newpage
+}
+
+\pagestyle{headings}
+\setcounter{page}{1}
+\pagenumbering{arabic}
+\renewcommand{\theFancyVerbLine}
+{\textcolor{gray}{\scriptsize\arabic{FancyVerbLine}}}
+\RecustomVerbatimEnvironment{Verbatim}{Verbatim}{xleftmargin=5mm}
+
+\input{chapters/introduction}
+\cleardoublepage
+
+\input{chapters/background}
+\cleardoublepage
+
+\input{chapters/implementation}
+\cleardoublepage
+
+\input{chapters/evaluation}
+\cleardoublepage
+
+\input{chapters/results}
+\cleardoublepage
+
+\input{chapters/discussion}
+\cleardoublepage
+
+\bibliographystyle{FG_AK_English_AuthorYear}
+\bibliography{thesis_bib}
+
+\cleardoublepage
+
+\newpage
+
+\cleardoublepage
+
+\input{chapters/appendices}
+
+\cleardoublepage
+
+\pagenumbering{Roman}
+\setcounter{page}{1}
+\pagestyle{plain}
+\printglossaries
+\newpage
+
+\listoffigures
+\newpage
+
+\listoflistings
+\newpage
+
+\listoftables
+\newpage
+
+\phantomsection
+\addcontentsline{toc}{section}{Digital Resource}
+\section*{Digital Resource}
+\label{digital_resource}
+\vspace{23em}
+\centering
+\scriptsize
+This page holds a data disk.
+\newpage
+
+\end{document}
