@@ -18,49 +18,117 @@ Make sure to quote \citet{lerch2012}, \citet{rawlinson2015},
 
 \subsubsection{Time-Domain Features}
 \label{subsubsec:temporal_features}
+% TODO
+Define $x[n]$, $n$
 
 \paragraph{Root Mean Square (RMS)}
 \label{para:rms}
 measures the power of a signal \citep[p.73f]{lerch2012}. It describes sound intensity and is sometimes used as a simple measure for loudness
 \citep{web:meyda2019_features} that does not take the nonlinearity of human
 hearing into account \citep{fletcher1933}. It is calculated for an audio
-frame $x$ consisting of $n$ samples such that
+frame $x[n]$ consisting of $n$ samples such that
 \begin{equation}
-  v_{RMS} = \sqrt{ \frac{ \sum_{i=1}^{n} x(i)^2} {n}}.
+  v_{RMS} = \sqrt{ \frac{ \sum\limits_{i=1}^{n} x(i)^2} {n}}.
 \end{equation}
 
 \paragraph{Zero-Crossing Rate (ZCR)}
 \label{para:zcr}
+represents the rate of the number of sign changes in a signal.
+It can be used as a measure of the tonalness of a sound \citep{lykartsis2014}
+and as a simple pitch detection method for monophonic signals \citep{web:pitchdetection2019}. It is defined as
+\begin{equation}
+  v_{ZCR} = \frac{1} {2\cdot{n}}\sum\limits_{i=1}^{n} |sgn[x(i)] - sgn[x(i - 1)]|.
+\end{equation}
 
 \subsubsection{Frequency-Domain Features}
 \label{subsubsec:spectral_features}
+% TODO
+Define $N_{FFT}$, $X(k)$
 
 \paragraph{Spectral Centroid}
 \label{para:centroid}
+is a measure of the center of gravity of a
+spectrum. A higher value indicates a brighter, sharper sound \citep{lerch2012}.
+The spectral centroid is defined as
+\begin{equation}
+  v_{SC} = \frac{ \sum\limits_{k=0}^{N_{FFT}/2-1} k\cdot{|X(k)]^2} }
+  { \sum\limits_{k=0}^{N_{FFT}/2-1} |X(k)]^2 }.
+\end{equation}
 
 \paragraph{Spectral Flatness}
 \label{para:flatness}
+is a measure for the tonality or noisiness of a signal, defined as the ratio of
+the geometric and arithmetic means of its magnitude spectrum. Higher values
+indicate a flatter (and therefore noisier) spectrum, whereas lower values point
+towards more tonal spectral content. It is defined as
+\begin{equation}
+  v_{SFL} = \frac{ \sqrt[N_{FFT}/2]{ \prod\limits_{k=0}^{N_{FFT}/2-1} |X(k)| } }
+  { (2/N_{FFT}) \cdot{\sum\limits_{k=0}^{N_{FFT}/2-1} |X(k)|} }.
+\end{equation}
 
 \paragraph{Spectral Kurtosis}
 \label{para:kurtosis}
+indicates whether a given magnitude spectrum's distribution is similar to a
+Gaussian distribution. Negative values result from a flatter distribution,
+whereas positive values indicate a peakier distribution. A Gaussian
+distribution would result in a value of 0. Spectral Kurtosis is defined as
+\begin{equation}
+  v_{SKU} = \frac{ 2 \sum\limits_{k=0}^{N_{FFT}/2-1} (|X(k)|
+  - \mu_{|X|})^4 }
+  { N_{FFT}\cdot{\sigma_{|X|}^4} } - 3,
+\end{equation}
+
+where $\mu_{|X|}$ represents the mean and $\sigma_{|X|}$ the standard deviation
+of the magnitude spectrum $|X|$.
 
 \paragraph{Spectral Skewness}
 \label{para:skewness}
+assesses the symmetry of a magnitude spectrum distribution. It is defined as
+\begin{equation}
+  v_{SSK} = \frac{ 2 \sum\limits_{k=0}^{N_{FFT}/2-1} (|X(k)|
+  - \mu_{|X|})^3 }
+  { N_{FFT}\cdot{\sigma_{|X|}^3} }.
+\end{equation}
 
 \paragraph{Spectral Slope}
 \label{para:slope}
+represents a measure of how sloped or inclined a given spectral distribution is.
+The spectral slope is calculated using a linear regression of the magnitude
+spectrum such that
+\begin{equation}
+  v_{SSL} = \frac{ \sum\limits_{k=0}^{N_{FFT}/2-1} (k - \mu_{k}) (|X(k)|
+  - \mu_{|X|}) }
+  { \sum\limits_{k=0}^{N_{FFT}/2-1} (k - \mu_{k})^2 }.
+\end{equation}
 
 \paragraph{Spectral Spread}
 \label{para:spread}
+is a descriptor of the concentration of a magnitude spectrum around the
+\nameref{para:centroid} and assesses the corresponding signal's bandwidth. It is
+defined as
+\begin{equation}
+  v_{SSP} = \frac{ \sum\limits_{k=0}^{N_{FFT}/2-1} (k - v_{SC})^2
+  \cdot{ |X(k)|^2 } }
+  { \sum\limits_{k=0}^{N_{FFT}/2-1} |X(k)|^2 }.
+\end{equation}
 
 \paragraph{Spectral Rolloff}
 \label{para:rolloff}
+measures the bandwidth of a given signal by calculating that frequency bin
+below which lie $\kappa$ percent of the sum of magnitudes of $X(k)$. Common
+values for $\kappa$ are $0.85$, $0.95$ \citep{lerch2012} or $0.99$
+\citep{web:meyda2019_features}. It is defined as
+\begin{equation}
+  v_{SR} = i \Bigg\rvert_{ \sum\limits_{k=0}^{i} |X(k)| = \kappa
+  \cdot{ \sum\limits_{k=0}^{N_{FFT}/2-1} |X(k)| } }.
+\end{equation}
 
 \subsubsection{Perceptual Features}
 \label{perceptual_features}
 
 \paragraph{Loudness}
 \label{para:loudness}
+\citep{peeters2004}
 
 \subsection{Self-Organzing Map}
 \label{subsec:som}
