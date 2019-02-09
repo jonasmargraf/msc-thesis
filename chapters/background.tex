@@ -126,9 +126,21 @@ values for $\kappa$ are $0.85$, $0.95$ \citep{lerch2012} or $0.99$
 \subsubsection{Perceptual Features}
 \label{perceptual_features}
 
-\paragraph{Loudness}
+\paragraph{Total Loudness}
 \label{para:loudness}
-\citep{peeters2004}
+represents an algorithmic approximation of the human perception of a signal's
+loudness based on \citet{moore1997}, which uses the Bark scale as introduced by
+\citet{zwicker1961}. The Total Loudness is the sum of all 24 bands' specific loudness
+coefficients, defined by \citet{peeters2004} as
+\begin{equation}
+  v_{TL} = \sum\limits_{i=1}^{24} v_{SL}(i),
+\end{equation}
+where
+\begin{equation}
+  v_{SL}(i) = E(i)^{0.23}
+\end{equation}
+is the specific loudness of each Bark band (see \citet{moore1997} for further
+details).
 
 \subsection{Self-Organzing Map}
 \label{subsec:som}
