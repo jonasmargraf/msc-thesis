@@ -148,14 +148,26 @@ details).
 The \textit{self-organizing map} (\gls{som}) is a machine learning algorithm for
 dimensionality reduction, visualization and analysis of higher-dimensional data.
 Sometimes also referred to as \textit{Kohonen map} or \textit{network}, it was
-introduced in 1981 by Teuvo Kohonen \citep{kohonen1990}. The \gls{som} is a
+introduced in 1981 by Teuvo Kohonen \citep{kohonen1990}.
+\\
+The \gls{som} is a
 variant of an \textit{artificial neural network} that uses an unsupervised,
 competitive learning process to map a set of higher-dimensional observations
-onto a regular, often two-dimensional grid or \textit{map} that is easy to
-visualize. It can be regarded as a nonlinear generalization of a principal
-component analysis (PCA) \citep{yin2007}. For an in-depth look at the algorithm,
-its variants and applications, as well as an extensive survey of research on
-\glspl{som}, the avid reader is referred to \citet{kohonen2001}.
+(the \textit{input vectors}) onto a regular, often two-dimensional grid or \textit{map}
+of \textit{neurons} or \textit{nodes} that is easy to visualize.
+The \gls{som} can be regarded as a nonlinear generalization of a principal
+component analysis (PCA) \citep{yin2007} or as a quantization of the input data,
+with the nodes along the map functioning as pointers into that higher-dimensional
+space. Each node has a position on the lower-dimensional grid as well as an
+associated position in the input space, which takes the form of a
+$d$-dimensional weight vector $m = [m_{1}, ... , m_{d}]$, where $d$ is the
+number of dimensions of the input vectors. Nodes that are in close proximity to
+each other on the \gls{som} will also have similar weight vectors
+\citep{vesanto2000}.
+\\
+For an in-depth look at the algorithm, its variants and applications, as well as
+an extensive survey of research on \glspl{som}, the avid reader is referred to
+\citet{kohonen2001}.
 
 \smallskip
 
@@ -167,3 +179,7 @@ mathematical definition
 \smallskip
 
 algorithm described using pseudo-code
+
+initialization
+
+input data normalization
