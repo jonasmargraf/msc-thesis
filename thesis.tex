@@ -15,6 +15,7 @@ BCOR=10mm, parskip=never]{paper}
 \usepackage{graphicx}
 \usepackage{pdfpages}
 \usepackage{mathtools}
+\usepackage{amssymb}
 
 \usepackage[]{siunitx}
 \sisetup{range-phrase=--}
@@ -28,6 +29,7 @@ BCOR=10mm, parskip=never]{paper}
 
 \usepackage[toc,page]{appendix}
 \usepackage[nottoc,numbib]{tocbibind}
+\usepackage{nameref}
 
 \usepackage{hyperref}
 \hypersetup{hidelinks,
@@ -48,12 +50,14 @@ Technische Universität Berlin}
 \usepackage[acronym,nonumberlist,toc,xindy]{glossaries}
 \makeglossaries
 \newacronym{api}{API}{Application Programming Interface}
+\newacronym{bmu}{BMU}{Best Matching Unit}
 \newacronym{gui}{GUI}{Graphical User Interface}
 \newacronym{ip}{IP}{Internet Protocol}
 \newacronym{ircam}{IRCAM}{Institut de recherche et coordination acoustique/musique}
 \newacronym{midi}{MIDI}{Musical Instrument Digital Interface}
 \newacronym{oop}{OOP}{Object-Oriented Programming}
 \newacronym{osc}{OSC}{Open Sound Control}
+\newacronym{pca}{PCA}{Principal Component Analysis}
 \newacronym{rms}{RMS}{Root Mean Square}
 \newacronym{som}{SOM}{Self-Organizing Map}
 \newacronym{tu-berlin}{TU Berlin}{Technische Universität Berlin}
@@ -67,6 +71,8 @@ plural=IDs
 \graphicspath{{images/}}
 
 \input{chapters/hyphenation}
+
+\linespread{1}
 
 \begin{document}
 
