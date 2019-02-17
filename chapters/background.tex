@@ -2,19 +2,58 @@
 
 \section{Background}
 \label{sec:background}
-This is the Background section.
+The following section intends to provide a theoretical background for two key
+concepts underlying the work presented in this thesis, namely
+\nameref{subsec:feature_extraction} and the \nameref{subsec:som}.
 
 \subsection{Audio Feature Extraction}
 \label{subsec:feature_extraction}
-% TODO
-Make sure to quote \citet{lerch2012}, \citet{rawlinson2015},
-\citet{web:meyda2019}, \citet{mathieu2010} \citet{web:yaafe2019}.
-
-\subsubsection{Fundamentals}
-\label{subsubsec:feature_fundamentals}
+Audio Feature Extraction is the process of deriving \textit{features} from a
+digital audio signal. A feature represents some sort of descriptive information
+about the audio data. According to \citet{lerch2012}, this extraction process
+serves a dual purpose; that of dimensionality reduction as well as a more
+meaningful representation. A large variety of features for different purposes
+have been developed (refer to \citet{peeters2004} for an extensive list as well
+as \citet{lerch2012} for an in-depth look at the topic). The following
+subsections introduce the features used in this work, starting with the pre-processing required to prepare an audio signal for feature extraction and then
+moving into individual definitions for each feature. The equations presented
+here are based on the formal definitions given by \citet{lerch2012} along with
+the computational implementations of the features in the \textit{Meyda} library
+for feature extraction in JavaScript \citep{rawlinson2015}, which in turn adapted
+the \textit{yaafe} library for Python \citep{mathieu2010}.
 
 \subsubsection{Audio Pre-Processing}
 \label{subsubsec:preprocessing}
+Consider a digital audio signal of the form $x[n]$, where $n$ denotes the sample
+index and $x[n]$ the value of the individual sample at that index.
+
+\paragraph{Normalization}
+\label{para:normalization}
+In order to have a standardized maximum amplitude of 1 across all audio signals,
+they are normalized such that
+\begin{equation}
+  x_{norm}[n] = \frac{x[n]}{\max{x[n]}}.
+\end{equation}
+
+\paragraph{Mono Conversion}
+\label{para:mono_conversion}
+Spatial information, as contained in an audio file with more than one channel,
+is not deemed necessary in the presented work. For this reason, all audio
+signals are converted to mono by taking the average of all channels.
+
+\paragraph{Frame-Based Feature Extraction}
+\label{para:frame_based_extraction}
+Rather than performing feature extraction on the entirety of the audio signal,
+it is common practice to divide the signal into smaller chunks or
+\textit{frames}, typically consisting of some $2^n$ samples (512, 1024, 2048
+are often found values). The resulting feature values for each frame form a
+trajectory of the feature's evolution over time, which can either be used as
+such or can be averaged. In this work, audio signals are divided into frames
+with a length of 512 samples.
+In order to avoid computational errors (such as \gls{nan} in JavaScript) during
+potentially silent portions of the audio signal, frames with
+$v_{RMS} < \SI{-60}{dBFS}$ (see \nameref{para:rms} definition below) are omitted
+from the feature extraction.
 
 \subsubsection{Time-Domain Features}
 \label{subsubsec:temporal_features}
