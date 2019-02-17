@@ -150,7 +150,7 @@ where
 is the specific loudness of each Bark band (see \citet{moore1997} for further
 details).
 
-\subsection{Self-Organzing Map}
+\subsection{Self-Organizing Map}
 \label{subsec:som}
 
 The \textit{self-organizing map} (\gls{som}) is a machine learning algorithm for
@@ -168,26 +168,159 @@ component analysis (PCA) \citep{yin2007} or as a quantization of the input data,
 with the nodes along the map functioning as pointers into that higher-dimensional
 space. Each node has a position on the lower-dimensional grid as well as an
 associated position in the input space, which takes the form of a
-$d$-dimensional weight vector $m = [m_{1}, ... , m_{d}]$, where $d$ is the
+$n$-dimensional weight vector $m = [m_{1}, ... , m_{n}]$, where $n$ is the
 number of dimensions of the input vectors. Nodes that are in close proximity to
 each other on the \gls{som} will also have similar weight vectors
-\citep{vesanto2000}.
+\citep{vesanto2000}, although the inverse (neighboring positions in the input
+space also mapping to neighboring nodes) is not necessarily true
+\citep{bauer1996}.
 \\
 For an in-depth look at the algorithm, its variants and applications, as well as
 an extensive survey of research on \glspl{som}, the avid reader is referred to
 \citet{kohonen2001}.
 
-\smallskip
+\subsubsection{Algorithm Definition}
+\label{subsubsec:som_math_definition}
+The following definition is based on \citet{kohonen1990},
+\citet{web:kohonen2005}, \citet{web:kohonen2007} and \citet{bauer1996}.
+\bigskip
 
-what is it used for?
-pattern recognition
-\smallskip
+Consider a space of input data in the form of n-dimensional vectors $x \in
+\mathbb{R}^n$ and an ordered set of nodes or model vectors
+$m_i \in \mathbb{R}^n$. A vector $x(t)$ is mapped to that node $m_c$ with the
+shortest Euclidean distance from it:
+\begin{equation}
+\label{eq:bmu}
+  ||x(t) - m_c|| \leq ||x(t) - m_i|| \; \forall{i}.
+\end{equation}
+This "winning" node $m_c$ is referred to as the \gls{bmu} for $x(t)$.
+\bigskip
 
-mathematical definition
-\smallskip
+During the learning or adaptation phase of the algorithm, all nodes $m_i$ are
+adjusted by a recursive regression process
+\begin{equation}
+  m_i(t+1) = m_i(t) + h_{c(x),i}(x(t) - m_i(t)),
+\end{equation}
+where $t$ is the index of the current regression step, $x(t)$ is an input vector
+chosen randomly from the input data at this step, $c$ is the index of the
+\gls{bmu} for the current input vector $x(t)$ according to equation \ref{eq:bmu}
+and $h_{c(x),i}$ represents a so-called \textit{neighborhood function}. The
+name-giving \textit{neighborhood} is a subset $N_c$ of nodes centered on $m_c$.
+At each learning step $t$, those nodes that are within $N_c$ will be adjusted,
+whereas those outside of it will not. The reason for employing such a
+neighborhood function is so that the nodes "doing the learning are not affected
+independently of each other" \citep[p.1467]{kohonen1990} and "the topography of
+the map is ensured" \citep[p.5]{bauer1996}. At its most basic, the
+neighborhood function is a decreasing distance function between neurons $m_i$
+and $m_c$. Its most common form, which is also employed in this work, is that of
+a Gaussian function with its peak at $m_c$ such that
+\begin{equation}
+  h_{c(x),i} = \alpha(t) \exp\bigg(- \frac{||r_i - r_c||^2}{2\sigma^2(t)}\bigg).
+\end{equation}
+Here, $\alpha$ denotes a learning rate factor or adaptation "gain control"
+$0 < \alpha(t) < 1$, which decreases over the course of the regression,
+$r_i \in \mathbb{R}^2$ and $r_c \in \mathbb{R}^2$ are the locations of $m_i$ and
+$m_c$ on the \gls{som} grid (the lower-dimensional output map, not the input
+space!), and $\sigma(t)$ is the width of the neighborhood function, which again
+decreases as the regression step index increases.
+\bigskip
 
-algorithm described using pseudo-code
+% TODO Algorithm description using pseudo-code???
 
-initialization
+\subsubsection{Node Initialization}
+\label{subsubsec:som_initialization}
+Because of the iterative nature of the \gls{som} algorithm, its outcome depends
+on the initial positions chosen for the nodes. The method implemented in this
+work uses random initialization, meaning the starting positions of the nodes are
+chosen randomly from within the bounds of the input space. An often employed
+alternative approach is to first perform a \gls{pca} on the input data, select
+the largest $d$ components, where $d$ is the number of desired output dimensions
+for the \gls{som}, and then distribute the nodes at equidistant intervals along
+those component vectors.
 
-input data normalization
+\subsubsection{Input Data Scaling}
+\label{subsubsec:som_input_normalization}
+Some consideration should be given to the dynamic range of the input data across
+its different dimensions. Are the dimensional ranges comparable in their limits?
+What about their variance? There does not appear to exist a clear consensus
+across the literature on whether or not normalization of input data is strictly
+necessary (\citet[p.34]{vesanto2000}, \citet[p.1470]{kohonen1990},
+\citet{web:kohonen2007}).
+
+Because the range of the data derived from the audio
+feature analysis used in this work varies considerably between features, the
+data for feature $n$ is rescaled to have unit variance by dividing by the
+features' standard deviation $\sigma_n$:
+\begin{equation}
+  x_{n} = \frac{x_{n}}{\sigma_n}.
+\end{equation}
+
+\subsubsection{Alternative Learning Rate Factors}
+\label{subsubsec:som_learning_rates}
+
+\paragraph{Linear}
+\label{para:alpha_linear}
+The traditional \gls{som} algorithm uses a learning rate factor $\alpha$ that
+decreases linearly as a function of the regression step $t$:
+\begin{equation}
+  \alpha(t) = \alpha_0 \bigg(\frac{1 - t}{T}\bigg),
+\end{equation}
+where $\alpha_0$ is the initially chosen learning rate and $T$ is the total
+training length or number of regression steps.
+\bigskip
+
+Two other approaches to the decreasing learning rate factor were implemented
+in this work:
+
+\paragraph{Inverse}
+\label{para:alpha_inverse}
+The first is a reciprocally decreasing function where
+\begin{equation}
+  \alpha(t) = \frac{\alpha_0}{\big(\frac{1 + 100t}{T}\big)}.
+\end{equation}
+
+\paragraph{BDH}
+\label{para:alpha_bdh}
+The second alternative approach is that of an adaptive local learning rate as
+developed by \citet{bauer1996} (BDH algorithm, also see \citet{merenyi2007}):
+\begin{equation}
+  \alpha(t) = \alpha_0 \bigg(\frac{1}{\Delta{t_c}}\bigg(\frac{1}{|x(t)-m_c|^n}\bigg)\bigg)^m,
+\end{equation}
+where $\Delta{t_c}$ represents the time since the current \gls{bmu} for the
+current input vector was last selected as a \gls{bmu} for any vector and $m$ is
+a newly introduced, free control parameter. For a more complete review of the
+uses of this algorithm, the reader is referred to the original paper
+\citep{bauer1996} as well as \citet{merenyi2007}.
+
+\subsubsection{Forced Node Population}
+\label{subsubsec:som_forced_population}
+% TODO: This should maybe go in the introduction together with an overview of musical
+% grids
+One of the aspects that make the \gls{som} immediately interesting for music
+technology applications is that it is fundamentally based on a regular grid
+structure, which opens a direct connection to the grid as a musical structure.
+
+In order to avoid "empty" nodes on the \gls{som} - meaning nodes to which no
+input vectors are mapped - a post-processing extension was added to the original
+algorithm that inverts the mapping process, explicitly iterates over empty nodes
+and assigns each one that input vector which is closest. This algorithm
+extension, which we call Forced Node Population, executes the following
+sequence after the regular \gls{som} has been calculated:
+
+\begin{enumerate}
+  \item Select a random empty node.
+  \item Find closest vector for that node and assign it to this node.
+  \item Remove this vector from the possible choices.
+  \item Repeat.
+\end{enumerate}
+
+This process is only performed once for all nodes that are empty immediately
+after the initial \gls{som} calculation. It is possible that the forced node
+population creates new empty nodes, but in order to minimize distortion
+introduced by this procedure
+% TODO: Do this!!! Meaning show the introduced distortion somehow
+(see \nameref{sec:results} in section \ref{sec:results}),
+it is not repeated. For a look at the results of this algorithm extension,
+please refer to
+% TODO: Show before / after forced node population
+\nameref{sec:results} (section \ref{sec:results}).
