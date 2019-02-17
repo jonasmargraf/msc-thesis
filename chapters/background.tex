@@ -53,12 +53,14 @@ with a length of 512 samples.
 In order to avoid computational errors (such as \gls{nan} in JavaScript) during
 potentially silent portions of the audio signal, frames with
 $v_{RMS} < \SI{-60}{dBFS}$ (see \nameref{para:rms} definition below) are omitted
-from the feature extraction.
+from the feature extraction. The following equations define each feature for a
+single frame.
 
-\subsubsection{Time-Domain Features}
+\subsubsection{Time Domain Features}
 \label{subsubsec:temporal_features}
 % TODO
-Define $x[n]$, $n$
+Time domain features are features derived directly from the discrete-time
+signal $x[n]$.
 
 \paragraph{Duration}
 \label{para:duration}
@@ -87,10 +89,14 @@ and as a simple pitch detection method for monophonic signals \citep{web:pitchde
   v_{ZCR} = \frac{1} {2\cdot{n}}\sum\limits_{i=1}^{n} |sgn[x(i)] - sgn[x(i - 1)]|.
 \end{equation}
 
-\subsubsection{Frequency-Domain Features}
+\subsubsection{Frequency Domain Features}
 \label{subsubsec:spectral_features}
 % TODO
-Define $N_{FFT}$, $X(k)$
+Frequency domain features or \textit{spectral} features are derived from the
+discrete complex spectrum $X(k)$, where $k$ refers to the frequency bin number.
+$X(k)$ is calculated from $x[n]$ by performing an \gls{fft} (for information on
+the Fourier transform, refer to any signal processing textbook, such as
+\citet{oppenheim2014}).
 
 \paragraph{Spectral Centroid}
 \label{para:centroid}
@@ -172,6 +178,11 @@ values for $\kappa$ are $0.85$, $0.95$ \citep{lerch2012} or $0.99$
 
 \subsubsection{Perceptual Features}
 \label{perceptual_features}
+Both the time and frequency domain features introduced above are derived from
+raw audio samples without taking into account any concept of human sound
+perception. Perceptual features incorporate some sort of model that approximates
+this perception. While only a single perceptual feature is used in this work,
+more do exist (see \citet{peeters2004} for a list of some of them).
 
 \paragraph{Total Loudness}
 \label{para:loudness}
