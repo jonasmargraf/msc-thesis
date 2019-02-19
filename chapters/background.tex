@@ -19,8 +19,8 @@ subsections introduce the features used in this work, starting with the pre-proc
 moving into individual definitions for each feature. The equations presented
 here are based on the formal definitions given by \citet{lerch2012} along with
 the computational implementations of the features in the \textit{Meyda} library
-for feature extraction in JavaScript \citep{rawlinson2015}, which in turn adapted
-the \textit{yaafe} library for Python \citep{mathieu2010}.
+for feature extraction in JavaScript \citep{rawlinson2015}, which in turn
+adapted the \textit{yaafe} library for Python \citep{mathieu2010}.
 
 \subsubsection{Audio Pre-Processing}
 \label{subsubsec:preprocessing}
@@ -188,7 +188,8 @@ more do exist (see \citet{peeters2004} for a list of some of them).
 \label{para:loudness}
 represents an algorithmic approximation of the human perception of a signal's
 loudness based on \citet{moore1997}, which uses the Bark scale as introduced by
-\citet{zwicker1961}. The Total Loudness is the sum of all 24 bands' specific loudness
+\citet{zwicker1961}. The Total Loudness is the sum of all 24 bands' specific
+loudness
 coefficients, defined by \citet{peeters2004} as
 \begin{equation}
   v_{TL} = \sum\limits_{i=1}^{24} v_{SL}(i),
@@ -215,9 +216,9 @@ competitive learning process to map a set of higher-dimensional observations
 of \textit{neurons} or \textit{nodes} that is easy to visualize.
 The \gls{som} can be regarded as a nonlinear generalization of a principal
 component analysis (PCA) \citep{yin2007} or as a quantization of the input data,
-with the nodes along the map functioning as pointers into that higher-dimensional
-space. Each node has a position on the lower-dimensional grid as well as an
-associated position in the input space, which takes the form of a
+with the nodes along the map functioning as pointers into that
+higher-dimensional space. Each node has a position on the lower-dimensional grid
+as well as an associated position in the input space, which takes the form of a
 $n$-dimensional weight vector $m = [m_{1}, ... , m_{n}]$, where $n$ is the
 number of dimensions of the input vectors. Nodes that are in close proximity to
 each other on the \gls{som} will also have similar weight vectors
