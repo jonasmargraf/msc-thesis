@@ -129,24 +129,33 @@ As a metric for the \gls{som}, the quantization errors for all vectors can be
 averaged, as well as their distribution examined. In order to maximize
 information preservation, quantization errors should be minimized.
 
-\subsubsection{Vector-Node Ratio}
-\label{subsubsec:vector_node_ratio}
-
-
-- vector count per BMU
-
-- mean / std / distribution
-
+\subsubsection{Vector-Node Count}
+\label{subsubsec:vector_node_count}
+A second metric that was devised in order to quantify \gls{som} quality is the
+count $ C_i $ of vectors $ x_1, ... , x_n $ mapped to a node $ m_i $ and
+subsequently the distribution of those counts across the map. Ideally, this
+distribution should look like a single, narrow spike - meaning that (almost) all
+nodes have about the same number of vectors assigned to them, resulting in an
+even distribution of sounds across the SOM Browser map interface.
 
 \subsubsection{Map Emptiness}
 \label{subsubsec:map_emptiness}
-
-
-- empty neurons / total neurons
+Another relevant aspect of the created \glspl{som}, and the third metric
+employed here, is how much of the map remains "empty", meaning how many nodes
+were not assigned any vectors. We define this "map emptiness" metric $ ME $ as
+the number of nodes $ m_1, ... m_n $ whose vector-node count $ C_n = 0 $ (see
+section \ref{subsubsec:vector_node_count}), divided by the total number of nodes
+$ m_i $. For the purpose of making optimal use of the space alloted to the map
+in the SOM Browser \gls{gui}, emptiness should be minimized so that users
+encounter the least amount of "blind spots" possible.
 
 \subsubsection{Influence of Forced Node Population}
 \label{subsubsec:eval_fnp_influence}
-
+Since the concept of Forced Neuron Population is an addition to the \gls{som}
+algorithm introduced in this work (see section
+\ref{subsubsec:som_forced_population}), its influence on the \gls{som} should
+also be evaluated. Therefore, the aforementioned metrics were calculated
+both with and without \gls{fnp}.
 
 % \subsection{Online Sound Similarity Survey}
 % \label{subsec:evaluation_survey}
