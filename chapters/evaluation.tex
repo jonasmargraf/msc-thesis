@@ -106,19 +106,51 @@ sound files is 1081.
 
 \subsection{Metrics for SOM Analysis}
 \label{subsec:eval_som_metrics}
+In order to evaluate the \glspl{som} created using the SOM Browser application
+and the \textit{Drum Essentials} test data set, three core metrics are used:
+quantization induced by the \gls{som}, map emptiness, and the ratio between
+nodes and their assigned vectors. These metrics and the motivation behind them
+are outlined further in the following paragraphs.
 
-\subsubsection{SOM-Induced Quantization and Influence of Forced Node Population}
-\label{subsubsec:som_quantization_fnp_influence}
+\subsubsection{SOM-Induced Quantization}
+\label{subsubsec:som_quantization}
+Fundamental to the \gls{som} principle is the idea of mapping vectors to their
+corresponding \glspl{bmu}, those nodes that are closest to them (see section
+\ref{subsec:som}). Several vectors can be assigned to one node - this can also
+be thought of as a quantization process, where the absolute difference between
+the positions of vector $ x_t $ and node $ m_c $ is the quantization error
+$ \Delta_t $ for that vector:
 
-\subsubsection{Map Emptiness}
-\label{subsubsec:map_emptiness}
+\begin{equation}
+  \Delta_t = | x_t - m_c |
+\end{equation}
+
+As a metric for the \gls{som}, the quantization errors for all vectors can be
+averaged, as well as their distribution examined. In order to maximize
+information preservation, quantization errors should be minimized.
 
 \subsubsection{Vector-Node Ratio}
 \label{subsubsec:vector_node_ratio}
 
-\subsection{Online Sound Similarity Survey}
-\label{subsec:evaluation_survey}
-Maybe not even do this bit???
+
+- vector count per BMU
+
+- mean / std / distribution
+
+
+\subsubsection{Map Emptiness}
+\label{subsubsec:map_emptiness}
+
+
+- empty neurons / total neurons
+
+\subsubsection{Influence of Forced Node Population}
+\label{subsubsec:eval_fnp_influence}
+
+
+% \subsection{Online Sound Similarity Survey}
+% \label{subsec:evaluation_survey}
+% Maybe not even do this bit???
 
 \subsection{Semistructured User Interviews}
 \label{subsec:evaluation_interviews}
