@@ -8,25 +8,94 @@ This is the Evaluation.
 \label{subsec:eval_corpus_selection}
 A crucial aspect for the evaluation of the work presented in this thesis is the
 choice of an appropriate data set of audio files to serve as a prototypical
-sound corpus.
+sound corpus. Ideally, two key conditions should be met by this corpus. It
+should be \textit{ecologically valid}, meaning here that it should approximate a
+real-world sample library that would actually be used by contemporary music
+producers, and it should be a \textit{well-established} data set which has been
+validated through use in other research, allowing for direct comparisons between
+results. Preferably, something akin to the Giant Steps data sets
+\citep{knees2015} for tempo and key detection should be used.
+In addition to identifying the aforementioned two conditions, the decision was
+made to only select "one-shot" drum and percussion sounds (meaning single
+instrument hits, no loops or other longer sounds) in order to evaluate a single,
+concrete use case and limit the scope of this evaluation.
 
-- which sample library to choose?
+\smallskip
 
-\citet{drumessentials2019}
+Data sets used in previous research vary and it is often not possible to clearly
+establish provenance due to insufficient information being given by the authors
+(see for example \citet{fried2014} and \citet{shier2017}, two papers which
+present important related work but fail to clearly identify the source of their
+employed sound files). Two established databases that have been cited in the
+literature are ENST-Drums \citep{gillet2006} and the RWC Music Database
+\citep{goto2002}. However, neither of these data sets proved appropriate for
+this evaluation since they both contain only acoustic source material and,
+especially in the case of RWC, largely consist of longer musical passages
+instead of the single "one-shot" hits mentioned above.
 
-- no established reference data set
+\smallskip
 
-- requirement for ecological validity
+For the reasons outlined above, the author decided to forego the condition that
+the selected sound corpus be a data set well-established through previous
+research. Because of this, more emphasis is placed on the requirement for
+ecological validity. In order to maximize real-world conditions, the sample
+library \textit{Drum Essentials} \citep{drumessentials2019} was selected to
+serve as a sound corpus for this evaluation. It is a collection of samples
+created by the German music software company Ableton AG that is distributed to
+owners of the company's flagship product, the \gls{daw} \textit{Ableton Live}
+\citep{abletonlive2019}. As part of a commercially available product, this
+corpus of sound files does not just approximate a real-world sample library, it
+is an actual example of such a library and is, for the purpose of this thesis,
+considered representative of sample libraries used in a modern music production
+workflow.
 
-- DrumEssentials: why? what is it?
+\smallskip
 
-- representative for modern production workflow
+The \textit{Drum Essentials} collection as distributed by Ableton consists of
+1181 one-shot samples, each in a separate audio file, as well as supplementary
+content, such as MIDI clips and effects presets. Only the raw audio files are
+used in the presented work. These sound files present a mixture of acoustic
+and electronic sounds stemming from a variety of drums and percussion
+instruments. The library is organized by instrument group, of which there are
+17 in total. The names of these groups, as well as the number of sounds per
+group can be found in table \ref{table:drum_essentials_counts}. Some sound files
+appear in more than one group. These duplicates have been removed, so that every
+sound only appears once throughout the entire data set. The remaining number of
+sound files is 1081.
 
-- mixture of acoustic and electronic sounds
+\renewcommand{\arraystretch}{1.2}
 
-- belongs to widely used DAW
-
-- good mixture of variety of drums
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{| l | c |}
+    \hline
+    \multicolumn{2}{| c |}{\textbf{Drum Essentials}} \\
+    \hline
+    \textbf{Instrument Category} & \textbf{Count} \\
+    \hline
+    Bell & 19 \\
+    Bongo & 6 \\
+    Clap & 71 \\
+    Conga & 27 \\
+    Cymbal & 54 \\
+    Electronic Percussion & 49 \\
+    FX Hit & 64 \\
+    Hihat & 167 \\
+    Kick & 166 \\
+    Misc. Percussion & 64 \\
+    Ride & 40 \\
+    Rim & 65 \\
+    Shaker & 39 \\
+    Snare & 181 \\
+    Tambourine & 23 \\
+    Tom & 138 \\
+    Wood & 8 \\
+    \hline
+  \end{tabular}
+  \caption{Sound file counts per instrument category of the
+  \textit{Drum Essentials} sample library}
+  \label{table:drum_essentials_counts}
+\end{table}
 
 - clearly identifiable source
 
