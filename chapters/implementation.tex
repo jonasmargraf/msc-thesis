@@ -6,12 +6,21 @@ This is the Implementation.
 
 \subsection{Groundwork: CataRT Extension}
 \label{subsec:implementation_catart}
+For the purpose of laying the groundwork for a bigger standalone application
+(see section \ref{subsec:implementation_som-browser}), a proof-of-concept
+implementation of the core \gls{som} algorithm was written in JavaScript to
+serve as an extension to the \textit{MuBu For Max} software package
+(\citet{web:mubu2019}, \citet{web:mubu2019_2}) for the visual programming
+language Max \citep{web:max2019}. \textit{MuBu For Max} was developed by the
+Sound, Music, Movement, Interaction Team (ISMM) at \gls{ircam}
+\citep{schnell2009}. It contains the \textit{catart-by-mubu} patch for
+realtime interactive corpus-based concatenative synthesis based on the original
+\textit{CataRT} software \citep{schwarz2006}.
 
-- Max 7
 
 \begin{figure}[!htb]
   \centering
-  \includegraphics[width=\linewidth, trim=5mm 5mm 5mm 5mm, clip]{mubu-som-js}
+  \includegraphics[width=\linewidth, clip]{mubu-som-js}
   \caption{mubu-SOM-js}
   \label{fig:mubu-som}
 \end{figure}
@@ -34,7 +43,7 @@ main training loop:
 \end{listing}
 
 \subsection{SOM Browser}
-\label{subsec:implementation_som_browser}
+\label{subsec:implementation_som-browser}
 
 \subsubsection{Functionality}
 \label{subsubsec:som-browser_functionality}
@@ -48,6 +57,7 @@ desired functionality
 
 \paragraph{React}
 \label{para:react}
+reference boilerplate project
 
 \paragraph{Web Audio API}
 \label{para:web_audio_api}
@@ -110,3 +120,5 @@ App.js / components overview
 
 \paragraph{UserSelection}
 \label{para:user_selection}
+
+% TODO: FNP here???????
