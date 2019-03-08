@@ -27,6 +27,48 @@ realtime interactive corpus-based concatenative synthesis based on the original
 
 \subsubsection{Functionality}
 \label{subsubec:mubu-som_functionality}
+\textit{Catart-by-mubu} uses a
+two-dimensional scatter plot interface in which the user can select samples or
+grains from the loaded audio corpus (see
+% TODO
+graphic here).
+The spatial position of these sounds in the interface is determined by two audio
+features, representing the horizontal and vertical axes, that can be selected by
+the user.
+The implemented \gls{som} extension gives users the option to choose a
+two-dimensional \gls{som} for the spatial organization of the corpus. This is
+augments the interface in three ways: all analyzed audio features can be
+taken into account for the spatial positioning (as opposed to just two at a
+time), more of the available interface space is used and additionally the sounds
+are spaced in a more even fashion (see
+% TODO
+graphic here).
+
+\textit{Mubu-SOM-js} offers the user simple controls to influence the produced
+\gls{som}. These can be set by sending the following messages to the \\
+\texttt{[js descriptor\_som.js]} object:
+
+% TODO: make this a table???
+
+\paragraph*{setMapSize} takes an integer value and sets the size of the square
+map to that value.
+
+\paragraph*{trainingEpochs} defines the length of the
+training in epochs. One epoch corresponds to $n$ iterations of the training
+algorithm as defined in section \ref{subsubsec:som_math_definition}, where $n$
+is the number of samples in the corpus. Specified in integers.
+
+\paragraph*{initialAlpha} is the starting value for $\alpha$, the learning rate
+factor. It is expected to be a floating point value.
+
+\paragraph*{learningRateType} sets the learning rate type (see section
+\ref{subsubsec:som_learning_rates}). It expects a string that is either
+\mintinline{js}{'linear'}, \mintinline{js}{'inverse'} or \mintinline{js}{'BDH'}.
+
+\paragraph*{magnificationM} only applies when
+\mintinline{js}{learningRateType === 'BDH'}. It expects a floating point value
+and sets the magnification control factor $m$ (see section
+\ref{para:alpha_bdh}).
 
 \subsubsection{Code Overview}
 \label{subsubsec:mubu-som_overview}

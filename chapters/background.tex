@@ -250,6 +250,7 @@ This "winning" node $m_c$ is referred to as the \gls{bmu} for $x(t)$.
 During the learning or adaptation phase of the algorithm, all nodes $m_i$ are
 adjusted by a recursive regression process
 \begin{equation}
+  \label{eq:node_update}
   m_i(t+1) = m_i(t) + h_{c(x),i}(x(t) - m_i(t)),
 \end{equation}
 where $t$ is the index of the current regression step, $x(t)$ is an input vector
