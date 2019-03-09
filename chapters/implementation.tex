@@ -2,7 +2,14 @@
 
 \section{Implementation}
 \label{sec:implementation}
-This is the Implementation.
+After some theoretical background information was given in the previous chapter,
+the following sections aim to explain how the \gls{som} algorithm was
+implemented in JavaScript. First, a smaller program was built to extend the
+existing software \textit{CataRT}. Then a second, more fully
+fledged application called \textit{SOM Browser} was developed. For both of
+these programs, we take a look at their functionality and features, give an
+overview of the code and program structure, and explain some concepts and
+considerations that were important for the development process.
 
 \subsection{Groundwork: CataRT Extension}
 
@@ -23,9 +30,39 @@ language Max \citep{web:max2019}. \textit{MuBu For Max} was developed by the
 Sound, Music, Movement, Interaction Team (ISMM) at \gls{ircam}
 \citep{schnell2009}. It contains the \textit{catart-by-mubu} patch for
 realtime interactive corpus-based concatenative synthesis based on the original
-\textit{CataRT} software \citep{schwarz2006}.
+\textit{CataRT} software \citep{schwarz2006}. The developed extension is a Max
+patch called \textit{mubu-SOM-js} (see Figure \ref{fig:mubu-som}) and can be
+found on the digital resource included with this thesis in the directory
+% TODO: this
+XXX path to patch XXX.
 
 \smallskip
+
+\begin{figure}[!htb]
+% \begin{figure}
+  \centering
+\begin{subfigure}{0.45\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{catart_without_som_centroidVSloudness}
+  % \caption{\textit{CataRT} display of a corpus using spectral centroid (X axis)
+  % vs loudness (Y axis)}
+  \caption{}
+  \label{fig:catart_no_som}
+\end{subfigure}
+~
+\begin{subfigure}{0.45\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{catart_with_som}
+  % \caption{\textit{CataRT} display of a corpus using \gls{som} extension}
+  \caption{}
+  \label{fig:catart_with_som}
+\end{subfigure}
+\caption{\textit{CataRT} display of a corpus without \gls{som}
+(\ref{fig:catart_no_som}, X axis shows spectral centroid, Y axis shows loudness)
+and with \gls{som} extension (\ref{fig:catart_with_som})}
+\label{fig:catart_som_vs_no_som}
+\end{figure}
+
 
 \textit{Catart-by-mubu} uses a
 two-dimensional scatter plot interface in which the user can select samples or
@@ -40,9 +77,7 @@ two-dimensional \gls{som} for the spatial organization of the corpus. This
 augments the interface in three ways: all analyzed audio features can be
 taken into account for the spatial positioning (as opposed to just two at a
 time), more of the available interface space is used and additionally the sounds
-are spaced in a more even fashion (see
-% TODO
-graphic here).
+are spaced in a more even fashion (see Figure \ref{fig:catart_som_vs_no_som}).
 
 \subsubsection{Functionality}
 \label{subsubec:mubu-som_functionality}
@@ -80,6 +115,8 @@ object.
     \textbf{Message} & \textbf{Type} & \textbf{Description}
     & \textbf{Example} \\
     \hline
+    \texttt{createSOM} & n/a & Initiates \gls{som} calculation. &
+    \texttt{createSOM} \\
     \texttt{setMapSize \$1 \$1} & Float & Sets size of map.
     & \texttt{setMapSize 7 7} \\
     \texttt{trainingEpochs \$1}
@@ -94,14 +131,14 @@ object.
     & Sets the starting value for the learning
     rate factor $\alpha$.
     & \texttt{initialAlpha 0.5} \\
-    \texttt{learningRateType}
+    \texttt{learningRateType \$1}
     & String
     & Sets the learning rate type (see section
     \ref{subsubsec:som_learning_rates}). It expects a string that is either
     \mintinline{js}{'linear'}, \mintinline{js}{'inverse'} or
     \mintinline{js}{'BDH'}.
     & \texttt{learningRateType 'linear'} \\
-    \texttt{magnificationM}
+    \texttt{magnificationM \$1}
     & Float
     & Sets the magnification control factor $m$ (see section
     \ref{para:alpha_bdh}). Only applies when
@@ -114,10 +151,61 @@ object.
 
 \subsubsection{Code Overview}
 \label{subsubsec:mubu-som_overview}
+The core of the \textit{mubu-SOM-js} Max patch is a JavaScript program (see the
+file \texttt{mubu-som-js/descriptor\_som.js}). The choice of programming
+language was determined by the fact that \textit{CataRT} is a Max patch and
+JavaScript (via the built-in \texttt{[js]} object) can be used to script most
+aspects of the Max environment. This JavaScript version of the \gls{som} is in
+some ways a port from a first MATLAB implementation of the algorithm that was
+developed by the author during an internship at \gls{ircam} in the fall of 2017.
+Some aspects of the structure of the presented program are based on the
+\gls{som} Toolbox that was developed at Helsinki University of Technology by
+\citet{vesanto2000}.
 
-in parts based on \citet{vesanto2000}
+\smallskip
 
-main training loop:
+The flow of the script is encapsulated in \mintinline{js}{createSOM()}.
+This function calls all other important functions that make up the program, as
+can be seen in Listing \ref{lst:mubu-som_create_som}.
+
+\begin{listing}[!htb]
+  \begin{mdframed}
+    \inputminted[breaklines, numbers=left, firstline=34, lastline=39,
+    fontsize=\footnotesize]{js}{../dev/mubu-som-js/descriptor_som.js}
+  \end{mdframed}
+  \caption{mubu-som-js/descriptor\_som.js: \mintinline{js}{createSOM()}}
+  \label{lst:mubu-som_create_som}
+\end{listing}
+
+After data normalization and map initialization, \mintinline{js}{trainMap()} is
+called, which executes the training procedure by repeatedly calling the function
+\mintinline{js}{training()} in an asynchronous background process (see Listing
+\ref{lst:mubu-som_training}). For each step of the training phase, all
+calculations happen inside \mintinline{js}{trainingStep()}. The most important
+part, the updating of node positions on each iteration, is shown in Listing
+\ref{lst:mubu-som_node_updates}.
+
+
+% \begin{listing}[!htb]
+%   \begin{mdframed}
+%     \inputminted[breaklines, numbers=left, firstline=31, lastline=32,
+%     fontsize=\footnotesize]{js}{../dev/mubu-som-js/descriptor_som.js}
+%   \end{mdframed}
+%   \caption{mubu-som-js/descriptor\_som.js: Initialization of
+%   \mintinline{js}{Task} object}
+%   \label{lst:mubu-som_task}
+% \end{listing}
+
+
+
+\begin{listing}[!htb]
+  \begin{mdframed}
+    \inputminted[breaklines, numbers=left, firstline=203, lastline=219,
+    fontsize=\footnotesize]{js}{../dev/mubu-som-js/descriptor_som.js}
+  \end{mdframed}
+  \caption{mubu-som-js/descriptor\_som.js: \mintinline{js}{training()}}
+  \label{lst:mubu-som_training}
+\end{listing}
 
 \begin{listing}[!htb]
   \begin{mdframed}
@@ -126,6 +214,23 @@ main training loop:
   \end{mdframed}
   \caption{mubu-som-js/descriptor\_som.js: neuron position updates inside
   \mintinline{js}{trainingStep()}}
+  \label{lst:mubu-som_node_updates}
+\end{listing}
+
+\smallskip
+
+After the training phase is finished, the final map is populated by iterating
+over all vectors and finding their corresponding best matching units (meaning
+that node which is closest), as can be seen in Listing
+\ref{lst:mubu-som_find_bmus}.
+
+\begin{listing}[!htb]
+  \begin{mdframed}
+    \inputminted[breaklines, numbers=left, firstline=316, lastline=335,
+    fontsize=\footnotesize]{js}{../dev/mubu-som-js/descriptor_som.js}
+  \end{mdframed}
+  \caption{mubu-som-js/descriptor\_som.js: \mintinline{js}{findBestMatches()}}
+  \label{lst:mubu-som_find_bmus}
 \end{listing}
 
 \subsection{SOM Browser}
