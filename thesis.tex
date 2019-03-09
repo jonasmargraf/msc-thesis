@@ -7,6 +7,9 @@ BCOR=10mm, parskip=never]{paper}
 \usepackage{textcomp}
 \usepackage[usenames,dvipsnames,rgb,svgnames,table]{xcolor}
 
+\definecolor{table-bg-one}{RGB}{255,255,255}
+\definecolor{table-bg-two}{RGB}{230,230,230}
+
 \usepackage[newfloat=true, outputdir=build]{minted}
 \usepackage{mdframed}
 
@@ -34,6 +37,8 @@ BCOR=10mm, parskip=never]{paper}
 \usepackage{hyperref}
 \hypersetup{hidelinks,
 colorlinks = false,
+% colorlinks = true,
+% allcolors = [rgb]{0.15,0.15,0.25},
 pdfauthor={Jonas Margraf},
 pdftitle={Master's Thesis: Self-Organizing Maps for Sound Corpus Organization},
 pdfsubject={A Networking Extension for the SoundScape Renderer},
