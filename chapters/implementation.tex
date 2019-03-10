@@ -57,18 +57,17 @@ XXX path to patch XXX.
   \caption{}
   \label{fig:catart_with_som}
 \end{subfigure}
-\caption{\textit{CataRT} display of a corpus without \gls{som}
+\caption[\textit{CataRT}: with and without \gls{som}]{\textit{CataRT} display of a corpus without \gls{som}
 (\ref{fig:catart_no_som}, X axis shows spectral centroid, Y axis shows loudness)
-and with \gls{som} extension (\ref{fig:catart_with_som})}
+and with \gls{som} extension (\ref{fig:catart_with_som}). Each circle represents
+a sample.}
 \label{fig:catart_som_vs_no_som}
 \end{figure}
 
 
 \textit{Catart-by-mubu} uses a
 two-dimensional scatter plot interface in which the user can select samples or
-grains from the loaded audio corpus (see
-% TODO
-graphic here).
+grains from the loaded audio corpus (see Figure \ref{fig:catart_som_vs_no_som}).
 The spatial position of these sounds in the interface is determined by two audio
 features, representing the horizontal and vertical axes, that can be selected by
 the user.
@@ -222,7 +221,11 @@ part, the updating of node positions on each iteration, is shown in Listing
 After the training phase is finished, the final map is populated by iterating
 over all vectors and finding their corresponding best matching units (meaning
 that node which is closest), as can be seen in Listing
-\ref{lst:mubu-som_find_bmus}.
+\ref{lst:mubu-som_find_bmus}. In order to spatially differentiate between
+vectors that were assigned to the same node, a small amount of random noise is
+added to the position. This creates clusters around the exact node position and
+allows for the individual circles to be selected. An example of a map without
+added noise can be found in Figure \ref{fig:catart_with_som_no_noise}.
 
 \begin{listing}[!htb]
   \begin{mdframed}
@@ -232,6 +235,23 @@ that node which is closest), as can be seen in Listing
   \caption{mubu-som-js/descriptor\_som.js: \mintinline{js}{findBestMatches()}}
   \label{lst:mubu-som_find_bmus}
 \end{listing}
+
+\begin{figure}[!htb]
+% \begin{figure}
+  \centering
+  \includegraphics[width=0.45\linewidth]{catart_with_som_no_noise}
+  % \caption{\textit{CataRT} display of a corpus using spectral centroid (X axis)
+  % vs loudness (Y axis)}
+  \caption[\textit{CataRT}: \gls{som} without added noise ]{\textit{CataRT}
+  display of a corpus with \gls{som} extension, but without added noise to
+  differentiate samples assigned to the same node. Each circle represents a
+  sample.}
+  \label{fig:catart_with_som_no_noise}
+\end{figure}
+
+
+
+
 
 \subsection{SOM Browser}
 \label{subsec:implementation_som-browser}
