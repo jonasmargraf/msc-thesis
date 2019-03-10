@@ -57,7 +57,8 @@ XXX path to patch XXX.
   \caption{}
   \label{fig:catart_with_som}
 \end{subfigure}
-\caption[\textit{CataRT}: with and without \gls{som}]{\textit{CataRT} display of a corpus without \gls{som}
+\caption[\textit{CataRT}: with and without \gls{som}]{\textit{CataRT} display of
+a corpus without \gls{som}
 (\ref{fig:catart_no_som}, X axis shows spectral centroid, Y axis shows loudness)
 and with \gls{som} extension (\ref{fig:catart_with_som}). Each circle represents
 a sample.}
@@ -237,11 +238,8 @@ added noise can be found in Figure \ref{fig:catart_with_som_no_noise}.
 \end{listing}
 
 \begin{figure}[!htb]
-% \begin{figure}
   \centering
   \includegraphics[width=0.45\linewidth]{catart_with_som_no_noise}
-  % \caption{\textit{CataRT} display of a corpus using spectral centroid (X axis)
-  % vs loudness (Y axis)}
   \caption[\textit{CataRT}: \gls{som} without added noise ]{\textit{CataRT}
   display of a corpus with \gls{som} extension, but without added noise to
   differentiate samples assigned to the same node. Each circle represents a
@@ -251,14 +249,52 @@ added noise can be found in Figure \ref{fig:catart_with_som_no_noise}.
 
 
 
-
+\clearpage
 
 \subsection{SOM Browser}
 \label{subsec:implementation_som-browser}
 
+The majority of the work for this thesis consisted of the development of a
+standalone application for sample library exploration which we call
+\textit{SOM Browser}. A screenshot of the program can be seen in Figure
+\ref{fig:som-browser}.
+
+\begin{figure}[!htb]
+  \centering
+  \makebox[\textwidth][c]{\includegraphics[width=1.4\textwidth]{SOM-Browser}}
+  \caption{\textit{SOM Browser}}
+  \label{fig:som-browser}
+\end{figure}
+
+\textit{SOM Browser} offers users an alternative interface for the interaction
+with a folder of audio samples. Instead of the traditional file browser
+interface consisting of an alphabetical list of file names, the presented
+application offers a spatial map layout of the samples, with the aim of allowing
+users a more direct interaction and giving them a quicker overview of the
+sounds.
+
 \subsubsection{Functionality}
 \label{subsubsec:som-browser_functionality}
 desired functionality
+
+show spatial map layout
+
+quick auditioning of sounds
+
+
+
+load folder
+
+list all files
+
+show additional file information
+
+allow collecting and exporting of favorites
+
+control som settings
+
+save and load created maps
+
 
 \subsubsection{Libraries and Frameworks Used}
 \label{subsubsec:som-browser_libraries}
@@ -276,12 +312,6 @@ reference boilerplate project
 \paragraph{Meyda}
 \label{para:meyda}
 
-choice of tools / frameworks:
-- Electron
-- React
-- Web Audio (?)
-- Meyda
-
 what is application state?
 
 \subsubsection{Application Structure}
@@ -293,9 +323,18 @@ Program structure:
 \label{para:som-browser_states}
 progression through system states
 
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=\textwidth]{som-browser_states-sketch}
+  \caption{\textit{SOM Browser}: Mock-up outlining system states}
+  \label{fig:som-browser_states}
+\end{figure}
+
 \paragraph{Background Processing}
 \label{para:som-browser_background_processing}
 background processing
+
+% TODO: FNP here?
 
 \subsubsection{User Interface Components}
 \label{subsubsec:som-browser_components}
