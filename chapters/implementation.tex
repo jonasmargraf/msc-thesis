@@ -372,3 +372,35 @@ App.js / components overview
 \label{para:user_selection}
 
 % TODO: FNP here???????
+\subsubsection{Algorithm Extension: Forced Node Population}
+\label{subsubsec:som_forced_population}
+% TODO: This should maybe go in the introduction together with an overview of musical
+% grids
+One of the aspects that make the \gls{som} immediately interesting for music
+technology applications is that it is fundamentally based on a regular grid
+structure, which opens a direct connection to the grid as a musical structure.
+
+In order to avoid "empty" nodes on the \gls{som} - meaning nodes to which no
+input vectors are mapped - a post-processing extension was added to the original
+algorithm that inverts the mapping process, explicitly iterates over empty nodes
+and assigns each one that input vector which is closest. This algorithm
+extension, which we call \gls{fnp}, executes the following
+sequence after the regular \gls{som} has been calculated:
+
+\begin{enumerate}
+  \item Select a random empty node.
+  \item Find closest vector for that node and assign it to this node.
+  \item Remove this vector from the possible choices.
+  \item Repeat.
+\end{enumerate}
+
+This process is only performed once for all nodes that are empty immediately
+after the initial \gls{som} calculation. It is possible that the forced node
+population creates new empty nodes, but in order to minimize distortion
+introduced by this procedure
+% TODO: Do this!!! Meaning show the introduced distortion somehow
+(see \nameref{sec:results} in section \ref{sec:results}),
+it is not repeated. For a look at the results of this algorithm extension,
+please refer to
+% TODO: Show before / after forced node population
+\nameref{sec:results} (section \ref{sec:results}).
