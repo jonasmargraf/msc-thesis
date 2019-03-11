@@ -344,8 +344,14 @@ benefits.
 
 \paragraph{Electron}
 \label{para:electron}
-"is an open source library developed by GitHub for building cross-platform desktop applications with HTML, CSS, and JavaScript. Electron accomplishes this by combining Chromium and Node.js into a single runtime and apps can be packaged for Mac, Windows, and Linux" \citep{electron2019}. It offers a variety
+"is an open source library developed by GitHub for building cross-platform
+desktop applications with HTML, CSS, and JavaScript. Electron accomplishes this
+by combining Chromium and Node.js into a single runtime and apps can be
+packaged for Mac, Windows, and Linux" \citep{electron2019}. It offers a variety
 of \glspl{api} to offer native menus, interact with the file system and more.
+Its \texttt{ipcMain} and \texttt{ipcRenderer} \glspl{api} are used for
+asynchronous communication between the \gls{gui} and processes running in the
+background.
 
 \paragraph{React}
 \label{para:react}
@@ -372,8 +378,6 @@ API" \citep{web:meyda2019}.
 \subsubsection{Application Structure}
 \label{subsubsec:som-browser_structure}
 
-Program structure:
-
 \paragraph{System States}
 \label{para:som-browser_states}
 progression through system states
@@ -387,11 +391,19 @@ what is application state?
   \label{fig:som-browser_states}
 \end{figure}
 
+\paragraph{Code Overview}
+\label{para:som-browser_overview}
+entry point: \texttt{main.js} > \texttt{index.js} > \texttt{components/App.js}
+> \texttt{background.js} > \texttt{extractFeatures.js}
+> \texttt{som.js} > \texttt{calculateSOM.js}
+
+
 \paragraph{Background Processing}
 \label{para:som-browser_background_processing}
 background processing
 
-% TODO: FNP here?
+\mintinline{js}{processFiles(files)}
+\mintinline{js}{createSOM(files, settings)}
 
 \subsubsection{User Interface Components}
 \label{subsubsec:som-browser_components}
@@ -461,3 +473,13 @@ it is not repeated. For a look at the results of this algorithm extension,
 please refer to
 % TODO: Show before / after forced node population
 \nameref{sec:results} (section \ref{sec:results}).
+
+\begin{listing}[!htb]
+  \begin{mdframed}
+    \inputminted[numbers=left, firstline=355, lastline=391,
+    fontsize=\scriptsize]{jsx}{../dev/som-browser/src/background/calculateSOM.js}
+  \end{mdframed}
+  \caption[FNP implementation]{som-browser/src/background/calculateSOM.js:
+  \mintinline{jsx}{populateEmptyNeurons()} (FNP implementation)}
+  \label{lst:som-browser_fnp}
+\end{listing}
