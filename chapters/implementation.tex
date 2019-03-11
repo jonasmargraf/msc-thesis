@@ -275,44 +275,99 @@ sounds.
 
 \subsubsection{Functionality}
 \label{subsubsec:som-browser_functionality}
-desired functionality
+\paragraph{Loading Audio Files}
+When launching \textit{SOM Browser}, the application opens with no sounds or map
+loaded (see Figure \ref{fig:som-browser_empty}). In order to create a map of
+a collection of sound files, the user can go to the menu bar at the top of the
+window and click the \textit{"Import Files..."} button to load several audio
+files.
 
-show spatial map layout
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.7\textwidth]{SOM-Browser_empty}
+  \caption{\textit{SOM Browser} without audio files loaded}
+  \label{fig:som-browser_empty}
+\end{figure}
 
-quick auditioning of sounds
+\paragraph{Calculating a Map}
+Once files are selected, the \textit{Sounds} list on the left side of the
+application will be populated. Next, by clicking \textit{"Analyze"}, the program
+will start to analyze the audio files in the background, first extracting
+audio features (see section \ref{subsec:feature_extraction}) and then using this
+information to calculate a \gls{som} using default settings. Alternatively,
+some \gls{som} parameters can be altered by selecting the \textit{Settings}
+field next to \textit{Sounds} and adjusting the exposed parameters. Depending on
+the number of audio files to analyze and the selected training duration, the
+algorithm will take a while to process. Training progress is indicated as a
+percentage in the central \textit{Map} panel.
 
+\smallskip
 
+\paragraph{Map Interaction}
+Upon completion of the \gls{som} calculation, the \textit{Map} panel will be
+populated by a grid of white and grey squares. Each white square represents a
+single sound file. All files are loaded into the computer's \gls{ram} for quick
+access. Grey squares are empty nodes, meaning nodes to which no sound
+files were assigned. Sounds can be played by clicking on the white squares.
+They can also be played immediately by holding down the Shift key and hovering
+over them.
+This allows the user a very fast audition process and makes it
+possible to play back many files in fast succession, enabling very quick
+browsing of all loaded audio files. When hovering over a square, the
+corresponding file name is shown next to the mouse cursor. More detailed
+information about the file, including its full path, duration and audio feature
+values can be found in the \textit{FileInfo} panel to the right of the map.
 
-load folder
+\paragraph{Selecting and Exporting Favorites}
+The bottom of the window is taken up by the \textit{Favorites} bar. If a sample
+is found on the map that the user would like to save for further usage, they can
+drag the square from the map down into one of the slots labeled
+\textit{"Sample \#1 - \#8"}. Samples can also be also be played from the
+\textit{Favorites} bar by clicking on them. If the user is satisfied with their
+selection of samples, they can export the selected \textit{Favorites} (e.g. for
+further usage in a \gls{daw}) by clicking on \textit{"Export Selection"} in the
+top menu bar. This will open a file dialog window to select a location where the
+files should be stored.
 
-list all files
-
-show additional file information
-
-allow collecting and exporting of favorites
-
-control som settings
-
-save and load created maps
-
+\paragraph{Saving and Loading Maps}
+\textit{SOM Browser} also offers the ability to save entire maps to disk for
+recall in a later session or import previously stored maps by clicking on the
+menu bar buttons \textit{"Save"} and \textit{"Load Map"}.
 
 \subsubsection{Libraries and Frameworks Used}
 \label{subsubsec:som-browser_libraries}
+Although a desktop application, \textit{SOM Browser} was built entirely using
+web technologies, most importantly JavaScript. A vast variety of libraries and
+frameworks are available to use for all aspects of the development process.
+The following paragraphs outline the tools chosen for this application and their
+benefits.
 
 \paragraph{Electron}
 \label{para:electron}
+"is an open source library developed by GitHub for building cross-platform desktop applications with HTML, CSS, and JavaScript. Electron accomplishes this by combining Chromium and Node.js into a single runtime and apps can be packaged for Mac, Windows, and Linux" \citep{electron2019}. It offers a variety
+of \glspl{api} to offer native menus, interact with the file system and more.
 
 \paragraph{React}
 \label{para:react}
-reference boilerplate project
+is a JavaScript library for building user interfaces \citep{react2019}. It
+breaks the \gls{gui} into smaller, self-contained units called
+\textit{components} that can be independently updated and rendered.
 
 \paragraph{Web Audio API}
 \label{para:web_audio_api}
+enables audio processing and synthesis in (web) applications
+\citep{webaudio2019}. The use of this \gls{api} makes it possible to write all
+audio processing code for the presented work in JavaScript. Its core concept is
+the \textit{audio routing graph}, made up of \textit{audio nodes} (simple
+building blocks such as an oscillator or a recording). This graph connects
+sources to other other nodes (e.g. effects or filters) and finally to an output
+destination.
 
 \paragraph{Meyda}
 \label{para:meyda}
-
-what is application state?
+"is a Javascript audio feature extraction library. Meyda supports both offline
+feature extraction as well as real-time feature extraction using the Web Audio
+API" \citep{web:meyda2019}.
 
 \subsubsection{Application Structure}
 \label{subsubsec:som-browser_structure}
@@ -322,6 +377,8 @@ Program structure:
 \paragraph{System States}
 \label{para:som-browser_states}
 progression through system states
+
+what is application state?
 
 \begin{figure}[!htb]
   \centering
