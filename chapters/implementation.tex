@@ -490,45 +490,67 @@ what was previously discussed, we refer to Section
   \label{lst:som-browser_exctract_features}
 \end{listing}
 
-\smallskip
-
-
-
-
 \subsubsection{User Interface Components}
 \label{subsubsec:som-browser_components}
-App.js / components overview
+The following paragraphs give an overview of the different React components
+that make up the \gls{gui} of \textit{SOM Browser} (refer to Figure
+\ref{fig:som-browser} for a screenshot of the program). An outline of the entire
+application interface is shown in Listing \ref{lst:som-browser_app_content},
+which contains most of the \mintinline{jsx}{render()} function of
+\texttt{som-browser/src/components/App.js}, including all components, their
+properties and functions.
 
 \begin{listing}[!htb]
   \begin{mdframed}
-    \inputminted[numbers=left, firstline=400, lastline=460,
+    \inputminted[numbers=left, firstline=405, lastline=459,
     fontsize=\scriptsize]{jsx}{../dev/som-browser/src/components/App.js}
   \end{mdframed}
   \caption{som-browser/src/components/App.js:
-  \mintinline{jsx}{<div className="AppContent">}}
+  \gls{gui} Components}
   \label{lst:som-browser_app_content}
 \end{listing}
 
-\paragraph{TitleBar}
-\label{para:title_bar}
-
 \paragraph{MenuBar}
 \label{para:menu_bar}
+is the horizontal element across the top of the application window. It holds
+five buttons to perform audio analysis, load and export samples and store and
+recall calculated maps.
 
 \paragraph{FileList}
 \label{para:file_list}
+is one of two options for content to display in the left panel. It shows a list
+of all loaded audio files. Each list element is rendered by a nested
+\mintinline{jsx}{FileListItem} component. When clicking an item in the list, the
+corresponding map square will be highlighted and the \mintinline{jsx}{FileInfo}
+panel on the right will display information about the file.
 
 \paragraph{Settings}
 \label{para:settings}
+is the other display option for the left panel. Here, a number of \gls{som}
+parameters can be set, similar to the Max messages listed in Table
+\ref{table:catart_som_messages}.
 
 \paragraph{Map}
 \label{para:map}
+is the main focal point of the application. It displays a grid of grey and white
+squares, where each white square represents one sound. The \mintinline{js}{Map}
+component is made up of three nested components: \mintinline{js}{MapNode} (the
+grey background squares that are rendered first), \mintinline{js}{MapSubNode}
+(the white squares representing sounds) and \mintinline{js}{MapLabel} (the
+label displaying the name of the sound over which the user is currently
+hovering).
 
 \paragraph{FileInfo}
 \label{para:file_info}
+is the panel on the right side of the application. It displays details about the
+currently selected file, including its path, duration and audio feature values.
 
 \paragraph{UserSelection}
 \label{para:user_selection}
+is the horizontal element across the bottom of the application. It consists of
+eight instances of the nested component \mintinline{jsx}{UserSelectionSlot},
+each representing a spot into which the user can drag a sound to keep as a
+reference or for later exporting.
 
 % TODO: FNP here???????
 \subsubsection{Algorithm Extension: Forced Node Population}
