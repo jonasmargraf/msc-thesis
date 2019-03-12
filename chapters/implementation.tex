@@ -373,16 +373,27 @@ destination.
 \label{para:meyda}
 "is a Javascript audio feature extraction library. Meyda supports both offline
 feature extraction as well as real-time feature extraction using the Web Audio
-API" \citep{web:meyda2019}.
+API" \citep{web:meyda2019}. Its effectiveness has been validated by researchers
+at Queen Mary University ("Meyda [...] provide[s] excellent real time feature
+extraction tools", \citet{moffat2015}).
 
 \subsubsection{Application Structure}
 \label{subsubsec:som-browser_structure}
+\textit{SOM Browser} is a \textit{stateful} application, meaning it is designed
+to remember user interactions, save its internal data (the \textit{state} of
+the application) between interaction steps and to allow the storing of state
+data between sessions.
 
 \paragraph{System States}
 \label{para:som-browser_states}
-progression through system states
-
-what is application state?
+Before the start of the development process, a set of system states was designed
+to represent the states through which the application is supposed to progress.
+These states and their order are shown in Figure \ref{fig:som-browser_states},
+giving an abstract overview of the flow of the program. Each panel represents
+a state and consists of a title (shown in capitalized words at the top, e.g.
+\textit{Map Created}), a method describing a state transition (underscored and
+in lower case, e.g. \textit{show map}) and the next state to transition into
+(bottom right, marked by an arrow, e.g. $ \rightarrow $ \textit{File Audition}).
 
 \begin{figure}[!htb]
   \centering
@@ -393,14 +404,45 @@ what is application state?
 
 \paragraph{Code Overview}
 \label{para:som-browser_overview}
-entry point: \texttt{main.js} > \texttt{index.js} > \texttt{components/App.js}
-> \texttt{background.js} > \texttt{extractFeatures.js}
-> \texttt{som.js} > \texttt{calculateSOM.js}
+\textit{SOM Browser} was developed using the \textit{git} version control
+system \citep{git2019} in a repository on GitHub \footnote{\href
+{https://github.com/jonasmargraf/som-browser}
+{https://github.com/jonasmargraf/som-browser}}.
+The very basic structure of the application, in particular the way in which the
+Electron and React frameworks interact, is based on a boilerplate project by
+Phillip Barbiero \citep{barbiero2017}.
 
+\smallskip
 
-\paragraph{Background Processing}
-\label{para:som-browser_background_processing}
-background processing
+The entry point of any Electron application is the \texttt{main.js} file, which
+in the presented work can be found in \texttt{som-browser/src/main.js}.
+This file creates an instance of the \mintinline{js}{BrowserWindow} class called
+\mintinline{js}{mainWindow} that serves as the single visible application
+window. \mintinline{js}{mainWindow} then loads
+\texttt{som-browser/src/index.js}, which imports the React library and uses the
+React function \mintinline{jsx}{render()} to create the
+\mintinline{jsx}{<App />} component, which is defined in
+\texttt{som-browser/src/components/App.js}. It serves as a container for the
+rest of the application logic and the entire \gls{gui} (see Listing
+\ref{lst:som-browser_app_content} and Section
+\ref{subsubsec:som-browser_components} for more details).
+From here, the structure of the source files branches out into the individual
+\gls{gui} elements in \texttt{som-browser/src/components/} and a set of files in
+\texttt{som-browser/src/background/} containing the code for audio feature
+extraction and \gls{som} calculation.
+
+\subsubsection{Background Processing}
+\label{subsubsec:som-browser_background_processing}
+Both audio feature extraction and \gls{som} calculation are processing intensive
+tasks, therefore it was clear from the beginning of the development stage that
+these parts of the application must be separated from the \gls{gui} that the
+user interacts with. While it is not possible to built a truly multithreaded
+application (due to the fact that the fundamental Node.js framework is single
+threaded), one can create separate processes to run different tasks
+asynchronously. This is done by creating multiple \mintinline{js}{BrowserWindow}
+instances, as each window is running in its own process. These windows can have
+their \mintinline{js}{show} flag set to \mintinline{js}{false} in order to hide
+them, thereby creating an invisible window for a background process.
 
 \mintinline{js}{processFiles(files)}
 \mintinline{js}{createSOM(files, settings)}
