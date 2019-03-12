@@ -444,8 +444,56 @@ instances, as each window is running in its own process. These windows can have
 their \mintinline{js}{show} flag set to \mintinline{js}{false} in order to hide
 them, thereby creating an invisible window for a background process.
 
-\mintinline{js}{processFiles(files)}
-\mintinline{js}{createSOM(files, settings)}
+\smallskip
+
+\textit{SOM Browser} initiates two consecutive background processes when the
+user clicks on \textit{"Analyze"}, one for feature extraction and one that runs
+the \gls{som} algorithm. This is handled by the function
+\mintinline{jsx}{handleAnalyzeClick()} in
+\textit{som-browser/src/components/App.js}, which passes the necessary data to
+these background processes by calling \mintinline{js}{processFiles(files)} and
+\\ \mintinline{js}{createSOM(files, settings)} (see Listing
+\ref{lst:som-browser_analyze}). Note the chaining of commands using several
+\mintinline{js}{.then()} statements: \textit{SOM Browser} performs asynchronous
+operations using the \mintinline{js}{Promise} feature of ECMAScript 2015
+\footnote{\href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global\_Objects/Promise}
+{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/ \\
+Global\_Objects/Promise}}.
+
+\begin{listing}[!htb]
+  \begin{mdframed}
+    \inputminted[breaklines, numbers=left, firstline=284, lastline=293,
+    fontsize=\footnotesize]{jsx}{../dev/som-browser/src/components/App.js}
+  \end{mdframed}
+  \caption{som-browser/src/components/App.js:
+  \mintinline{jsx}{handleAnalyzeClick()} [excerpt]}
+  \label{lst:som-browser_analyze}
+\end{listing}
+
+\smallskip
+
+The crucial parts of the feature extraction code can be found in Listing
+\ref{lst:som-browser_exctract_features}. Since the \gls{som} implementation in
+\texttt{som-browser/src/background/calculateSOM.js} is logically identical to
+what was previously discussed, we refer to Section
+\ref{subsubsec:mubu-som_overview} rather than dissecting the contents of
+\mintinline{js}{calculateSOM()} separately.
+
+\begin{listing}[!htb]
+  \begin{mdframed}
+    \inputminted[breaklines, numbers=left, firstline=66, lastline=91,
+    fontsize=\scriptsize]{jsx}
+    {../dev/som-browser/src/background/extractFeatures.js}
+  \end{mdframed}
+  \caption{som-browser/src/background/extractFeatures.js:
+  \mintinline{jsx}{extractFeatures()} [excerpt]}
+  \label{lst:som-browser_exctract_features}
+\end{listing}
+
+\smallskip
+
+
+
 
 \subsubsection{User Interface Components}
 \label{subsubsec:som-browser_components}
