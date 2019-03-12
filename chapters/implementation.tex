@@ -284,7 +284,7 @@ files.
 
 \begin{figure}[!htb]
   \centering
-  \includegraphics[width=0.7\textwidth]{SOM-Browser_empty}
+  \includegraphics[width=\textwidth]{SOM-Browser_empty}
   \caption{\textit{SOM Browser} without audio files loaded}
   \label{fig:som-browser_empty}
 \end{figure}
@@ -552,21 +552,34 @@ eight instances of the nested component \mintinline{jsx}{UserSelectionSlot},
 each representing a spot into which the user can drag a sound to keep as a
 reference or for later exporting.
 
-% TODO: FNP here???????
 \subsubsection{Algorithm Extension: Forced Node Population}
 \label{subsubsec:som_forced_population}
-% TODO: This should maybe go in the introduction together with an overview of musical
-% grids
-One of the aspects that make the \gls{som} immediately interesting for music
-technology applications is that it is fundamentally based on a regular grid
-structure, which opens a direct connection to the grid as a musical structure.
+
+After the \gls{som} algorithm was first implemented in \textit{SOM Browser}, it
+became apparent that large parts of almost all created maps remained empty,
+which proved frustrating to interact with since these empty areas are
+essentially "dead" spots where no sounds are located and no interaction is
+possible. A method to counteract this phenomenon was deemed necessary.
+
+\smallskip
+
+% TODO:
+% This should maybe go in the introduction together with an overview of musical
+% grids:
+%
+% One of the aspects that make the \gls{som} immediately interesting for music
+% technology applications is that it is fundamentally based on a regular grid
+% structure, which opens a direct connection to the grid as a musical structure.
 
 In order to avoid "empty" nodes on the \gls{som} - meaning nodes to which no
 input vectors are mapped - a post-processing extension was added to the original
 algorithm that inverts the mapping process, explicitly iterates over empty nodes
 and assigns each one that input vector which is closest. This algorithm
-extension, which we call \gls{fnp}, executes the following
-sequence after the regular \gls{som} has been calculated:
+extension, which we call Forced Node Population (\gls{fnp}), executes the
+following sequence after the regular \gls{som} has been calculated (refer to
+Listing \ref{lst:som-browser_fnp} to see the actual source code implementation):
+
+\clearpage
 
 \begin{enumerate}
   \item Select a random empty node.
@@ -575,21 +588,44 @@ sequence after the regular \gls{som} has been calculated:
   \item Repeat.
 \end{enumerate}
 
+\begin{figure}[!htb]
+  \centering
+\begin{subfigure}{0.45\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{SOM-Browser_no-FNP}
+  \caption{\textit{SOM Browser} without FNP}
+  \label{fig:som-browser_no_fnp}
+\end{subfigure}
+~
+\begin{subfigure}{0.45\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{SOM-Browser_FNP}
+  \caption{\textit{SOM Browser} with FNP}
+  \label{fig:som-browser_fnp}
+\end{subfigure}
+\caption{Comparison of \textit{SOM Browser} maps with
+(\ref{fig:som-browser_fnp}) and without (\ref{fig:som-browser_no_fnp})
+\gls{fnp}}
+\label{fig:som-browser_fnp_comparison}
+\end{figure}
+
 This process is only performed once for all nodes that are empty immediately
 after the initial \gls{som} calculation. It is possible that the forced node
 population creates new empty nodes, but in order to minimize distortion
 introduced by this procedure
 % TODO: Do this!!! Meaning show the introduced distortion somehow
 (see \nameref{sec:results} in section \ref{sec:results}),
-it is not repeated. For a look at the results of this algorithm extension,
-please refer to
+it is not repeated. The effect of the \gls{fnp} extension be clearly seen in
+\ref{fig:som-browser_fnp_comparison}. For a closer look at the results of this
+algorithm extension, please refer to
 % TODO: Show before / after forced node population
 \nameref{sec:results} (section \ref{sec:results}).
 
 \begin{listing}[!htb]
   \begin{mdframed}
-    \inputminted[numbers=left, firstline=355, lastline=391,
-    fontsize=\scriptsize]{jsx}{../dev/som-browser/src/background/calculateSOM.js}
+    \inputminted[breaklines, numbers=left, firstline=355, lastline=391,
+    fontsize=\scriptsize]{jsx}
+    {../dev/som-browser/src/background/calculateSOM.js}
   \end{mdframed}
   \caption[FNP implementation]{som-browser/src/background/calculateSOM.js:
   \mintinline{jsx}{populateEmptyNeurons()} (FNP implementation)}
