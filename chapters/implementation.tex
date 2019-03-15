@@ -449,10 +449,10 @@ them, thereby creating an invisible window for a background process.
 \textit{SOM Browser} initiates two consecutive background processes when the
 user clicks on \textit{"Analyze"}, one for feature extraction and one that runs
 the \gls{som} algorithm. This is handled by the function
-\mintinline{jsx}{handleAnalyzeClick()} in
-\textit{som-browser/src/components/App.js}, which passes the necessary data to
+\mintinline{jsx}{handleAnalyzeClick()} (found in
+\textit{som-browser/src/components/App.js}), which passes the necessary data to
 these background processes by calling \mintinline{js}{processFiles(files)} and
-\\ \mintinline{js}{createSOM(files, settings)} (see Listing
+\mintinline{js}{createSOM(files, settings)} (see Listing
 \ref{lst:som-browser_analyze}). Note the chaining of commands using several
 \mintinline{js}{.then()} statements: \textit{SOM Browser} performs asynchronous
 operations using the \mintinline{js}{Promise} feature of ECMAScript 2015
