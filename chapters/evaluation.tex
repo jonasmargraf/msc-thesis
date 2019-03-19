@@ -128,12 +128,12 @@ are outlined further in the following paragraphs.
 Fundamental to the \gls{som} principle is the idea of mapping vectors to their
 corresponding \glspl{bmu}, those nodes that are closest to them (see section
 \ref{subsec:som}). Several vectors can be assigned to one node - this can also
-be thought of as a quantization process, where the absolute difference between
-the positions of vector $ x_t $ and node $ m_c $ is the quantization error
-$ \Delta_t $ for that vector:
+be thought of as a quantization process, where the magnitude of the difference
+between the positions of vector $ x_t $ and node $ m_c $ is the quantization
+error $ \Delta_t $ for that vector:
 
 \begin{equation}
-  \Delta_t = | x_t - m_c |
+  \Delta_t = || x_t - m_c ||
 \end{equation}
 
 As a metric for the \gls{som}, the quantization errors for all vectors can be
