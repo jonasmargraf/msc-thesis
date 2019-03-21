@@ -18,7 +18,7 @@ This is the Results section.
   % }
   \caption[Effects of Training Duration on SOM Metrics]
   {\textit{SOM Browser}: effect of training duration on \gls{som}
-  metrics. \gls{som} parameters: $\texttt{mapSize} = 32 \times 32$, linearly
+  metrics. \gls{som} parameters: $\texttt{mapSize} = 32\times32$, linearly
   decreasing $\alpha$ with $\alpha_{initial} = 0.9$,
   $r_{start} = 6.4$, $r_{end} = 1$}
   \label{fig:som_training_effects}
@@ -37,12 +37,64 @@ mention results at $10^6$, $10^5$ and processing time it took
   % }
   \caption[Effects of $\alpha_{initial}$ on SOM Metrics]
   {\textit{SOM Browser}: effect of $\alpha_{initial}$ on \gls{som}
-  metrics. \gls{som} parameters: $\texttt{mapSize} = 32 \times 32$,
+  metrics. \gls{som} parameters: $\texttt{mapSize} = 32\times32$,
   training duration $ = 10^4$ steps,
-  linearly decreasing $\alpha$ with $\alpha_{initial} = 0.9$,
+  linearly decreasing $\alpha$ with $\alpha_{initial} = [0.9, \dots, 0.1]$,
   $r_{start} = 6.4$, $r_{end} = 1$}
   \label{fig:som_alpha_effects}
 \end{figure}
+
+\subsubsection{Effects of Radius Size}
+\label{subsubsec:som_radius_effects}
+
+radius results:
+
+because radius should be decreasing, $r_{end}$ results are shown using
+$r_{start} = 16$, even though best results come from $r_{start} = 2$
+
+\begin{figure}[!htb]
+  \centering
+  % \frame{
+  \includegraphics[width=\textwidth, trim = 60mm 30mm 60mm 25mm, clip]
+  {som_rStart_effects}
+  % }
+  \caption[Effects of $r_{start}$ on SOM Metrics]
+  {\textit{SOM Browser}: effect of $r_{start}$ on \gls{som}
+  metrics. \gls{som} parameters: $\texttt{mapSize} = 32\times32$,
+  training duration $ = 10^4$ steps,
+  linearly decreasing $\alpha$ with $\alpha_{initial} = 0.9$,
+  $r_{start} = [16, \dots, 1]$, $r_{end} = 1$}
+  \label{fig:som_rStart_effects}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  % \frame{
+  \includegraphics[width=\textwidth, trim = 60mm 30mm 60mm 25mm, clip]
+  {som_rEnd_effects}
+  % }
+  \caption[Effects of $r_{end}$ on SOM Metrics]
+  {\textit{SOM Browser}: effect of $r_{start}$ on \gls{som}
+  metrics. \gls{som} parameters: $\texttt{mapSize} = 32\times32$,
+  training duration $ = 10^4$ steps,
+  linearly decreasing $\alpha$ with $\alpha_{initial} = 0.9$,
+  $r_{start} = 16$, $r_{end} = [16, \dots, 1]$}
+  \label{fig:som_rEnd_effects}
+\end{figure}
+
+
+
+best results so far:
+
+$\alpha = 0.9$
+
+$r_{start} = 2$
+
+$r_{end} = 0.1$
+
+show boxplot of audio features?
+
+show plot matrix of features vs best som
 
 \subsubsection{SOM-Induced Quantization}
 \label{subsubsec:results_som_quantization}
