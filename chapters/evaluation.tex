@@ -117,6 +117,13 @@ sound files is 1081.
 
 \subsection{Metrics for SOM Analysis}
 \label{subsec:eval_som_metrics}
+The optimal \gls{som} for a given sample library should represent the input data
+with minimal distortion. Samples should be mapped evenly to the nodes and all
+areas of the map should be populated to maximize the usefulness of the
+interface space used.
+
+\smallskip
+
 In order to evaluate the \glspl{som} created using the SOM Browser application
 and the \textit{Drum Essentials} test data set, three core metrics are used:
 quantization induced by the \gls{som}, map emptiness, and the ratio between
@@ -147,7 +154,9 @@ count $ C_i $ of vectors $ x_1, ... , x_n $ mapped to a node $ m_i $ and
 subsequently the distribution of those counts across the map. Ideally, this
 distribution should look like a single, narrow spike - meaning that (almost) all
 nodes have about the same number of vectors assigned to them, resulting in an
-even distribution of sounds across the SOM Browser map interface.
+even distribution of sounds across the SOM Browser map interface. \gls{som}
+parameters should be chosen to approximate a uniform vector-node count for all
+nodes.
 
 \subsubsection{Map Emptiness}
 \label{subsubsec:map_emptiness}
