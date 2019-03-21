@@ -7,6 +7,43 @@ This is the Results section.
 \subsection{SOM Metrics}
 \label{subsec:results_som_metrics}
 
+\subsubsection{Effects of Training Duration}
+\label{subsubsec:som_training_effects}
+
+\begin{figure}[!htb]
+  \centering
+  % \frame{
+  \includegraphics[width=\textwidth, trim = 60mm 30mm 60mm 25mm, clip]
+  {som_training_effects}
+  % }
+  \caption[Effects of Training Duration on SOM Metrics]
+  {\textit{SOM Browser}: effect of training duration on \gls{som}
+  metrics. \gls{som} parameters: $\texttt{mapSize} = 32 \times 32$, linearly
+  decreasing $\alpha$ with $\alpha_{initial} = 0.9$,
+  $r_{start} = 6.4$, $r_{end} = 1$}
+  \label{fig:som_training_effects}
+\end{figure}
+
+mention results at $10^6$, $10^5$ and processing time it took
+
+\subsubsection{Effects of $\alpha_{initial}$}
+\label{subsubsec:som_alpha_effects}
+
+\begin{figure}[!htb]
+  \centering
+  % \frame{
+  \includegraphics[width=\textwidth, trim = 60mm 30mm 60mm 25mm, clip]
+  {som_initAlpha_effects}
+  % }
+  \caption[Effects of $\alpha_{initial}$ on SOM Metrics]
+  {\textit{SOM Browser}: effect of $\alpha_{initial}$ on \gls{som}
+  metrics. \gls{som} parameters: $\texttt{mapSize} = 32 \times 32$,
+  training duration $ = 10^4$ steps,
+  linearly decreasing $\alpha$ with $\alpha_{initial} = 0.9$,
+  $r_{start} = 6.4$, $r_{end} = 1$}
+  \label{fig:som_alpha_effects}
+\end{figure}
+
 \subsubsection{SOM-Induced Quantization}
 \label{subsubsec:results_som_quantization}
 
