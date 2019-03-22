@@ -21,6 +21,14 @@ This map is then also calculated using our \gls{fnp} algorithm
 extension introduced in \ref{subsubsec:som_forced_population} and the results
 compared.
 
+\smallskip
+
+Ideally, we'd like the map shown in \textit{SOM Browser} to have one
+or two vectors per node (meaning each map square only represents one or two
+sounds) and no empty nodes. We therefore chose a map size of
+$32 \times 32 = 1024$ as it is the closest square number to 1081, the number
+of samples contained in our chosen corpus.
+
 \subsubsection{Effects of Training Duration}
 \label{subsubsec:som_training_effects}
 The influence of training duration on the quality of the produced map can be
@@ -129,16 +137,20 @@ progresses.
 \end{figure}
 
 
-best results so far:
-
-$\alpha = 0.9$
-
-$r_{start} = 2$
-
-$r_{end} = 0.1$
+% best results so far:
+%
+% $\alpha = 0.9$
+%
+% $r_{start} = 2$
+%
+% $r_{end} = 0.1$
 
 \subsubsection{Learning Rate Factor Comparison}
 \label{subsubsec:som_learning_rate_comparison}
+There are three different approaches to the learning rate factor $\alpha$ that
+are implemented in \textit{SOM Browser}: linearly decreasing, reciprocally
+decreasing ("Inverse"), and the local adaptive learning rate as proposed by
+\citet{bauer1996} ("BDH").
 
 \begin{figure}[!htb]
   \centering
@@ -223,24 +235,9 @@ show boxplot of audio features?
 
 show plot matrix of features vs best som
 
-\subsubsection{SOM-Induced Quantization}
-\label{subsubsec:results_som_quantization}
 
-heat map showing distance?
 
-show quantization error vs. training duration
 
-show influence of learning rate
-
-kernel radius?
-
-what about influence of alpha?
-
-\subsubsection{Vector-Node Count}
-\label{subsubsec:results_vector_node_count}
-
-\subsubsection{Map Emptiness}
-\label{subsubsec:results_map_emptiness}
 
 
 \subsection{Interview Results}
