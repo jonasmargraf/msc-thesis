@@ -13,7 +13,7 @@ This is the Results section.
 \begin{figure}[!htb]
   \centering
   % \frame{
-  \includegraphics[width=\textwidth, trim = 60mm 30mm 60mm 25mm, clip]
+  \includegraphics[width=0.95\textwidth, trim = 60mm 15mm 60mm 15mm, clip]
   {som_training_effects}
   % }
   \caption[Effects of Training Duration on SOM Metrics]
@@ -26,13 +26,15 @@ This is the Results section.
 
 mention results at $10^6$, $10^5$ and processing time it took
 
+explain continuation with $10^4$
+
 \subsubsection{Effects of $\alpha_{initial}$}
 \label{subsubsec:som_alpha_effects}
 
 \begin{figure}[!htb]
   \centering
   % \frame{
-  \includegraphics[width=\textwidth, trim = 60mm 30mm 60mm 25mm, clip]
+  \includegraphics[width=0.95\textwidth, trim = 60mm 15mm 60mm 15mm, clip]
   {som_initAlpha_effects}
   % }
   \caption[Effects of $\alpha_{initial}$ on SOM Metrics]
@@ -55,7 +57,7 @@ $r_{start} = 16$, even though best results come from $r_{start} = 2$
 \begin{figure}[!htb]
   \centering
   % \frame{
-  \includegraphics[width=\textwidth, trim = 60mm 30mm 60mm 25mm, clip]
+  \includegraphics[width=0.95\textwidth, trim = 60mm 15mm 60mm 15mm, clip]
   {som_rStart_effects}
   % }
   \caption[Effects of $r_{start}$ on SOM Metrics]
@@ -70,7 +72,7 @@ $r_{start} = 16$, even though best results come from $r_{start} = 2$
 \begin{figure}[!htb]
   \centering
   % \frame{
-  \includegraphics[width=\textwidth, trim = 60mm 30mm 60mm 25mm, clip]
+  \includegraphics[width=0.95\textwidth, trim = 60mm 15mm 60mm 15mm, clip]
   {som_rEnd_effects}
   % }
   \caption[Effects of $r_{end}$ on SOM Metrics]
@@ -91,6 +93,43 @@ $\alpha = 0.9$
 $r_{start} = 2$
 
 $r_{end} = 0.1$
+
+\subsubsection{Learning Rate Factor Comparison}
+\label{subsubsec:som_learning_rate_comparison}
+
+\begin{figure}[!htb]
+  \centering
+  % \frame{
+  \includegraphics[width=0.6\textwidth, clip]
+  {som_learningRateFactor_comparison}
+  % }
+  \caption[Comparison of \gls{som} learning rate factors]
+  {\textit{SOM Browser}: comparison of linearly decreasing,
+  reciprocally decreasing ("Inverse") and BDH learning rate factors.
+  \gls{som} parameters: $\texttt{mapSize} = 32\times32$,
+  training duration $ = 10^4$ steps,
+  $\alpha_{initial} = 0.9$,
+  $r_{start} = 2$, $r_{end} = 0.1$}
+  \label{fig:som_learning_rate_comparison}
+\end{figure}
+
+\paragraph{BDH: Effect of Magnification Control $m$}
+
+\begin{figure}[!htb]
+  \centering
+  % \frame{
+  \includegraphics[width=0.95\textwidth, trim = 60mm 15mm 60mm 15mm, clip]
+  {som_BDH_m_comparison}
+  % }
+  \caption[BDH: Effect of Magnification Control $m$]
+  {\textit{SOM Browser}: BDH: Effect of Magnification Control $m$.
+  \gls{som} parameters: $\texttt{mapSize} = 32\times32$,
+  training duration $ = 10^4$ steps,
+  $\alpha_{initial} = 0.9$,
+  $r_{start} = 2$, $r_{end} = 0.1$}
+  \label{fig:som_BDH_m_comparison}
+\end{figure}
+
 
 show boxplot of audio features?
 
