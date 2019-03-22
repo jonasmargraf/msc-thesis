@@ -2,13 +2,42 @@
 
 \section{Results}
 \label{sec:results}
-This is the Results section.
+This chapter contains the results of our search for an optimal \gls{som} for the
+\textit{Drum Essentials} sample library and the findings of the conducted user
+interviews.
 
 \subsection{SOM Metrics}
 \label{subsec:results_som_metrics}
+\textit{SOM Browser} exposes several variables of the algorithm, offering the
+user influence over the resulting \gls{som}. The following sections show the
+effects of these different user-controllable parameters on the metrics outlined
+in Section \ref{subsec:eval_som_metrics}.
+We then compare the three different learning rate factor approaches that were
+implemented, including a differentiation between different magnification control
+values for the BDH (see Section \ref{para:alpha_bdh}).
+Finally, an ideal set of parameters for the selected sound corpus is chosen and
+the resulting map is presented.
+This map is then also calculated using our \gls{fnp} algorithm
+extension introduced in \ref{subsubsec:som_forced_population} and the results
+compared.
 
 \subsubsection{Effects of Training Duration}
 \label{subsubsec:som_training_effects}
+The influence of training duration on the quality of the produced map can be
+seen in Figure \ref{fig:som_training_effects}. As duration increases, all
+metrics improve. As can be seen in the boxplot diagram, the distribution of
+quantization errors narrows in on the median with longer training as well.
+
+\smallskip
+
+A practical consideration to be noted is that training duration
+directly impacts processing time. For our measurements, which were run on a
+fairly recent consumer laptop, training for $10^4$ steps took on the order of
+minutes, while training for $10^5$ steps finished in about 30 minutes, and
+the training for $10^6$ steps had to be run over night, as it took several
+hours. Because of these practical considerations, which we assume to reflect
+the needs of potential users of the software, all following maps were trained
+for $10^4$ steps.
 
 \begin{figure}[!htb]
   \centering
@@ -24,12 +53,17 @@ This is the Results section.
   \label{fig:som_training_effects}
 \end{figure}
 
-mention results at $10^6$, $10^5$ and processing time it took
-
-explain continuation with $10^4$
 
 \subsubsection{Effects of $\alpha_{initial}$}
 \label{subsubsec:som_alpha_effects}
+The effect of the choice of $\alpha_{initial}$, the starting value for the
+"gain control" of the node adjustment in response to each vector during
+training, is shown in Figure \ref{fig:som_alpha_effects}.
+Higher $\alpha_{initial}$ values yield slightly better results on quantization
+errors, but don't improve vector node counts or map emptiness. Although this
+effect does not appear to be dramatic, it is in line with \citet{kohonen1990},
+who suggests a starting value of $\alpha = 0.9$. We therefore choose
+$\alpha_{initial} = 0.9$ for the next maps.
 
 \begin{figure}[!htb]
   \centering
@@ -46,13 +80,23 @@ explain continuation with $10^4$
   \label{fig:som_alpha_effects}
 \end{figure}
 
+\pagebreak
+
 \subsubsection{Effects of Radius Size}
 \label{subsubsec:som_radius_effects}
+Next, we examine the effects of the neighborhood function radius (Figures
+\ref{fig:som_rStart_effects} and \ref{fig:som_rEnd_effects}). This kernel
+function, which controls how far around the best matching unit nodes will be
+adjusted during each training step, decreases from a starting value $r_{start}$
+to a final value $r_{end}$. \citet{kohonen1990} recommends starting with a
+rather large radius and ending with a value of one unit. This recommendation
+does coincide with our measurements, which obtained best results when using a
+narrow starting kernel radius of $r_{start} = 2$ that decreases to
+$r_{end} = 10^{-1}$. It should be noted that although we achieved the best
+results with $r_{start} = 2$, we used $r_{start} = 16$ for the comparison of
+$r_{end}$ values in order to avoid a kernel that increases in size as training
+progresses.
 
-radius results:
-
-because radius should be decreasing, $r_{end}$ results are shown using
-$r_{start} = 16$, even though best results come from $r_{start} = 2$
 
 \begin{figure}[!htb]
   \centering
@@ -83,7 +127,6 @@ $r_{start} = 16$, even though best results come from $r_{start} = 2$
   $r_{start} = 16$, $r_{end} = [16, \dots, 1]$}
   \label{fig:som_rEnd_effects}
 \end{figure}
-
 
 
 best results so far:
@@ -148,6 +191,33 @@ $r_{end} = 0.1$
   \label{fig:som_fnp_comparison}
 \end{figure}
 
+\begin{figure}[!htb]
+  \centering
+\begin{subfigure}{0.45\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{som_no-fnp}
+  \caption{\textit{SOM Browser} without \gls{fnp}}
+  \label{fig:results_no_fnp}
+\end{subfigure}
+~
+\begin{subfigure}{0.45\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{som_fnp}
+  \caption{\textit{SOM Browser} with \gls{fnp}}
+  \label{fig:results_fnp}
+\end{subfigure}
+\caption[\textit{SOM Browser}: Influence of FNP on Map Emptiness]
+{\textit{SOM Browser}: Influence of FNP on Map Emptiness for the
+\textit{Drum Essentials} sample library. The blue mark denotes the same file in
+both maps.
+\gls{som} parameters: $\texttt{mapSize} = 32\times32$,
+training duration $ = 10^4$ steps,
+$\alpha_{initial} = 0.9$,
+BDH learning rate factor, $m = -0.2$,
+$r_{start} = 2$, $r_{end} = 0.1$}
+\label{fig:results_fnp_comparison}
+\end{figure}
+
 
 show boxplot of audio features?
 
@@ -171,27 +241,6 @@ what about influence of alpha?
 
 \subsubsection{Map Emptiness}
 \label{subsubsec:results_map_emptiness}
-
-\begin{figure}[!htb]
-  \centering
-\begin{subfigure}{0.45\textwidth}
-  \centering
-  \includegraphics[width=\textwidth]{SOM-Browser_no-FNP}
-  \caption{\textit{SOM Browser} without \gls{fnp}}
-  \label{fig:results_no_fnp}
-\end{subfigure}
-~
-\begin{subfigure}{0.45\textwidth}
-  \centering
-  \includegraphics[width=\textwidth]{SOM-Browser_FNP}
-  \caption{\textit{SOM Browser} with \gls{fnp}}
-  \label{fig:results_fnp}
-\end{subfigure}
-\caption[\textit{SOM Browser}: Influence of FNP on Map Emptiness]
-{\textit{SOM Browser}: Influence of FNP on Map Emptiness for the
-\textit{Drum Essentials} sample library}
-\label{fig:results_fnp_comparison}
-\end{figure}
 
 
 \subsection{Interview Results}
