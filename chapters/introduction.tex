@@ -40,37 +40,39 @@ and developers to extract descriptive information about the \textit{contents}
 of a digital audio file for decades now, making it possible to present much
 more relevant data to software users. Commercial software tools incorporating
 \gls{aca} are slowly becoming available (see Section \ref{subsec:previous_work}
-below). Still, the problem of data visualization persists - how can this
-additional information be displayed in a way that improves users' workflows?
+below). Still, the problem of data visualization persists - how can all these
+additional dimensions of information be displayed in a way that improves users'
+workflows?
 
 \smallskip
 
-We implement the \textit{\gls{som}} algorithm, first
-introduced by Teuvo Kohonen (see Section \ref{subsec:som}, \citet{kohonen1990}),
-and incorporate it into \textit{CataRT}, an existing software for corpus-based
-concatenative synthesis (CBCS, \citet{schwarz2006}). We also develop a larger
-standalone application called \textit{SOM Browser} that uses the \gls{som} as an
-alternative interface for the exploration of a folder of samples. Finally,
+In order to find an alternative organizational method to the name-based,
+categorical file browser interface described above, we to turn to \gls{ml},
+a field that deals with pattern recognition and classification tasks. The
+\textit{\gls{som}} algorithm, first introduced by Teuvo Kohonen (see Section
+\ref{subsec:som}, \citet{kohonen1990}), is a machine learning algorithm that
+performs dimensionality reduction on a set of higher-dimensional input data and
+can at the same time be used for data visualization, as its output is often
+two-dimensional and can be shown as a regular grid structure. Besides being an
+established algorithm that has been extensively evaluated and used in various
+applications (see for example \citet[p.1476]{kohonen1990} for an overview), it
+offers a number of further advantages that informed our decision to employ it
+in this work. It can visualize high-dimensional data sets, while training itself
+completely unsupervised. It can organize unnamed audio files, meaning it can
+offer up some proposal for a structure without any meta data. Lastly, the
+\gls{som} is based on a grid layout, which is an influential, common structure
+in electronic music hardware and music technology in general - grids are
+ever-present in electronic music studios \citep{adeney2009}.
+
+% We implement the \textit{\gls{som}} algorithm, first
+% introduced by Teuvo Kohonen (see Section \ref{subsec:som}, \citet{kohonen1990}),
+% and incorporate it into \textit{CataRT}, an existing software for corpus-based
+% concatenative synthesis (CBCS, \citet{schwarz2006}). We also develop a larger
+% standalone application called \textit{SOM Browser} that uses the \gls{som} as an
+% alternative interface for the exploration of a folder of samples. Finally,
 
 
 \bigskip
-
-
-
-why SOM?
-
-- established algorithm
-
-- can visualize high-dimensional data sets
-
-- completely autonomous
-
-- can organize unnamed files without any meta data
-
-- based on grid structure, which is also very relevant in music technology and
-electronic music hardware
-\citet{adeney2009}
-
 
 
 \subsection{Aims and Objectives}
