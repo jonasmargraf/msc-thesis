@@ -5,23 +5,56 @@
 
 \subsection{Motivation and Problem Description}
 \label{subsec:motivation}
+Sample libraries are ubiquitous in modern audio production. Affordable storage
+media and fast computers enable artists, composers and sound designers to work
+with large collections of audio files - a one terabyte hard drive costs around
+50 euros and can store up to two months of uncompressed audio information in CD
+quality. At the same time, the internet is full of large sound corpora for
+anyone to download. This is especially true for collections of drum sounds,
+which are offered for sale by many companies or traded (sometimes without
+considerations for any applicable copyright) on various web forums.
+Consequently, many users of digital audio software amass vast collections of
+these "sample packs", often without ever listening to or being familiar with
+all of their contents, as they encounter the \textit{paradox of choice}
+\citep{schwartz2004}. The technological development enabling this abundance of
+sound samples also presents new and serious challenges to the efficient use of
+them: how can such large numbers of files be searched, organized, compared, and
+presented to the user?
 
-cheap storage and computers allow users to have vast amounts of audio files
+\bigskip
 
-especially drum samples: free / low cost sample packs are everywhere
+The present thesis explores a practical approach to the problem of sound corpus
+organization, while focussing primarily on drum samples as used by electronic
+music producers.
+Currently, arguably the most common way in which producers
+search through their sample libraries is by using some kind of file browser
+(built into their computer's \gls{os} or their \gls{daw} of choice). This
+browser presents a list view of all audio files in the current folder and is
+typically sorted alphabetically, chronologically or by some other criterion that
+is almost definitely not directly related to the sonic content of the file.
 
-how to deal with them? organize them? search them?
+\smallskip
+
+At the same time, advances in the field of \gls{mir} have enabled researchers
+and developers to extract descriptive information about the \textit{contents}
+of a digital audio file for decades now, making it possible to present much
+more relevant data to software users. Commercial software tools incorporating
+\gls{aca} are slowly becoming available (see Section \ref{subsec:previous_work}
+below). Still, the problem of data visualization persists - how can this
+additional information be displayed in a way that improves users' workflows?
+
+\smallskip
+
+We implement the \textit{\gls{som}} algorithm, first
+introduced by Teuvo Kohonen (see Section \ref{subsec:som}, \citet{kohonen1990}),
+and incorporate it into \textit{CataRT}, an existing software for corpus-based
+concatenative synthesis (CBCS, \citet{schwarz2006}). We also develop a larger
+standalone application called \textit{SOM Browser} that uses the \gls{som} as an
+alternative interface for the exploration of a folder of samples. Finally,
 
 
+\bigskip
 
-current practice is lists and searching through them in file browsers that
-don't display too much information, and even then typically only one dimension
-in a two-dimensional window
-
-audio content analysis offers possibility for more relevant information to be
-extracted
-
-even with additional information, how to display it properly?
 
 
 why SOM?
@@ -83,11 +116,13 @@ Computational Models [...]
 \citet{pampalk2008}
 
 Infinite Drum Machine
-
-Magenta / NSynth
+\citet{mcdonald2017}
 
 Sononym
+\citet{nielsen2018}
 
 Audio Finder
+\citet{audiofinder2019}
 
 Atlas
+\citet{atlas2018}
