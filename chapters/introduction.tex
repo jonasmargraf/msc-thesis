@@ -36,7 +36,7 @@ is almost definitely not directly related to the sonic content of the file.
 \smallskip
 
 At the same time, advances in the field of \gls{mir} have enabled researchers
-and developers to extract descriptive information about the \textit{contents}
+and developers to extract descriptive information about the contents
 of a digital audio file for decades now, making it possible to present much
 more relevant data to software users. Commercial software tools incorporating
 \gls{aca} are slowly becoming available (see Section \ref{subsec:previous_work}
@@ -91,39 +91,72 @@ proposed alternative interface is perhaps too abstract to be considered useful.
 
 \subsection{Previous Work}
 \label{subsec:previous_work}
+The topic of using audio descriptors (see Section
+\ref{subsec:feature_extraction} for further details) for the organization of
+sounds in two-dimensional interfaces, often displayed as scatter plots, has
+been explored in a variety of previous research. Particularly relevant for the
+present work is the software \textit{CataRT} by \citet{schwarz2006}. It allows
+realtime concatenative synthesis and offers the user an interface to explore
+the loaded sound corpus interactively. Two selectable audio descriptors make up
+the axes along which sounds are plotted as circles, while two more descriptors
+can be mapped to circle color and size. At the same time, more descriptors are
+already calculated, but cannot be displayed simultaneously, which informs our
+decision to extend \textit{CataRT} with the option of using a two-dimensional
+\gls{som} as the interface.
 
-CataRT
-\citet{schwarz2006}
+\citet{coleman2007} also uses feature extraction to create a scatter plot
+interface of a \textit{personal sample library}, which directly relates to our
+use case as described in Section \ref{subsec:motivation} above. The author
+also implements a way to filter samples by feature values using
+\textit{dynamic queries} through realtime interaction with user interface
+elements such as sliders and check boxes.
 
-AudioQuilt
-\citet{fried2014}
+An early example of using \glspl{som} for audio data is \citet{cosi1994}, who
+use the algorithm to classify classical musical instruments. They are able to
+distinguish between twelve instrumental timbres and also show that new timbres
+not used during training can be classified by the map, which will place the
+unknown timbre close to the most similar training timbre.
 
-Coleman: Navigating the Personal Sample Library
-\citet{coleman2007}
+\smallskip
 
-SOM usage:
+Dealing explicitly
+with drum samples, \citet{pampalk2004} use a combination of one- and two-
+dimensional \glspl{som}. The one-dimensional variant of the algorithm is used
+to create hierarchical sample structure, while a two- dimensional \gls{som} is
+used for visualization of the samples.
 
-Heise: SoundTorch
-\citet{heise2008}
+\smallskip
 
-Cosi:
-auditory modelling and self-organizing neural networks for timbre classification
-\citet{cosi1994}
+\citet{heise2008} combine a \gls{som}-based interface with surround sound
+reproduction for an interesting and novel approach to sound corpus exploration
+with their \textit{SoundTorch} software. The authors let the user carry the
+eponymous \textit{SoundTorch}, which is used to illuminate parts of a map
+interface onto which sounds are placed. Illuminated sounds are played back on a
+multichannel loudspeaker system, with their position in the interface
+determining their spatial playback position.
 
-Pampalk:
-hierarchical organization and visualization of drum sample libraries
-\citet{pampalk2004}
-Computational Models [...]
-\citet{pampalk2008}
+\smallskip
 
-Infinite Drum Machine
-\citet{mcdonald2017}
+\citet{fried2014} are employing a different approach to visualization and
+dimensionality reduction of high-dimensional descriptor spaces with their
+\textit{AudioQuilt} software, which relies on user input for its similarity
+measure. Their approach achieves a 1-to-1 mapping between sound samples and
+grid locations at the cost of not functioning completely unsupervised.
 
-Sononym
-\citet{nielsen2018}
+\smallskip
 
-Audio Finder
-\citet{audiofinder2019}
-
-Atlas
-\citet{atlas2018}
+Finally, we can also give a couple of examples of relevant software that exist
+outside of academia. The \textit{Infinite Drum Machine} by \citet{mcdonald2017}
+uses the t-SNE algorithm \citep{maaten2008} to create a drum machine with a
+two-dimensional sound selection interface that resembles a point cloud. A
+commercial software tool for organizing and maintaining sound corpora that has
+been around for several years now is \textit{Audio Finder}
+\citep{audiofinder2019}, which does not employ machine learning at all, instead
+offering a large variety of metadata and cataloging
+tools, as well as some spectral analysis features. More recently, commercially
+available audio software that incorporates machine learning is starting to
+appear. Two examples of this are \textit{Sononym} \citep{nielsen2018} and
+\textit{Atlas} {atlas2018}. Similarly to \textit{Audio Finder}, \textit{Sononym}
+deals with sample library organization and offers a \gls{ml}-based
+"similarity search", while \textit{Atlas} is a drum sampler plug-in that also
+features a sound map.
