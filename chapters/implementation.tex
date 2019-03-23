@@ -275,7 +275,7 @@ sounds.
 
 \subsubsection{Functionality}
 \label{subsubsec:som-browser_functionality}
-\paragraph{Loading Audio Files}
+\paragraph*{Loading Audio Files}
 When launching \textit{SOM Browser}, the application opens with no sounds or map
 loaded (see Figure \ref{fig:som-browser_empty}). In order to create a map of
 a collection of sound files, the user can go to the menu bar at the top of the
@@ -289,7 +289,7 @@ files.
   \label{fig:som-browser_empty}
 \end{figure}
 
-\paragraph{Calculating a Map}
+\paragraph*{Calculating a Map}
 Once files are selected, the \textit{Sounds} list on the left side of the
 application will be populated. Next, by clicking \textit{"Analyze"}, the program
 will start to analyze the audio files in the background, first extracting
@@ -303,7 +303,7 @@ percentage in the central \textit{Map} panel.
 
 \smallskip
 
-\paragraph{Map Interaction}
+\paragraph*{Map Interaction}
 Upon completion of the \gls{som} calculation, the \textit{Map} panel will be
 populated by a grid of white and grey squares. Each white square represents a
 single sound file. All files are loaded into the computer's \gls{ram} for quick
@@ -318,7 +318,7 @@ corresponding file name is shown next to the mouse cursor. More detailed
 information about the file, including its full path, duration and audio feature
 values can be found in the \textit{FileInfo} panel to the right of the map.
 
-\paragraph{Selecting and Exporting Favorites}
+\paragraph*{Selecting and Exporting Favorites}
 The bottom of the window is taken up by the \textit{Favorites} bar. If a sample
 is found on the map that the user would like to save for further usage, they can
 drag the square from the map down into one of the slots labeled
@@ -329,7 +329,7 @@ further usage in a \gls{daw}) by clicking on \textit{"Export Selection"} in the
 top menu bar. This will open a file dialog window to select a location where the
 files should be stored.
 
-\paragraph{Saving and Loading Maps}
+\paragraph*{Saving and Loading Maps}
 \textit{SOM Browser} also offers the ability to save entire maps to disk for
 recall in a later session or import previously stored maps by clicking on the
 menu bar buttons \textit{"Save"} and \textit{"Load Map"}.
@@ -342,7 +342,7 @@ frameworks are available to use for all aspects of the development process.
 The following paragraphs outline the tools chosen for this application and their
 benefits.
 
-\paragraph{Electron}
+\paragraph*{Electron}
 \label{para:electron}
 "is an open source library developed by GitHub for building cross-platform
 desktop applications with HTML, CSS, and JavaScript. Electron accomplishes this
@@ -353,13 +353,13 @@ Its \texttt{ipcMain} and \texttt{ipcRenderer} \glspl{api} are used for
 asynchronous communication between the \gls{gui} and processes running in the
 background.
 
-\paragraph{React}
+\paragraph*{React}
 \label{para:react}
 is a JavaScript library for building user interfaces \citep{react2019}. It
 breaks the \gls{gui} into smaller, self-contained units called
 \textit{components} that can be independently updated and rendered.
 
-\paragraph{Web Audio API}
+\paragraph*{Web Audio API}
 \label{para:web_audio_api}
 enables audio processing and synthesis in (web) applications
 \citep{webaudio2019}. The use of this \gls{api} makes it possible to write all
@@ -369,7 +369,7 @@ building blocks such as an oscillator or a recording). This graph connects
 sources to other other nodes (e.g. effects or filters) and finally to an output
 destination.
 
-\paragraph{Meyda}
+\paragraph*{Meyda}
 \label{para:meyda}
 "is a Javascript audio feature extraction library. Meyda supports both offline
 feature extraction as well as real-time feature extraction using the Web Audio
@@ -384,7 +384,7 @@ to remember user interactions, save its internal data (the \textit{state} of
 the application) between interaction steps and to allow the storing of state
 data between sessions.
 
-\paragraph{System States}
+\paragraph*{System States}
 \label{para:som-browser_states}
 Before the start of the development process, a set of system states was designed
 to represent the states through which the application is supposed to progress.
@@ -402,7 +402,7 @@ in lower case, e.g. \textit{show map}) and the next state to transition into
   \label{fig:som-browser_states}
 \end{figure}
 
-\paragraph{Code Overview}
+\paragraph*{Code Overview}
 \label{para:som-browser_overview}
 \textit{SOM Browser} was developed using the \textit{git} version control
 system \citep{git2019} in a repository on GitHub \footnote{\href
@@ -512,13 +512,13 @@ properties and functions.
 
 % \clearpage
 
-\paragraph{MenuBar}
+\paragraph*{MenuBar}
 \label{para:menu_bar}
 is the horizontal element across the top of the application window. It holds
 five buttons to perform audio analysis, load and export samples and store and
 recall calculated maps.
 
-\paragraph{FileList}
+\paragraph*{FileList}
 \label{para:file_list}
 is one of two options for content to display in the left panel. It shows a list
 of all loaded audio files. Each list element is rendered by a nested
@@ -526,13 +526,13 @@ of all loaded audio files. Each list element is rendered by a nested
 corresponding map square will be highlighted and the \mintinline{jsx}{FileInfo}
 panel on the right will display information about the file.
 
-\paragraph{Settings}
+\paragraph*{Settings}
 \label{para:settings}
 is the other display option for the left panel. Here, a number of \gls{som}
 parameters can be set, similar to the Max messages listed in Table
 \ref{table:catart_som_messages}.
 
-\paragraph{Map}
+\paragraph*{Map}
 \label{para:map}
 is the main focal point of the application. It displays a grid of grey and white
 squares, where each white square represents one sound. The \mintinline{js}{Map}
@@ -542,12 +542,12 @@ grey background squares that are rendered first), \mintinline{js}{MapSubNode}
 label displaying the name of the sound over which the user is currently
 hovering).
 
-\paragraph{FileInfo}
+\paragraph*{FileInfo}
 \label{para:file_info}
 is the panel on the right side of the application. It displays details about the
 currently selected file, including its path, duration and audio feature values.
 
-\paragraph{UserSelection}
+\paragraph*{UserSelection}
 \label{para:user_selection}
 is the horizontal element across the bottom of the application. It consists of
 eight instances of the nested component \mintinline{jsx}{UserSelectionSlot},

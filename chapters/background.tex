@@ -29,7 +29,7 @@ Python \citep{mathieu2010}.
 Consider a digital audio signal of the form $x[n]$, where $n$ denotes the sample
 index and $x[n]$ the value of the individual sample at that index.
 
-\paragraph{Normalization}
+\paragraph*{Normalization}
 \label{para:normalization}
 In order to have a standardized maximum amplitude of 1 across all audio signals,
 they are normalized such that
@@ -37,13 +37,13 @@ they are normalized such that
   x_{norm}[n] = \frac{x[n]}{\max{x[n]}}.
 \end{equation}
 
-\paragraph{Mono Conversion}
+\paragraph*{Mono Conversion}
 \label{para:mono_conversion}
 Spatial information, as contained in an audio file with more than one channel,
 is not deemed necessary in the presented work. For this reason, all audio
 signals are converted to mono by taking the average of all channels.
 
-\paragraph{Frame-Based Feature Extraction}
+\paragraph*{Frame-Based Feature Extraction}
 \label{para:frame_based_extraction}
 Rather than performing feature extraction on the entirety of the audio signal,
 it is common practice to divide the signal into smaller chunks or
@@ -64,7 +64,7 @@ single frame.
 Time domain features are features derived directly from the discrete-time
 signal $x[n]$.
 
-\paragraph{Duration}
+\paragraph*{Duration}
 \label{para:duration}
 The overall duration of the signal $x[n]$ in seconds:
 \begin{equation}
@@ -72,7 +72,7 @@ The overall duration of the signal $x[n]$ in seconds:
 \end{equation}
 where $n$ is the number of samples and $fs$ is the sampling rate.
 
-\paragraph{Root Mean Square (RMS)}
+\paragraph*{Root Mean Square (RMS)}
 \label{para:rms}
 measures the power of a signal \citep[p.73f]{lerch2012}. It describes sound intensity and is sometimes used as a simple measure for loudness
 \citep{web:meyda2019_features} that does not take the nonlinearity of human
@@ -82,7 +82,7 @@ frame $x[n]$ consisting of $n$ samples such that
   v_{RMS} = \sqrt{ \frac{ \sum\limits_{i=1}^{n} x(i)^2} {n}}.
 \end{equation}
 
-\paragraph{Zero-Crossing Rate (ZCR)}
+\paragraph*{Zero-Crossing Rate (ZCR)}
 \label{para:zcr}
 represents the rate of the number of sign changes in a signal.
 It can be used as a measure of the tonalness of a sound \citep{lykartsis2014}
@@ -100,7 +100,7 @@ $X(k)$ is calculated from $x[n]$ by performing an \gls{fft} (for information on
 the Fourier transform, refer to any signal processing textbook, such as
 \citet{oppenheim2014}).
 
-\paragraph{Spectral Centroid}
+\paragraph*{Spectral Centroid}
 \label{para:centroid}
 is a measure of the center of gravity of a
 spectrum. A higher value indicates a brighter, sharper sound \citep{lerch2012}.
@@ -110,7 +110,7 @@ The spectral centroid is defined as
   { \sum\limits_{k=0}^{N_{FFT}/2-1} |X(k)]^2 }.
 \end{equation}
 
-\paragraph{Spectral Flatness}
+\paragraph*{Spectral Flatness}
 \label{para:flatness}
 is a measure for the tonality or noisiness of a signal, defined as the ratio of
 the geometric and arithmetic means of its magnitude spectrum. Higher values
@@ -121,7 +121,7 @@ towards more tonal spectral content. It is defined as
   { (2/N_{FFT}) \cdot{\sum\limits_{k=0}^{N_{FFT}/2-1} |X(k)|} }.
 \end{equation}
 
-\paragraph{Spectral Kurtosis}
+\paragraph*{Spectral Kurtosis}
 \label{para:kurtosis}
 indicates whether a given magnitude spectrum's distribution is similar to a
 Gaussian distribution. Negative values result from a flatter distribution,
@@ -136,7 +136,7 @@ distribution would result in a value of 0. Spectral Kurtosis is defined as
 where $\mu_{|X|}$ represents the mean and $\sigma_{|X|}$ the standard deviation
 of the magnitude spectrum $|X|$.
 
-\paragraph{Spectral Skewness}
+\paragraph*{Spectral Skewness}
 \label{para:skewness}
 assesses the symmetry of a magnitude spectrum distribution. It is defined as
 \begin{equation}
@@ -145,7 +145,7 @@ assesses the symmetry of a magnitude spectrum distribution. It is defined as
   { N_{FFT}\cdot{\sigma_{|X|}^3} }.
 \end{equation}
 
-\paragraph{Spectral Slope}
+\paragraph*{Spectral Slope}
 \label{para:slope}
 represents a measure of how sloped or inclined a given spectral distribution is.
 The spectral slope is calculated using a linear regression of the magnitude
@@ -156,7 +156,7 @@ spectrum such that
   { \sum\limits_{k=0}^{N_{FFT}/2-1} (k - \mu_{k})^2 }.
 \end{equation}
 
-\paragraph{Spectral Spread}
+\paragraph*{Spectral Spread}
 \label{para:spread}
 is a descriptor of the concentration of a magnitude spectrum around the
 \nameref{para:centroid} and assesses the corresponding signal's bandwidth. It is
@@ -167,7 +167,7 @@ defined as
   { \sum\limits_{k=0}^{N_{FFT}/2-1} |X(k)|^2 }.
 \end{equation}
 
-\paragraph{Spectral Rolloff}
+\paragraph*{Spectral Rolloff}
 \label{para:rolloff}
 measures the bandwidth of a given signal by calculating that frequency bin
 below which lie $\kappa$ percent of the sum of magnitudes of $X(k)$. Common
@@ -186,7 +186,7 @@ perception. Perceptual features incorporate some sort of model that approximates
 this perception. While only a single perceptual feature is used in this work,
 more do exist (see \citet{peeters2004} for a list of some of them).
 
-\paragraph{Total Loudness}
+\paragraph*{Total Loudness}
 \label{para:loudness}
 represents an algorithmic approximation of the human perception of a signal's
 loudness based on \citet{moore1997}, which uses the Bark scale as introduced by
@@ -312,7 +312,7 @@ features' standard deviation $\sigma_n$:
 \subsubsection{Alternative Learning Rate Factors}
 \label{subsubsec:som_learning_rates}
 
-\paragraph{Linear}
+\paragraph*{Linear}
 \label{para:alpha_linear}
 The traditional \gls{som} algorithm uses a learning rate factor $\alpha$ that
 decreases linearly as a function of the regression step $t$:
@@ -326,14 +326,14 @@ training length or number of regression steps.
 Two other approaches to the decreasing learning rate factor were implemented
 in this work:
 
-\paragraph{Inverse}
+\paragraph*{Inverse}
 \label{para:alpha_inverse}
 The first is a reciprocally decreasing function where
 \begin{equation}
   \alpha(t) = \frac{\alpha_0}{\big(\frac{1 + 100t}{T}\big)}.
 \end{equation}
 
-\paragraph{BDH}
+\paragraph*{BDH}
 \label{para:alpha_bdh}
 The second alternative approach is that of an adaptive local learning rate as
 developed by \citet{bauer1996} (BDH algorithm, also see \citet{merenyi2007}):
