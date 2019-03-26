@@ -155,6 +155,61 @@ additional categorization.
 
 \subsection{Summary}
 \label{subsec:discussion_summary}
+In summarizing the present work, we can identify some strengths as well as
+weaknesses that bear mentioning briefly. Listed in addition are limiting factors
+of the work.
+
+\subsubsection{Strengths}
+\label{subsubsec:discussion_strengths}
+Our \gls{som} implementation offers a quick, unsupervised, visual layout of a
+sound corpus. It can be used for completely unlabelled data and can therefore
+be a benefit to audio experts and more casual music producers alike.
+The addition of a \gls{som} implementation to \textit{CataRT} and \textit{MuBu
+For Max} gives expert audio software users that build their own \textit{MaxMSP}
+performance systems an addition to their existing toolbox. \textit{SOM Browser}
+on the other hand is a simple to use, cross-plattform application that
+allows no-frills contact with a \gls{ml} algorithm that can currently not be
+found in commercial audio software.
+
+\subsubsection{Weaknesses}
+\label{subsubsec:discussion_weaknesses}
+It stands to reason that the collection of audio features used in this work can
+be improved upon, or should at least be reevaluated critically in order to
+improve the quality of the produced maps. Interview participants struggled with
+the presented map layout, which could be due to a lack of information, but also
+due to insufficient quality of the \gls{som} they saw. \glspl{mfcc} could be
+used to represent the spectral envelope of the sounds better. Additionally,
+each sample's temporal envelope should be considered.
+
+\smallskip
+
+The qualitative analysis of the conducted interviews could also be improved upon
+by using multiple independent researchers for the coding process. As it stands,
+no inter-rater reliability exists, as the analysis was done by the author. This
+also means that although care was taken to work diligently and objectively, the
+potential for bias in the coding process and general interview evaluation
+results is obvious.
+
+\subsubsection{Limitations}
+\label{subsubsec:discussion_limitations}
+Although the \textit{Drum Essentials} data set used in this work can be
+considered representative of a contemporary sample library, the work presented
+here needs to be applied to other collections of sounds as well before it can
+be considered more universally applicable. In conducting the interviews, we were
+mainly interested in getting an overview of possible responses and reactions.
+To this end, we chose a qualitative, semi-structured approach that prevents us
+from presenting conclusive, quantitative results. Finally, a limitation of
+\textit{SOM Browser} is that it is not a tool for very large sample libraries;
+the library used by us, consisting of just over one thousand sound files,
+presents essentially the sensible limit of files that can be displayed.
+
+\subsection{Outlook}
+\label{subsec:discussion_outlook}
+
+
+
+\subsubsection{Conclusion}
+\label{subsubsec:discussion_conclusion}
 The present thesis implements the Self-Organizing Map algorithm and applies it
 to sound corpus organization. The implementation is embedded in two practical
 applications. In \textit{MaxMSP}, it can be used to extend \textit{CataRT} and
@@ -169,30 +224,13 @@ interface by reducing the areas of the map to which no sound is mapped.
 
 \smallskip
 
-After describing our approach to producing an optimized map for a chosen sound
-corpus of drum sounds, we conduct a series of qualitative interviews with audio
+After describing our approach to producing an optimized map for a chosen corpus
+of drum sounds, we conduct a series of qualitative interviews with audio
 professionals. Participants' responses allow us to identify a prevalent sample
 library workflow, which we codify into a generalized model of the established
 workflow. We confirm the need for and interest in alternate interfaces and
 present participants with our developed software. Interview feedback was
 sufficiently positive to warrant further work towards this end.
-
-
-\subsubsection{Strengths}
-\label{subsubsec:discussion_strengths}
-
-
-
-\subsubsection{Weaknesses}
-\label{subsubsec:discussion_weaknesses}
-
-\subsubsection{Limitations}
-\label{subsubsec:discussion_limitations}
-
-
-
-\subsection{Outlook}
-\label{subsec:discussion_outlook}
 
 
 % Results interpretation
