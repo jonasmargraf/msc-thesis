@@ -71,24 +71,6 @@ ever-present in electronic music studios \citep{adeney2009}.
 % standalone application called \textit{SOM Browser} that uses the \gls{som} as an
 % alternative interface for the exploration of a folder of samples. Finally,
 
-\subsection{Aims and Objectives}
-\label{subsec:aims}
-
-The aim of this thesis is to implement the \textit{\gls{som}} algorithm from
-scratch and use it to build a software interface for sound corpus organization
-and exploration. To this end, we incorporate it into \textit{CataRT}, an
-existing software for corpus-based concatenative synthesis (CBCS,
-\citet{schwarz2006}). We also develop a larger standalone application called
-\textit{SOM Browser} that uses the \gls{som} as an alternative interface for the
-exploration of a folder of samples. Subsequently, an overview of the
-effects of the different controllable parameters of the algorithm on the
-produced \gls{som} is given and an ideal map for a representative sound corpus
-of drum samples is shown. Finally, we present user feedback to
-\textit{SOM Browser} gathered from interviews with five audio professionals.
-The main question we aim to explore during these interviews is whether our
-software can offer a viable alternative to established workflows or if our
-proposed alternative interface is perhaps too abstract to be considered useful.
-
 \subsection{Previous Work}
 \label{subsec:previous_work}
 The topic of using audio descriptors (see Section
@@ -96,7 +78,8 @@ The topic of using audio descriptors (see Section
 sounds in two-dimensional interfaces, often displayed as scatter plots, has
 been explored in a variety of previous research. Particularly relevant for the
 present work is the software \textit{CataRT} by \citet{schwarz2006}. It allows
-realtime concatenative synthesis and offers the user an interface to explore
+realtime corpus-based concatenative synthesis and offers the user an interface
+to explore
 the loaded sound corpus interactively. Two selectable audio descriptors make up
 the axes along which sounds are plotted as circles, while two more descriptors
 can be mapped to circle color and size. At the same time, more descriptors are
@@ -160,3 +143,22 @@ appear. Two examples of this are \textit{Sononym} \citep{nielsen2018} and
 \textit{Sononym} deals with sample library organization and offers a
 \gls{ml}-based "similarity search", while \textit{Atlas} is a drum sampler
 plug-in that also features a sound map.
+
+\subsection{Aims and Objectives}
+\label{subsec:aims}
+
+The aim of this thesis is to implement the \textit{\gls{som}} algorithm from
+scratch and use it to build a software interface for sound corpus organization
+and exploration. To this end, we incorporate the algorithm into \textit{CataRT},
+an existing software for corpus-based concatenative synthesis (CBCS,
+\citet{schwarz2006}). We also develop a larger standalone application called
+\textit{SOM Browser} that uses the \gls{som} as an alternative interface for the
+exploration of a folder of samples, as this is something that no commercially
+available software offers. Subsequently, an overview of the
+effects of the different controllable parameters of the algorithm on the
+produced \gls{som} is given and an ideal map for a representative sound corpus
+of drum samples is shown. Finally, we present user feedback to
+\textit{SOM Browser} gathered from interviews with five audio professionals.
+The main question we aim to explore during these interviews is whether our
+software can offer a viable alternative to established workflows or if our
+proposed alternative interface is perhaps too abstract to be considered useful.
