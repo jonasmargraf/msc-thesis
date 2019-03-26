@@ -98,8 +98,8 @@ function, which controls how far around the best matching unit nodes will be
 adjusted during each training step, decreases from a starting value $r_{start}$
 to a final value $r_{end}$. \citet{kohonen1990} recommends starting with a
 rather large radius and ending with a value of one unit. This recommendation
-does coincide with our measurements, which obtained best results when using a
-narrow starting kernel radius of $r_{start} = 2$ that decreases to
+does not coincide with our measurements, which obtained best results when using
+a narrow starting kernel radius of $r_{start} = 2$ that decreases to
 $r_{end} = 10^{-1}$. It should be noted that although we achieved the best
 results with $r_{start} = 2$, we used $r_{start} = 16$ for the comparison of
 $r_{end}$ values in order to avoid a kernel that increases in size as training
