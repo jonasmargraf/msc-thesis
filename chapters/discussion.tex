@@ -157,7 +157,8 @@ additional categorization.
 \label{subsec:discussion_summary}
 In summarizing the present work, we can identify some strengths as well as
 weaknesses that bear mentioning briefly. Listed in addition are limiting factors
-of the work.
+of the work, before we move on to a discussion of potential future work and a
+final conclusion.
 
 \subsubsection{Strengths}
 \label{subsubsec:discussion_strengths}
@@ -187,7 +188,7 @@ The qualitative analysis of the conducted interviews could also be improved upon
 by using multiple independent researchers for the coding process. As it stands,
 no inter-rater reliability exists, as the analysis was done by the author. This
 also means that although care was taken to work diligently and objectively, the
-potential for bias in the coding process and general interview evaluation
+potential for bias in the coding and the general interview evaluation
 results is obvious.
 
 \subsubsection{Limitations}
@@ -203,9 +204,28 @@ from presenting conclusive, quantitative results. Finally, a limitation of
 the library used by us, consisting of just over one thousand sound files,
 presents essentially the sensible limit of files that can be displayed.
 
-\subsection{Outlook}
-\label{subsec:discussion_outlook}
+\subsubsection{Outlook}
+\label{subsubsec:discussion_outlook}
+As discussed earlier, \textit{SOM Browser} offers ample opportunity for future
+work and improvements. A technical improvement could be the implementation of
+the \textit{Batch Map}, which offers to potentially increase speed by an order
+of magnitude \citep{web:kohonen2007}. Another welcome addition would be node
+initialization using \gls{pca}, as can be done in the \gls{som} toolbox for
+MATLAB \citep{vesanto2000}. Finally, a reimagining of the software in plug-in
+format, either as a \textit{MaxForLive} device for Ableton Live or as a
+\gls{vst} instrument, would be a more substantial undertaking that would satisfy
+the desire of our interview participants for a more direct inclusion of
+\textit{SOM Browser} functionality in their existing production environments.
 
+\smallskip
+
+For the \gls{som} algorithm as a whole and its utility for sound corpus
+organization, an exploration of input dimension weightings for different
+applications could be interesting. Perhaps the same set of features can be used
+with different weightings depending on if the corpus contains percussive,
+monophonic or polyphonic sounds. Additionally, an augmentation of the audio
+feature input data with file metadata could also be considered. One can imagine
+for example using a string distance function to compute file name similarity.
 
 
 \subsubsection{Conclusion}
