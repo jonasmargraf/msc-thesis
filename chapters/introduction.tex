@@ -8,8 +8,8 @@
 Sample libraries are ubiquitous in modern audio production. Affordable storage
 media and fast computers enable artists, composers and sound designers to work
 with large collections of audio files - a one terabyte hard drive costs around
-50 euros and can store up to two months of uncompressed audio information in CD
-quality. At the same time, the internet is full of large sound corpora for
+50 Euros and can store up to two months of uncompressed audio information in CD
+quality. At the same time, the Internet is full of large sound corpora for
 anyone to download. This is especially true for collections of drum sounds,
 which are offered for sale by many companies or traded (sometimes without
 considerations for any applicable copyright) on various web forums.
@@ -25,13 +25,14 @@ presented to the user?
 
 The present thesis explores a practical approach to the problem of sound corpus
 organization, while focussing primarily on drum samples as used by electronic
-music producers.
-Currently, arguably the most common way in which producers
-search through their sample libraries is by using some kind of file browser
-(built into their computer's \gls{os} or their \gls{daw} of choice). This
-browser presents a list view of all audio files in the current folder and is
-typically sorted alphabetically, chronologically or by some other criterion that
-is almost definitely not directly related to the sonic content of the file.
+music producers. \textit{Sound corpus} in this work denotes a collection of
+sound files --- other commonly encountered terms for such collections are sample
+library, pack, kit or bundle. Currently, arguably the most common way in which
+producers search through their sample libraries is by using some kind of file
+browser (built into their computer's \gls{os} or their \gls{daw} of choice).
+This browser presents a list view of all audio files in the current folder and
+is typically sorted alphabetically, chronologically or by some other criterion
+that is almost definitely not directly related to the sonic content of the file.
 
 \smallskip
 
@@ -47,7 +48,7 @@ workflows?
 \smallskip
 
 In order to find an alternative organizational method to the name-based,
-categorical file browser interface described above, we to turn to \gls{ml},
+categorical file browser interface described above, we turn to \gls{ml},
 a field that deals with pattern recognition and classification tasks. The
 \textit{\gls{som}} algorithm, first introduced by Teuvo Kohonen (see Section
 \ref{subsec:som}, \citet{kohonen1990}), is a machine learning algorithm that
@@ -75,17 +76,16 @@ ever-present in electronic music studios \citep{adeney2009}.
 \label{subsec:previous_work}
 The topic of using audio descriptors (see Section
 \ref{subsec:feature_extraction} for further details) for the organization of
-sounds in two-dimensional interfaces, often displayed as scatter plots, has
-been explored in a variety of previous research. Particularly relevant for the
+sounds in two-dimensional interfaces, often displayed as scatter plots, has been
+explored in a variety of previous research. Particularly relevant for the
 present work is the software \textit{CataRT} by \citet{schwarz2006}. It allows
 realtime corpus-based concatenative synthesis and offers the user an interface
-to explore
-the loaded sound corpus interactively. Two selectable audio descriptors make up
-the axes along which sounds are plotted as circles, while two more descriptors
-can be mapped to circle color and size. At the same time, more descriptors are
-already calculated, but cannot be displayed simultaneously, which informs our
-decision to extend \textit{CataRT} with the option of using a two-dimensional
-\gls{som} as the interface.
+to explore the loaded sound corpus interactively. Two selectable audio
+descriptors make up the axes along which sounds are plotted as circles, while
+two more descriptors can be mapped to circle color and size. At the same time,
+more descriptors are already calculated, but cannot be displayed simultaneously,
+which informs our decision to extend \textit{CataRT} with the option of using a
+two-dimensional \gls{som} as the interface.
 
 \citet{coleman2007} also uses feature extraction to create a scatter plot
 interface of a \textit{personal sample library}, which directly relates to our
@@ -135,30 +135,29 @@ two-dimensional sound selection interface that resembles a point cloud. A
 commercial software tool for organizing and maintaining sound corpora that has
 been around for several years now is \textit{Audio Finder}
 \citep{audiofinder2019}, which does not employ machine learning at all, instead
-offering a large variety of metadata and cataloging
-tools, as well as some spectral analysis features. More recently, commercially
-available audio software that incorporates machine learning is starting to
-appear. Two examples of this are \textit{Sononym} \citep{nielsen2018} and
-\textit{Atlas} \citep{atlas2018}. Similarly to \textit{Audio Finder},
-\textit{Sononym} deals with sample library organization and offers a
-\gls{ml}-based "similarity search", while \textit{Atlas} is a drum sampler
-plug-in that also features a sound map.
+offering a large variety of metadata and cataloging tools, as well as some
+spectral analysis features. More recently, commercially available audio software
+that incorporates machine learning is starting to appear. Two examples of this
+are \textit{Sononym} \citep{nielsen2018} and \textit{Atlas} \citep{atlas2018}.
+Similarly to \textit{Audio Finder}, \textit{Sononym} deals with sample library
+organization and offers a \gls{ml}-based "similarity search", while
+\textit{Atlas} is a drum sampler plug-in that also features a sound map.
 
 \subsection{Aims and Objectives}
 \label{subsec:aims}
-
 The aim of this thesis is to implement the \textit{\gls{som}} algorithm from
 scratch and use it to build a software interface for sound corpus organization
-and exploration. To this end, we incorporate the algorithm into \textit{CataRT},
-an existing software for corpus-based concatenative synthesis (CBCS,
-\citet{schwarz2006}). We also develop a larger standalone application called
-\textit{SOM Browser} that uses the \gls{som} as an alternative interface for the
-exploration of a folder of samples, as this is something that no commercially
-available software offers. Subsequently, an overview of the
-effects of the different controllable parameters of the algorithm on the
-produced \gls{som} is given and an ideal map for a representative sound corpus
-of drum samples is shown. Finally, we present user feedback to
-\textit{SOM Browser} gathered from interviews with five audio professionals.
-The main question we aim to explore during these interviews is whether our
-software can offer a viable alternative to established workflows or if our
-proposed alternative interface is perhaps too abstract to be considered useful.
+and exploration, as there is currently no readily available audio software with
+this functionality. To this end, we incorporate the algorithm into
+\textit{CataRT}, an existing software for corpus-based concatenative synthesis
+(CBCS) \citep{schwarz2006}. We also develop a larger standalone application
+called \textit{SOM Browser} that uses the \gls{som} as an alternative interface
+for the exploration of a folder of samples, as this is something that no
+commercially available software offers. Subsequently, an overview of the effects
+of the different controllable parameters of the algorithm on the produced
+\gls{som} is given and an ideal map for a representative sound corpus of drum
+samples is shown. Finally, we present user feedback to \textit{SOM Browser}
+gathered from interviews with five audio professionals. The main question we aim
+to explore during these interviews is whether our software can offer a viable
+alternative to established workflows or if our proposed alternative interface is
+perhaps too abstract to be considered useful.
