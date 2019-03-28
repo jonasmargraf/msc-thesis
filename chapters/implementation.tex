@@ -13,13 +13,6 @@ considerations that were important for the development process.
 
 \subsection{Groundwork: CataRT Extension}
 
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[width=\linewidth, clip]{mubu-som-js}
-  \caption{mubu-SOM-js}
-  \label{fig:mubu-som}
-\end{figure}
-
 \label{subsec:implementation_catart}
 For the purpose of laying the groundwork for a bigger standalone application
 (see section \ref{subsec:implementation_som-browser}), a proof-of-concept
@@ -36,33 +29,44 @@ found on the digital resource included with this thesis in the directory
 % TODO: this
 XXX path to patch XXX.
 
-\smallskip
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.8\linewidth, clip]
+  {mubu-som-js}
+  \caption{mubu-SOM-js}
+  \label{fig:mubu-som}
+\end{figure}
 
 \begin{figure}[!htb]
-% \begin{figure}
   \centering
 \begin{subfigure}{0.45\textwidth}
   \centering
   \includegraphics[width=\textwidth]{catart_without_som_centroidVSloudness}
-  % \caption{\textit{CataRT} display of a corpus using spectral centroid (X axis)
-  % vs loudness (Y axis)}
   \caption{}
   \label{fig:catart_no_som}
 \end{subfigure}
 ~
 \begin{subfigure}{0.45\textwidth}
   \centering
-  \includegraphics[width=\textwidth]{catart_with_som}
-  % \caption{\textit{CataRT} display of a corpus using \gls{som} extension}
+  \includegraphics[width=\textwidth]{catart_with_som_no_noise}
   \caption{}
-  \label{fig:catart_with_som}
+  \label{fig:catart_with_som_no_noise}
 \end{subfigure}
 \caption[\textit{CataRT}: with and without \gls{som}]{\textit{CataRT} display of
-a corpus without \gls{som}
-(\ref{fig:catart_no_som}, X axis shows spectral centroid, Y axis shows loudness)
-and with \gls{som} extension (\ref{fig:catart_with_som}). Each circle represents
-a sample.}
+a corpus without \gls{som} (\ref{fig:catart_no_som}, X axis shows spectral
+centroid, Y axis shows loudness) and with \gls{som} extension
+(\ref{fig:catart_with_som_no_noise}). Each circle represents a sample.}
 \label{fig:catart_som_vs_no_som}
+\end{figure}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.45\textwidth]{catart_with_som}
+  \caption[\textit{CataRT}: \gls{som} with added noise ]{\textit{CataRT}
+  display of a corpus with \gls{som} extension and added noise to
+  spatially differentiate samples assigned to the same node. Each circle
+  represents a sample.}
+  \label{fig:catart_with_som_noise}
 \end{figure}
 
 
@@ -86,32 +90,15 @@ are spaced in a more even fashion (see Figure \ref{fig:catart_som_vs_no_som}).
 \ref{table:catart_som_messages} to the \\ \texttt{[js descriptor\_som.js]}
 object.
 
-% \paragraph*{setMapSize} takes an integer value and sets the size of the square
-% map to that value.
-%
-% \paragraph*{trainingEpochs} defines the length of the
-% training in epochs. One epoch corresponds to $n$ iterations of the training
-% algorithm as defined in section \ref{subsubsec:som_math_definition}, where $n$
-% is the number of samples in the corpus. Specified in integers.
-%
-% \paragraph*{initialAlpha} is the starting value for $\alpha$, the learning rate
-% factor. It is expected to be a floating point value.
-%
-% \paragraph*{learningRateType} sets the learning rate type (see section
-% \ref{subsubsec:som_learning_rates}). It expects a string that is either
-% \mintinline{js}{'linear'}, \mintinline{js}{'inverse'} or \mintinline{js}{'BDH'}.
-%
-% \paragraph*{magnificationM} only applies when
-% \mintinline{js}{learningRateType === 'BDH'}. It expects a floating point value
-% and sets the magnification control factor $m$ (see section
-% \ref{para:alpha_bdh}).
+\pagebreak
 
 \begin{table}[!ht]
   \renewcommand{\arraystretch}{1.2}
   \centering
   \footnotesize
-  \rowcolors{2}{table-bg-one}{table-bg-two}
-  \begin{tabular}{ l | l | p{4.2cm} | p{3.1cm}}
+  \colorbox{light-bg}{
+  \begin{tabular}{ l  l  p{4.2cm}  p{3.1cm}}
+    \hline
     \textbf{Message} & \textbf{Type} & \textbf{Description}
     & \textbf{Example} \\
     \hline
@@ -145,6 +132,7 @@ object.
     \mintinline[breaklines]{js}{learningRateType === 'BDH'}.
     & \texttt{magnificationM 0.02}
   \end{tabular}
+  }
   \caption{mubu-SOM-js: Messages for algorithm control}
   \label{table:catart_som_messages}
 \end{table}
@@ -186,18 +174,6 @@ part, the updating of node positions on each iteration, is shown in Listing
 \ref{lst:mubu-som_node_updates}.
 
 
-% \begin{listing}[!htb]
-%   \begin{mdframed}
-%     \inputminted[breaklines, numbers=left, firstline=31, lastline=32,
-%     fontsize=\footnotesize]{js}{../dev/mubu-som-js/descriptor_som.js}
-%   \end{mdframed}
-%   \caption{mubu-som-js/descriptor\_som.js: Initialization of
-%   \mintinline{js}{Task} object}
-%   \label{lst:mubu-som_task}
-% \end{listing}
-
-
-
 \begin{listing}[!htb]
   \begin{mdframed}
     \inputminted[breaklines, numbers=left, firstline=203, lastline=219,
@@ -209,7 +185,7 @@ part, the updating of node positions on each iteration, is shown in Listing
 
 \begin{listing}[!htb]
   \begin{mdframed}
-    \inputminted[breaklines, numbers=left, firstline=306, lastline=312,
+    \inputminted[breaklines, numbers=left, firstline=307, lastline=313,
     fontsize=\footnotesize]{js}{../dev/mubu-som-js/descriptor_som.js}
   \end{mdframed}
   \caption{mubu-som-js/descriptor\_som.js: neuron position updates inside
@@ -222,11 +198,14 @@ part, the updating of node positions on each iteration, is shown in Listing
 After the training phase is finished, the final map is populated by iterating
 over all vectors and finding their corresponding best matching units (meaning
 that node which is closest), as can be seen in Listing
-\ref{lst:mubu-som_find_bmus}. In order to spatially differentiate between
-vectors that were assigned to the same node, a small amount of random noise is
-added to the position. This creates clusters around the exact node position and
-allows for the individual circles to be selected. An example of a map without
-added noise can be found in Figure \ref{fig:catart_with_som_no_noise}.
+\ref{lst:mubu-som_find_bmus}. A problem arises when multiple vectors share the
+same node as their best matching unit; these vectors will have the same exact
+position in the interface with no option to differentiate between them and no
+indication of how many vectors reside in that location. To circumvent this
+issue, a small amount of random noise is added to each vector's position. This
+creates clusters around the exact node position and allows for the individual
+circles to be selected. An example of a map with added noise can be found in
+Figure \ref{fig:catart_with_som_noise}.
 
 \begin{listing}[!htb]
   \begin{mdframed}
@@ -236,18 +215,6 @@ added noise can be found in Figure \ref{fig:catart_with_som_no_noise}.
   \caption{mubu-som-js/descriptor\_som.js: \mintinline{js}{findBestMatches()}}
   \label{lst:mubu-som_find_bmus}
 \end{listing}
-
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[width=0.42\linewidth]{catart_with_som_no_noise}
-  \caption[\textit{CataRT}: \gls{som} without added noise ]{\textit{CataRT}
-  display of a corpus with \gls{som} extension, but without added noise to
-  differentiate samples assigned to the same node. Each circle represents a
-  sample.}
-  \label{fig:catart_with_som_no_noise}
-\end{figure}
-
-
 
 \clearpage
 
@@ -502,15 +469,13 @@ properties and functions.
 
 \begin{listing}[!htb]
   \begin{mdframed}
-    \inputminted[numbers=left, firstline=405, lastline=459,
+    \inputminted[numbers=left, firstline=405, lastline=461,
     fontsize=\scriptsize]{jsx}{../dev/som-browser/src/components/App.js}
   \end{mdframed}
   \caption{som-browser/src/components/App.js:
   \gls{gui} Components}
   \label{lst:som-browser_app_content}
 \end{listing}
-
-% \clearpage
 
 \paragraph*{MenuBar}
 \label{para:menu_bar}
@@ -565,14 +530,6 @@ possible. A method to counteract this phenomenon was deemed necessary.
 
 \smallskip
 
-% TODO:
-% This should maybe go in the introduction together with an overview of musical
-% grids:
-%
-% One of the aspects that make the \gls{som} immediately interesting for music
-% technology applications is that it is fundamentally based on a regular grid
-% structure, which opens a direct connection to the grid as a musical structure.
-
 In order to avoid "empty" nodes on the \gls{som} - meaning nodes to which no
 input vectors are mapped - a post-processing extension was added to the original
 algorithm that inverts the mapping process, explicitly iterates over empty nodes
@@ -580,8 +537,6 @@ and assigns each one that input vector which is closest. This algorithm
 extension, which we call Forced Node Population (\gls{fnp}), executes the
 following sequence after the regular \gls{som} has been calculated (refer to
 Listing \ref{lst:som-browser_fnp} to see the actual source code implementation):
-
-% \clearpage
 
 \begin{enumerate}
   \item Select a random empty node.
@@ -615,18 +570,14 @@ without (\ref{fig:som-browser_no_fnp}) \gls{fnp}}
 This process is only performed once for all nodes that are empty immediately
 after the initial \gls{som} calculation. It is possible that the forced node
 population creates new empty nodes, but in order to minimize distortion
-introduced by this procedure
-% TODO: Do this!!! Meaning show the introduced distortion somehow
-(see \nameref{sec:results} in section \ref{sec:results}),
-it is not repeated. The effect of the \gls{fnp} extension be clearly seen in
+introduced by this procedure (see Section \ref{subsec:results_som_metrics}), it
+is not repeated. The effect of the \gls{fnp} extension be clearly seen in Figure
 \ref{fig:som-browser_fnp_comparison}. For a closer look at the results of this
-algorithm extension, please refer to
-% TODO: Show before / after forced node population
-\nameref{sec:results} (section \ref{sec:results}).
+algorithm extension, please refer to Section \ref{subsubsec:results_final_fnp}.
 
 \begin{listing}[!htb]
   \begin{mdframed}
-    \inputminted[breaklines, numbers=left, firstline=355, lastline=391,
+    \inputminted[breaklines, numbers=left, firstline=358, lastline=394,
     fontsize=\scriptsize]{jsx}
     {../dev/som-browser/src/background/calculateSOM.js}
   \end{mdframed}
