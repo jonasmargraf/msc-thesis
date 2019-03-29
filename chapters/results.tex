@@ -11,23 +11,19 @@ interviews.
 \textit{SOM Browser} exposes several variables of the algorithm, offering the
 user influence over the resulting \gls{som}. The following sections show the
 effects of these different user-controllable parameters on the metrics outlined
-in Section \ref{subsec:eval_som_metrics}.
-We then compare the three different learning rate factor approaches that were
-implemented, including a differentiation between different magnification control
-values for the BDH (see Section \ref{para:alpha_bdh}).
-Finally, an ideal set of parameters for the selected sound corpus is chosen and
-the resulting map is presented.
-This map is then also calculated using our \gls{fnp} algorithm
-extension introduced in \ref{subsubsec:som_forced_population} and the results
-compared.
+in Section \ref{subsec:eval_som_metrics}. We then compare the three different
+learning rate factor approaches that were implemented, including a
+differentiation between different magnification control values for the \gls{bdh}
+method (see Section \ref{para:alpha_bdh}). Finally, an ideal set of parameters
+for the selected sound corpus is chosen and the resulting map is presented. This
+map is then also calculated using our \gls{fnp} algorithm extension introduced
+in \ref{subsubsec:som_forced_population} and the results compared.
 
-\smallskip
-
-Ideally, we'd like the map shown in \textit{SOM Browser} to have one
-or two vectors per node (meaning each map square only represents one or two
-sounds) and no empty nodes. We therefore chose a map size of
-$32 \times 32 = 1024$ as it is the closest square number to 1081, the number
-of samples contained in our chosen corpus.
+Ideally, we'd like the map shown in \textit{SOM Browser} to have one or two
+vectors per node (meaning each map square only represents one or two sounds) and
+no empty nodes. We therefore chose a map size of $32 \times 32 = 1024$ as it is
+the closest square number to 1081, the number of samples contained in our chosen
+corpus.
 
 \subsubsection{Effects of Training Duration}
 \label{subsubsec:som_training_effects}
@@ -38,14 +34,14 @@ quantization errors narrows in on the median with longer training as well.
 
 \smallskip
 
-A practical consideration to be noted is that training duration
-directly impacts processing time. For our measurements, which were run on a
-fairly recent consumer laptop, training for $10^4$ steps took on the order of
-minutes, while training for $10^5$ steps finished in about 30 minutes, and
-the training for $10^6$ steps had to be run over night, as it took several
-hours. Because of these practical considerations, which we assume to reflect
-the needs of potential users of the software, all following maps were trained
-for $10^4$ steps.
+A practical consideration to be noted is that training duration directly impacts
+processing time. For our measurements, which were run on a fairly recent
+consumer laptop, training for $10^4$ steps took on the order of minutes, while
+training for $10^5$ steps finished in about 30 minutes, and the training for
+$10^6$ steps had to be run over night, as it took several hours. Because of
+these practical considerations, which we assume to reflect the needs of
+potential users of the software, all following maps were trained for $10^4$
+steps.
 
 \begin{figure}[!htb]
   \centering
@@ -150,20 +146,20 @@ progresses.
 There are three different approaches to the learning rate factor $\alpha$ that
 are implemented in \textit{SOM Browser}: linearly decreasing, reciprocally
 decreasing ("Inverse"), and the local adaptive learning rate as proposed by
-\citet{bauer1996} ("BDH"). Differences between these are shown in Figure
+\citet{bauer1996} ("\gls{bdh}"). Differences between these are shown in Figure
 \ref{fig:som_learning_rate_comparison} and Table
 \ref{table:som_learning_rate_comparison}. While "Inverse" shows worse results
-than "Linear", improvements can be seen when using BDH.
+than "Linear", improvements can be seen when using \gls{bdh}.
 
 \bigskip
 
-BDH offers another parameter, $m$, that can be controlled. \citet{bauer1996}
+\gls{bdh} offers another parameter, $m$, that can be controlled. \citet{bauer1996}
 suggest values of $m = -1$, $-0.5$ or $-0.25$. We separately measured the
 effects of values for $m$ of $[1.0, 0.9, \dots, -0.9, -1.0]$, the results for
 which can be seen in Figure \ref{fig:som_BDH_m_comparison}. Interestingly,
 median quantization errors, mean vector node counts and map emptiness all reach
 a minimum at $m = 0$, which effectively results in a constant learning rate of
-$\alpha = \alpha_{initial}$, as the adaptive local learning term of the BDH
+$\alpha = \alpha_{initial}$, as the adaptive local learning term of the \gls{bdh}
 equation equals 1 when $m = 0$ (see Section \ref{para:alpha_bdh}).
 At the same time, the distribution of errors increases for positive values of
 $m$ and is generally larger than for $m < 0$. In order to strike a balance
@@ -178,7 +174,7 @@ $m = -0.2$ was chosen for the final map.
   % \colorbox{light-bg}{
   \begin{tabular}{ l c c c }
   \hline
-    & \textbf{BDH} & \textbf{Linear} & \textbf{Inverse} \\
+    & \textbf{\gls{bdh}} & \textbf{Linear} & \textbf{Inverse} \\
     \hline
     \textbf{Median Quantization Error ($\sigma$)}
     & 0.29 & 0.36 & 0.71 \\
@@ -200,7 +196,7 @@ $m = -0.2$ was chosen for the final map.
   % }
   \caption[Comparison of \gls{som} learning rate types]
   {\textit{SOM Browser}: comparison of linearly decreasing,
-  reciprocally decreasing ("Inverse") and BDH learning rate factors.
+  reciprocally decreasing ("Inverse") and \gls{bdh} learning rate factors.
   \gls{som} parameters: $\texttt{mapSize} = 32\times32$,
   training duration $ = 10^4$ steps,
   $\alpha_{initial} = 0.9$,
@@ -215,8 +211,8 @@ $m = -0.2$ was chosen for the final map.
   \includegraphics[width=0.95\textwidth, trim = 60mm 15mm 60mm 15mm, clip]
   {som_BDH_m_comparison}
   % }
-  \caption[BDH: Effect of Magnification Control $m$]
-  {\textit{SOM Browser}: BDH: Effect of Magnification Control $m$.
+  \caption[\gls{bdh}: Effect of Magnification Control $m$]
+  {\textit{SOM Browser}: \gls{bdh}: Effect of Magnification Control $m$.
   \gls{som} parameters: $\texttt{mapSize} = 32\times32$,
   training duration $ = 10^4$ steps,
   $\alpha_{initial} = 0.9$,
@@ -231,7 +227,7 @@ $m = -0.2$ was chosen for the final map.
 Based on the results presented above, a final map for the
 \textit{Drum Essentials} sound corpus was created with the parameters
 $\texttt{mapSize} = 32\times32$, training duration $ = 10^4$ steps,
-$\alpha_{initial} = 0.9$, BDH learning rate factor, $m = -0.2$, $r_{start} = 2$,
+$\alpha_{initial} = 0.9$, \gls{bdh} learning rate factor, $m = -0.2$, $r_{start} = 2$,
 and $r_{end} = 0.1$. A second map was calculated using the same parameters,
 but also using the \gls{fnp} algorithm extension we developed. Comparisons
 of the map with and without \gls{fnp} are shown in Table
@@ -273,7 +269,7 @@ improve both mean vector node counts and map emptiness.
   \gls{som} parameters: $\texttt{mapSize} = 32\times32$,
   training duration $ = 10^4$ steps,
   $\alpha_{initial} = 0.9$,
-  BDH learning rate factor, $m = -0.2$,
+  \gls{bdh} learning rate factor, $m = -0.2$,
   $r_{start} = 2$, $r_{end} = 0.1$}
   \label{fig:som_fnp_comparison}
 \end{figure}
@@ -300,7 +296,7 @@ both maps.
 \gls{som} parameters: $\texttt{mapSize} = 32\times32$,
 training duration $ = 10^4$ steps,
 $\alpha_{initial} = 0.9$,
-BDH learning rate factor, $m = -0.2$,
+\gls{bdh} learning rate factor, $m = -0.2$,
 $r_{start} = 2$, $r_{end} = 0.1$}
 \label{fig:results_fnp_comparison}
 \end{figure}
