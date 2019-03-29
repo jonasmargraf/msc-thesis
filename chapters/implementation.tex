@@ -188,8 +188,10 @@ part, the updating of node positions on each iteration, is shown in Listing
     \inputminted[breaklines, numbers=left, firstline=307, lastline=313,
     fontsize=\footnotesize]{js}{../dev/mubu-som-js/descriptor_som.js}
   \end{mdframed}
-  \caption{mubu-som-js/descriptor\_som.js: neuron position updates inside
-  \mintinline{js}{trainingStep()}}
+  \caption[mubu-som-js/descriptor\_som.js: Neuron position updates]
+  {mubu-som-js/descriptor\_som.js: Neuron positions are updated in
+  \mintinline{js}{trainingStep()}. This Listing implements equation
+  \ref{eq:node_update} from Section \ref{subsubsec:som_math_definition}.}
   \label{lst:mubu-som_node_updates}
 \end{listing}
 
@@ -212,7 +214,10 @@ Figure \ref{fig:catart_with_som_noise}.
     \inputminted[breaklines, numbers=left, firstline=316, lastline=335,
     fontsize=\footnotesize]{js}{../dev/mubu-som-js/descriptor_som.js}
   \end{mdframed}
-  \caption{mubu-som-js/descriptor\_som.js: \mintinline{js}{findBestMatches()}}
+  \caption[mubu-som-js/descriptor\_som.js: \gls{bmu} identification]
+  {mubu-som-js/descriptor\_som.js: \glspl{bmu} for each vector are
+  identified in \mintinline{js}{findBestMatches()}. This Listing implements
+  equation \ref{eq:bmu} from Section \ref{subsubsec:som_math_definition}.}
   \label{lst:mubu-som_find_bmus}
 \end{listing}
 
@@ -452,8 +457,13 @@ what was previously discussed, we refer to Section
     fontsize=\scriptsize]{jsx}
     {../dev/som-browser/src/background/extractFeatures.js}
   \end{mdframed}
-  \caption{som-browser/src/background/extractFeatures.js:
-  \mintinline{jsx}{extractFeatures()} [excerpt]}
+  \caption[som-browser/src/background/extractFeatures.js: Audio feature
+  extraction]
+  {som-browser/src/background/extractFeatures.js: Audio features for
+  each sound are extracted in \mintinline{jsx}{extractFeatures()} using the
+  \textit{Meyda} library (shown here is an excerpt). Formal definitions for each
+  feature can be found in the equations of Section
+  \ref{subsec:feature_extraction}.}
   \label{lst:som-browser_exctract_features}
 \end{listing}
 
@@ -563,7 +573,9 @@ Listing \ref{lst:som-browser_fnp} to see the actual source code implementation):
 \caption[Comparison of maps with (\ref{fig:som-browser_fnp}) and without
 (\ref{fig:som-browser_no_fnp}) \gls{fnp}]
 {Comparison of \textit{SOM Browser} maps with (\ref{fig:som-browser_fnp}) and
-without (\ref{fig:som-browser_no_fnp}) \gls{fnp}}
+without (\ref{fig:som-browser_no_fnp}) \gls{fnp}. White squares each represent
+a sound, while grey squares denote unpopulated (``empty'') nodes. Smaller
+squares are used if multiple sounds are assigned to the same node on the map.}
 \label{fig:som-browser_fnp_comparison}
 \end{figure}
 
@@ -582,6 +594,8 @@ algorithm extension, please refer to Section \ref{subsubsec:results_final_fnp}.
     {../dev/som-browser/src/background/calculateSOM.js}
   \end{mdframed}
   \caption[FNP implementation]{som-browser/src/background/calculateSOM.js:
-  \mintinline{jsx}{populateEmptyNeurons()} (FNP implementation)}
+  The \gls{som} algorithm extension \gls{fnp} (see Section
+  \ref{subsubsec:som_forced_population}) is implemented in
+  \mintinline{jsx}{populateEmptyNeurons()}.}
   \label{lst:som-browser_fnp}
 \end{listing}
