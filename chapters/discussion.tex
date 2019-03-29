@@ -29,7 +29,10 @@ combination of settings that works well for their audio files with $10^4$ steps
 and then run the algorithm again for $10^5$ steps to further improve map
 quality. Nonetheless it would be interesting to investigate this further and
 see whether users actually perceive a noticeable difference when using
-significantly longer training times.
+significantly longer training times. As for the performance of our software, we
+see clear room for improvement of the training algorithm by porting it from
+JavaScript to C and making use of optimization techniques such as parallel
+processing and \gls{gpu} acceleration.
 
 \smallskip
 
@@ -41,7 +44,7 @@ $\alpha$ has decreased drastically, only minor local adjustments happen.
 Starting with a lower $\alpha_{initial}$ would prohibit strong node adjustment
 overall. Interestingly, the choice of $\alpha_{initial}$ does not seem to
 improve vector node counts or map emptiness, which appear to hover around a
-middle value in \ref{fig:som_alpha_effects}.
+middle value in Figure \ref{fig:som_alpha_effects}.
 
 \smallskip
 
@@ -113,31 +116,31 @@ their production environment.
 
 As for \textit{SOM Browser}, interview participants' first impressions were
 mostly positive, yet also critical of several aspects of the software. Clearly,
-much potential for improvement remains. Most importantly, subjects were not
-able to comprehend the overall order of the map layout, which caused
-frustration and some fairly critical responses. We believe there to be several
-causes of this. It is certainly possible that the particular \gls{som} we
-presented to subjects did not accurately serve as a similarity map of our
-sample library, perhaps due to the previously discussed fact that we used a
-small radius for the neighborhood function. This could've had the negative
-effect on the global order of the map that is predicted by \citet{kohonen1990}
-(see the quote above). At the same time, we suspect that a methodological flaw
-in our question design could also have influenced participants' inability to
-discern order within the map; we never suggested the map could have anything to
-do with any kind of potential sonic similarity. Instead we asked ``What do you
-think about the organization of sounds in this interface?'' and
-``What do you think the axes represent?''. Some responses to the first question
-did include ``there seem to be areas somehow'' and ``Okay, so these are the
-percussion \dots'', perhaps indicating that some local similarities could be
-identified, but not placed in a context concerning the entire map. But the
-second question is effectively impossible to answer correctly; the axes of a
-two-dimensional \gls{som} are in essence meta-features, or features of features.
-This is not something that can be concluded without additional information.
-When were aware of the impossible nature of the question when designing the
-interview, but decided to ask it because we were interested in what possible
-answers we would encounter. Instead, it would have perhaps been more beneficial
-to position the map interface from the beginning as representing some sort of
-similarity and then gauging whether participants can accept it and relate to it.
+much potential for improvement remains. Most importantly, subjects were not able
+to comprehend the overall order of the map layout, which caused frustration and
+some fairly critical responses. We believe there to be several causes of this.
+It is certainly possible that the particular \gls{som} we presented to subjects
+did not accurately serve as a similarity map of our sample library, perhaps due
+to the previously discussed fact that we used a small radius for the
+neighborhood function. This could've had the negative effect on the global order
+of the map that is predicted by \citet{kohonen1990} (see the quote above). At
+the same time, we suspect that a methodological flaw in our question design
+could also have influenced participants' inability to discern order within the
+map; we never suggested the map could have anything to do with any kind of
+potential sonic similarity. Instead we asked ``What do you think about the
+organization of sounds in this interface?'' and ``What do you think the axes
+represent?''. Some responses to the first question did include ``there seem to
+be areas somehow'' and ``Okay, so these are the percussion \dots'', perhaps
+indicating that some local similarities could be identified, but not placed in a
+context concerning the entire map. But the second question is effectively
+impossible to answer correctly; the axes of a two-dimensional \gls{som} are in
+essence meta-features, or features of features. This is not something that can
+be concluded without additional information. We were aware of the impossible
+nature of the question when designing the interview, but decided to ask it
+because we were interested in what possible answers we would encounter. Instead,
+it would have perhaps been more beneficial to position the map interface from
+the beginning as representing some sort of similarity and then gauging whether
+participants can accept it and relate to it.
 
 \smallskip
 
@@ -244,144 +247,13 @@ interface by reducing the areas of the map to which no sound is mapped.
 
 \smallskip
 
-After describing our approach to producing an optimized map for a chosen corpus
-of drum sounds, we conduct a series of qualitative interviews with audio
-professionals. Participants' responses allow us to identify a prevalent sample
-library workflow, which we codify into a generalized model of the established
-workflow. We confirm the need for and interest in alternate interfaces and
-present participants with our developed software. Interview feedback was
-sufficiently positive to warrant further work towards this end.
+% After describing our approach to producing an optimized map
 
-
-% Results interpretation
-%
-% Able to create application that can produce visual layout of samples with
-% minimal to no input from user
-%
-% training length: another improvement after $10^5$ steps, should maybe look at
-% if this is perceived noticeably better by users?
-%
-% Why are larger starting neighborhood radii worse than smaller ones? Contradicts
-% Kohonen. K. mentions sharding / lack of global ordering, could be looked at
-% (look at soms for data labelled with groups, e.g. subfolders)
-%
-% Why BDH minimum at m=0?
-%
-% Why BDH better than Linear? Local learning adaptability...
-%
-% FNP: adds distortion, but improves map emptiness and distribution of vectors to
-% nodes, making it a practical usability improvement
-% naturally, the better the original map is, the less distortion will be added
-%
-% Interview:
-%
-% established workflow appears to be "good enough", but nothing more
-%
-% a clear established workflow could be identified and summarized
-%
-% interesting is the iterative interplay of mental representation and contextual
-% evaluation
-%
-% subjects are aware of limitations of their workflow, bias, etc
-%
-% SOM Browser: users first impressions were mostly positive, although they were
-% not able to directly infer meaning to the presented map layout
-% Some recognize areas of similarity, but the overall impression is that of a
-% random organization
-%
-% While preference was with established workflow, the potential of the app was
-% recognized
-%
-% Feature requests to improve usability: arrow keys, sample retriggering, larger
-% font size
-%
-% Users also would like some more input, through color customization, feature
-% filters, pre- / sub-categorization of files
-%
-%
-%
-% Reiterate aims / questions of work
-%
-%
-%
-% Most important results:
-% - App itself
-% - FNP: Algorithm extension for optimal utilization of allocated screen space
-% - Interviews: Identification of existing workflow
-% - Confirmed need for / interest in alternate interfaces and feedback was
-% sufficiently positive to warrant further work in this direction
-%
-%
-%
-% Strengths of the work
-% - Expert users that build their own MaxMSP performance systems got a new
-%   addition to their toolbox by expanding mubu-catart with SOM
-% - simple to use, cross-platform (untested) app that allows no-frills access to
-%   a ML algorithm not found in any commercially available audio software
-% - offers, quick, unsupervised visual layout of samples
-% - can be used for completely unlabelled data
-%
-%
-%
-% Weaknesses of the work
-% - reference missing inter-rater reliability,
-% - potential bias in evaluation results
-% - subjective coding
-% - Incomprehensible Map Organization, perhaps due to question phrasing
-%
-%
-% Limits of the work
-% - no quantitative results
-% - limited to one data set, only drum sounds
-% - SOM Browser is not a tool for very large sample libraries, the used library
-% pretty much presents the sensible limit of files
-%
-%
-%
-% What could be done better?
-% - better feature model to optimize SOM as map of similarity
-% - Interview: positioning of software as not finished
-% - Interview: phrasing of question about map organization
-%
-%
-%
-% Outlook / potential future work
-%
-% - potential of the application
-% - Map initialization using PCA
-% - SOM batch algorithm
-% - reimagining the software as a plug-in (M4L or as a VST using Juce etc.)
-%
-%
-%
-%
-%
-%
-% node vector count: 4 corners have tons of samples
-%
-% 4 outliers are the 4 corners
-%
-% node vector count without FNP: clustering around edges
-%
-% Reference grounded theory?
-%
-% Special mention:
-%
-% Incomprehensible Map Organization
-%
-% Some recognize areas of similarity, but the overall impression is that of a
-% random organization.
-%
-%
-%
-%
-%
-%
-% better feature model for perceived similarity of sounds
-%
-% limit number of sounds that can be loaded (500?)
-%
-%
-%
-% \subsection{Outlook}
-% \label{subsec:outlook}
+After searching for optimal parameters according to objective measures of map
+quality and producing a map for a chosen corpus of drum sounds, we conduct a
+series of qualitative interviews with audio professionals. Participants'
+responses allow us to identify a prevalent sample library workflow, which we
+codify into a generalized model of the established workflow. We confirm the need
+for and interest in alternate interfaces and present participants with our
+developed software. Interview feedback was sufficiently positive to warrant
+further work towards this end.
