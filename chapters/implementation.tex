@@ -18,7 +18,7 @@ For the purpose of laying the groundwork for a bigger standalone application
 (see section \ref{subsec:implementation_som-browser}), a proof-of-concept
 implementation of the core \gls{som} algorithm was written in JavaScript to
 serve as an extension to the \textit{MuBu For Max} software package
-(\citet{web:mubu2019}, \citet{web:mubu2019_2}) for the visual programming
+\citep{web:mubu2019, web:mubu2019_2} for the visual programming
 language Max \citep{web:max2019}. \textit{MuBu For Max} was developed by the
 Sound, Music, Movement, Interaction Team (ISMM) at \gls{ircam}
 \citep{schnell2009}. It contains the \textit{catart-by-mubu} patch for
@@ -309,10 +309,10 @@ menu bar buttons \textit{"Save"} and \textit{"Load Map"}.
 \subsubsection{Libraries and Frameworks Used}
 \label{subsubsec:som-browser_libraries}
 Although a desktop application, \textit{SOM Browser} was built entirely using
-web technologies, most importantly JavaScript. A vast variety of libraries and
-frameworks are available to use for all aspects of the development process.
-The following paragraphs outline the tools chosen for this application and their
-benefits.
+web technologies, most importantly JavaScript, in order to support multiple
+\glspl{os} with minimal effort. A vast variety of libraries and frameworks are
+available to use for all aspects of the development process. The following
+paragraphs outline the tools chosen for this application and their benefits.
 
 \paragraph*{Electron}
 \label{para:electron}
@@ -353,8 +353,8 @@ extraction tools", \citet{moffat2015}).
 \label{subsubsec:som-browser_structure}
 \textit{SOM Browser} is a \textit{stateful} application, meaning it is designed
 to remember user interactions, save its internal data (the \textit{state} of
-the application) between interaction steps and to allow the storing of state
-data between sessions.
+the application) between interaction steps and allow the storing of state data
+between sessions.
 
 \paragraph*{System States}
 \label{para:som-browser_states}
@@ -408,7 +408,7 @@ extraction and \gls{som} calculation.
 Both audio feature extraction and \gls{som} calculation are processing intensive
 tasks, therefore it was clear from the beginning of the development stage that
 these parts of the application must be separated from the \gls{gui} that the
-user interacts with. While it is not possible to built a truly multithreaded
+user interacts with. While it is not possible to build a truly multithreaded
 application (due to the fact that the fundamental Node.js framework is single
 threaded), one can create separate processes to run different tasks
 asynchronously. This is done by creating multiple \mintinline{js}{BrowserWindow}
