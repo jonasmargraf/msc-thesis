@@ -122,49 +122,78 @@ interface space used.
 
 \smallskip
 
-In order to evaluate the \glspl{som} created using the SOM Browser application
-and the \textit{Drum Essentials} test data set, three core metrics are used:
-quantization induced by the \gls{som}, map emptiness, and the ratio between
-nodes and their assigned vectors. These metrics and the motivation behind them
-are outlined further in the following paragraphs.
+In order to evaluate the \glspl{som} created using the \textit{SOM Browser}
+application and the \textit{Drum Essentials} test data set, three core metrics
+are used: quantization induced by the \gls{som}, map emptiness, and the ratio
+between nodes and their assigned vectors. These metrics and the motivation
+behind them are outlined further in the following paragraphs.
 
 \subsubsection{SOM-Induced Quantization}
 \label{subsubsec:som_quantization}
 Fundamental to the \gls{som} principle is the idea of mapping vectors to their
 corresponding \glspl{bmu}, those nodes that are closest to them (see section
-\ref{subsec:som}). Several vectors can be assigned to one node - this can also
+\ref{subsec:som}). Several vectors can be assigned to one node --- this can also
 be thought of as a quantization process, where the magnitude of the difference
 between the positions of vector $ x_t $ and node $ m_c $ is the quantization
 error $ \Delta_t $ for that vector:
 
 \begin{equation}
-  \Delta_t = || x_t - m_c ||
+  \Delta_t = || x_t - m_c ||.
 \end{equation}
 
-As a metric for the \gls{som}, the quantization errors for all vectors can be
-averaged, as well as their distribution examined. In order to maximize
-information preservation, quantization errors should be minimized.
+To analyze the \gls{som}, the distribution of quantization errors can be
+examined. Of special interest as a single value metric for map quality is the
+median vector quantization error:
+
+\begin{equation}
+  \widetilde{\Delta} = \text{median} \left \{
+  \Delta_1, \dots , \Delta_t \right \}.
+\end{equation}
+
+In order to maximize information preservation, quantization errors should be
+minimized.
 
 \subsubsection{Vector-Node Count}
 \label{subsubsec:vector_node_count}
 A second metric that was devised in order to quantify \gls{som} quality is the
-count $ C_i $ of vectors $ x_1, ... , x_n $ mapped to a node $ m_i $ and
+count $ C_i $ of vectors $ x_1, \dots , x_t $ mapped to a node $ m_i $ and
 subsequently the distribution of those counts across the map. Ideally, this
-distribution should look like a single, narrow spike - meaning that (almost) all
-nodes have about the same number of vectors assigned to them, resulting in an
-even distribution of sounds across the SOM Browser map interface. \gls{som}
-parameters should be chosen to approximate a uniform vector-node count for all
-nodes.
+distribution should look like a single, narrow spike --- meaning that (almost)
+all nodes have about the same number of vectors assigned to them, resulting in
+an even distribution of sounds across the \textit{SOM Browser} map interface.
+\gls{som} parameters should be chosen to approximate a uniform vector-node count
+for all nodes. For our purposes, we examine the mean vector-node count of all
+$n$ nodes for a given map:
+
+\begin{equation}
+  \overline{C} = \frac{1}{n} \sum\limits_{i=1}^{n}{C_i}
+\end{equation}
 
 \subsubsection{Map Emptiness}
 \label{subsubsec:map_emptiness}
 Another relevant aspect of the created \glspl{som}, and the third metric
-employed here, is how much of the map remains "empty", meaning how many nodes
-were not assigned any vectors. We define this "map emptiness" metric $ ME $ as
-the number of nodes $ m_1, ... m_n $ whose vector-node count $ C_n = 0 $ (see
-section \ref{subsubsec:vector_node_count}), divided by the total number of nodes
-$ m_i $. For the purpose of making optimal use of the space alloted to the map
-in the SOM Browser \gls{gui}, emptiness should be minimized so that users
+employed here, is how much of the map remains ``empty'', meaning how many nodes
+were not assigned any vectors. We define this ``map emptiness'' metric $ ME $ as
+the number of nodes $ m_1, ... m_n $ whose vector-node count $ C_i = 0 $ (see
+section \ref{subsubsec:vector_node_count}), divided by the total number $n$ of
+nodes $ m_i $:
+
+\begin{equation}
+  ME = \frac{1}{n}\sum\limits_{i=1}^{n}{\delta_{C_i 0}},
+\end{equation}
+
+where
+
+\begin{equation}
+  \delta_{C_i 0} =
+  \begin{cases}
+    0, & \text{if}\ C_i \neq 0, \\
+    1, & \text{if}\ C_i = 0.
+  \end{cases}
+\end{equation}
+
+For the purpose of making optimal use of the space alloted to the map in the
+\textit{SOM Browser} \gls{gui}, emptiness should be minimized so that users
 encounter the least amount of "blind spots" possible.
 
 \subsubsection{Influence of Forced Node Population}
