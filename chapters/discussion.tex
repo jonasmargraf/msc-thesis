@@ -2,10 +2,24 @@
 
 \section{Discussion}
 \label{sec:discussion}
-In this final chapter, we discuss the reported results and offer some
-interpretation and contextualization of them before moving on to a summary of
-the work presented in this thesis, including a look at its strengths, weaknesses
-and limitations. Finally, we suggest areas to explore in future work.
+In \textit{SOM Browser}, we have developed a practical application for sound
+corpus organization using \glspl{som}. To minimize empty areas in our
+interactive map interface, we have extended the \gls{som} algorithm with a new
+method for node population, \gls{fnp}, that reduces the number of empty nodes at
+the cost of some additional vector quantization. In a series of qualitative
+interviews with audio professionals we have identified an established sample
+library workflow, as well as confirmed participants' interest and proclaimed
+need for alternate interfaces. Participants were asked to use \textit{SOM
+Browser} and give feedback, with most first impressions being characterized as
+positive, although the organization of sounds in the map interface was seen
+as not easily comprehensible.
+
+\smallskip
+
+In the remaining sections, we further discuss the reported results and offer
+some interpretation and contextualization of them before moving on to a summary
+of the work presented in this thesis, including a look at its strengths,
+weaknesses and limitations. Finally, we suggest areas to explore in future work.
 
 \subsection{Interpreting the Results}
 \label{subsec:discussion_results_interpretation}
@@ -233,17 +247,23 @@ for example using a string distance function to compute file name similarity.
 
 \subsubsection{Conclusion}
 \label{subsubsec:discussion_conclusion}
-The present thesis implements the Self-Organizing Map algorithm and applies it
-to sound corpus organization. The implementation is embedded in two practical
+While the availability of large sample libraries and cheap storage solution has
+increased, tools for navigating, searching and organizing these increasingly
+unmanageable audio file collections have not kept pace.
+The present thesis approaches this problem from a practical perspective. We
+implement the Self-Organizing Map algorithm and apply it
+to sound corpus organization. Our implementation is embedded in two
 applications. In \textit{MaxMSP}, it can be used to extend \textit{CataRT} and
 the \textit{MuBu For Max} package, offering new possibilities to expert users.
-In \textit{SOM Browser}, it is used for a fast, visual interface for
-sample library exploration, offering an alternative to the established music
-production workflow. In doing this, our software offers direct access to a
-\gls{ml} algorithm that so far can not be found in any commercially available
-audio software. We also extend the core algorithm with \gls{fnp}, a method that
-allows an improved utilization of the screen space allocated for the \gls{som}
-interface by reducing the areas of the map to which no sound is mapped.
+In \textit{SOM Browser}, it is used for a fast, visual interface for sample
+library exploration, offering an alternative to the established music production
+workflow. In doing this, our software offers direct access to a \gls{ml}
+algorithm that to our knowledge is not available in any commercially
+available audio software. We also extend the core algorithm with \gls{fnp}, a
+method that allows an improved utilization of the screen space allocated for the
+\gls{som} interface by reducing the areas of the map to which no sound is
+mapped. Although the presented work focuses on utilizing short recordings of
+drum sounds, it could in principle be applied to other sounds as well.
 
 \smallskip
 
