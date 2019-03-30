@@ -1,6 +1,7 @@
-\documentclass[12pt, a4paper, oneside, titlepage, nextpage, listof=totoc,
-headinclude, open=right, glossaries=totoc, captions=tableheading, final,
-BCOR=10mm, parskip=never]{paper}
+\documentclass[11pt, a4paper, twoside, titlepage, nextpage, listof=totoc,
+headinclude=true, openany, glossaries=totoc, captions=tableheading, final,
+BCOR=10mm, parskip=never]{article}
+
 \usepackage[left=3cm, right=3cm, top=4cm]{geometry}
 \usepackage[ngerman,english]{babel}
 \usepackage[utf8]{inputenc}
@@ -22,6 +23,8 @@ BCOR=10mm, parskip=never]{paper}
 \usepackage{mathtools}
 \usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{bookmark}
+\bookmarksetup{open,numbered}
 \usepackage{tikz}
 \usetikzlibrary{positioning, arrows}
 
@@ -33,6 +36,8 @@ BCOR=10mm, parskip=never]{paper}
 \restylefloat{figure}
 
 \usepackage{tocloft}
+% \renewcommand\cftsubsecfont{\footnotesize}
+% \renewcommand\cftsubsubsecfont{\footnotesize}
 \setcounter{secnumdepth}{4}
 
 \usepackage[toc,page]{appendix}
@@ -121,7 +126,16 @@ plural=IDs
 \newpage
 }
 
-\pagestyle{headings}
+% \pagestyle{headings}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\leftmark}
+\renewcommand{\sectionmark}[1]{
+\markboth{\textsc{\footnotesize{#1}}}{}}
+% \renewcommand{\sectionmark}[1]{
+% \markright{\textsc{\footnotesize{\thepage\quad #1}}}{}}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[LE,RO]{\footnotesize{\thepage}}
 \setcounter{page}{1}
 \pagenumbering{arabic}
 \renewcommand{\theFancyVerbLine}
@@ -129,41 +143,44 @@ plural=IDs
 \RecustomVerbatimEnvironment{Verbatim}{Verbatim}{xleftmargin=5mm}
 
 \input{chapters/introduction}
-\cleardoublepage
+\clearpage
 
 \input{chapters/background}
-\cleardoublepage
+\clearpage
 
 \input{chapters/implementation}
-\cleardoublepage
+\clearpage
 
 \input{chapters/evaluation}
-\cleardoublepage
+\clearpage
 
 \input{chapters/results}
-\cleardoublepage
+\clearpage
 
 \input{chapters/discussion}
-\cleardoublepage
+\clearpage
 
 % \nocite{*}
 
 \bibliographystyle{FG_AK_English_AuthorYear}
 \bibliography{thesis_bib}
 
-\cleardoublepage
+% \cleardoublepage
 
-\newpage
+% \newpage
 
-\cleardoublepage
+\clearpage
 
-\input{chapters/appendices}
-
-\cleardoublepage
-
+\pagestyle{plain}
 \pagenumbering{Roman}
 \setcounter{page}{1}
-\pagestyle{plain}
+\bookmarksetupnext{level=part}
+\input{chapters/appendices}
+
+\clearpage
+
+\bookmarksetupnext{startatroot}
+% \pagestyle{plain}
 \printglossaries
 \newpage
 
