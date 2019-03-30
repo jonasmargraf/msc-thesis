@@ -12,22 +12,19 @@ program structure, and explain some concepts and considerations that were
 important for the development process.
 
 \subsection{Groundwork: CataRT Extension}
-
 \label{subsec:implementation_catart}
 For the purpose of laying the groundwork for a bigger standalone application
 (see section \ref{subsec:implementation_som-browser}), a proof-of-concept
 implementation of the core \gls{som} algorithm was written in JavaScript to
 serve as an extension to the \textit{MuBu For Max} software package
-\citep{web:mubu2019, web:mubu2019_2} for the visual programming
-language Max \citep{web:max2019}. \textit{MuBu For Max} was developed by the
-Sound, Music, Movement, Interaction Team (ISMM) at \gls{ircam}
-\citep{schnell2009}. It contains the \textit{catart-by-mubu} patch for
-realtime interactive corpus-based concatenative synthesis based on the original
-\textit{CataRT} software \citep{schwarz2006}. The developed extension is a Max
-patch called \textit{mubu-SOM-js} (see Figure \ref{fig:mubu-som}) and can be
-found on the digital resource included with this thesis in the directory
-% TODO: this
-XXX path to patch XXX.
+\citep{web:mubu2019, web:mubu2019_2} for the visual programming language Max
+\citep{web:max2019}. \textit{MuBu For Max} was developed by the Sound, Music,
+Movement, Interaction Team (ISMM) at \gls{ircam} \citep{schnell2009}. It
+contains the \textit{catart-by-mubu} patch for realtime interactive corpus-based
+concatenative synthesis based on the original \textit{CataRT} software
+\citep{schwarz2006}. The developed extension is a Max patch called
+\textit{mubu-SOM-js} (see Figure \ref{fig:mubu-som}) and can be found as part of
+the digital submission of this thesis in the directory \texttt{dev/mubu-som-js}.
 
 \begin{figure}[!htb]
   \centering
@@ -140,7 +137,7 @@ object.
 \subsubsection{Code Overview}
 \label{subsubsec:mubu-som_overview}
 The core of the \textit{mubu-SOM-js} Max patch is a JavaScript program (see the
-file \texttt{mubu-som-js/descriptor\_som.js}). The choice of programming
+file \texttt{dev/mubu-som-js/descriptor\_som.js}). The choice of programming
 language was determined by the fact that \textit{CataRT} is a Max patch and
 JavaScript (via the built-in \texttt{[js]} object) can be used to script most
 aspects of the Max environment. This JavaScript version of the \gls{som} is in
@@ -161,7 +158,8 @@ can be seen in Listing \ref{lst:mubu-som_create_som}.
     \inputminted[breaklines, numbers=left, firstline=34, lastline=39,
     fontsize=\footnotesize]{js}{../dev/mubu-som-js/descriptor_som.js}
   \end{mdframed}
-  \caption{mubu-som-js/descriptor\_som.js: \mintinline{js}{createSOM()}}
+  \caption{\texttt{dev/mubu-som-js/descriptor\_som.js}:
+  \mintinline{js}{createSOM()}}
   \label{lst:mubu-som_create_som}
 \end{listing}
 
@@ -229,7 +227,9 @@ Figure \ref{fig:catart_with_som_noise}.
 The majority of the work for this thesis consisted of the development of a
 standalone application for sample library exploration which we call
 \textit{SOM Browser}. A screenshot of the program can be seen in Figure
-\ref{fig:som-browser}.
+\ref{fig:som-browser}. All source code for the application is located in the
+digital submission package of this thesis in the directory
+\texttt{dev/som-browser}.
 
 \begin{figure}[!htb]
   \centering
@@ -387,20 +387,20 @@ Phillip Barbiero \citep{barbiero2017}.
 \smallskip
 
 The entry point of any Electron application is the \texttt{main.js} file, which
-in the presented work can be found in \texttt{som-browser/src/main.js}.
-This file creates an instance of the \mintinline{js}{BrowserWindow} class called
+in the presented work can be found in \texttt{dev/som-browser/src/main.js}. This
+file creates an instance of the \mintinline{js}{BrowserWindow} class called
 \mintinline{js}{mainWindow} that serves as the single visible application
 window. \mintinline{js}{mainWindow} then loads
-\texttt{som-browser/src/index.js}, which imports the React library and uses the
-React function \mintinline{jsx}{render()} to create the
+\texttt{dev/som-browser/src/index.js}, which imports the React library and uses
+the React function \mintinline{jsx}{render()} to create the
 \mintinline{jsx}{<App />} component, which is defined in
-\texttt{som-browser/src/components/App.js}. It serves as a container for the
+\texttt{dev/som-browser/src/components/App.js}. It serves as a container for the
 rest of the application logic and the entire \gls{gui} (see Listing
 \ref{lst:som-browser_app_content} and Section
-\ref{subsubsec:som-browser_components} for more details).
-From here, the structure of the source files branches out into the individual
-\gls{gui} elements in \texttt{som-browser/src/components/} and a set of files in
-\texttt{som-browser/src/background/} containing the code for audio feature
+\ref{subsubsec:som-browser_components} for more details). From here, the
+structure of the source files branches out into the individual \gls{gui}
+elements in \texttt{dev/som-browser/src/ components/} and a set of files in
+\texttt{dev/som-browser/src/background/} containing the code for audio feature
 extraction and \gls{som} calculation.
 
 \subsubsection{Background Processing}
@@ -421,9 +421,10 @@ them, thereby creating an invisible window for a background process.
 \textit{SOM Browser} initiates two consecutive background processes when the
 user clicks on \textit{"Analyze"}, one for feature extraction and one that runs
 the \gls{som} algorithm. This is handled by the function
-\mintinline{jsx}{handleAnalyzeClick()} (found in
-\textit{som-browser/src/components/App.js}), which passes the necessary data to
-these background processes by calling \mintinline{js}{processFiles(files)} and
+\mintinline{jsx}{handleAnalyzeClick()} (found in \\
+\texttt{dev/som-browser/src/components/App.js}), which passes the necessary data
+to these background processes by calling \mintinline{js}{processFiles(files)}
+and \\
 \mintinline{js}{createSOM(files, settings)} (see Listing
 \ref{lst:som-browser_analyze}). Note the chaining of commands using several
 \mintinline{js}{.then()} statements: \textit{SOM Browser} performs asynchronous
@@ -437,7 +438,7 @@ Global\_Objects/Promise}}.
     \inputminted[breaklines, numbers=left, firstline=284, lastline=293,
     fontsize=\footnotesize]{jsx}{../dev/som-browser/src/components/App.js}
   \end{mdframed}
-  \caption{som-browser/src/components/App.js:
+  \caption{\texttt{dev/som-browser/src/components/App.js}:
   \mintinline{jsx}{handleAnalyzeClick()} [excerpt]}
   \label{lst:som-browser_analyze}
 \end{listing}
@@ -446,8 +447,8 @@ Global\_Objects/Promise}}.
 
 The crucial parts of the feature extraction code can be found in Listing
 \ref{lst:som-browser_exctract_features}. Since the \gls{som} implementation in
-\texttt{som-browser/src/background/calculateSOM.js} is logically identical to
-what was previously discussed, we refer to Section
+\texttt{dev/som-browser/src/background/calculateSOM.js} is logically identical
+to what was previously discussed, we refer to Section
 \ref{subsubsec:mubu-som_overview} rather than dissecting the contents of
 \mintinline{js}{calculateSOM()} separately.
 
@@ -457,13 +458,13 @@ what was previously discussed, we refer to Section
     fontsize=\scriptsize]{jsx}
     {../dev/som-browser/src/background/extractFeatures.js}
   \end{mdframed}
-  \caption[som-browser/src/background/extractFeatures.js: Audio feature
+  \caption[\texttt{dev/som-browser/src/background/extractFeatures.js}: Audio feature
   extraction]
-  {som-browser/src/background/extractFeatures.js: Audio features for
-  each sound are extracted in \mintinline{jsx}{extractFeatures()} using the
+  {\texttt{dev/som-browser/src/background/extractFeatures.js}: Audio features
+  for each sound are extracted in \mintinline{jsx}{extractFeatures()} using the
   \textit{Meyda} library (shown here is an excerpt). Formal definitions for each
   feature can be found in the equations of Section
-  \ref{subsec:feature_extraction}.}
+\ref{subsec:feature_extraction}.}
   \label{lst:som-browser_exctract_features}
 \end{listing}
 
@@ -474,7 +475,7 @@ that make up the \gls{gui} of \textit{SOM Browser} (refer to Figure
 \ref{fig:som-browser} for a screenshot of the program). An outline of the entire
 application interface is shown in Listing \ref{lst:som-browser_app_content},
 which contains most of the \mintinline{jsx}{render()} function of
-\texttt{som-browser/src/components/App.js}, including all components, their
+\texttt{dev/som-browser/src/components/App.js}, including all components, their
 properties and functions.
 
 \begin{listing}[!htb]
@@ -482,8 +483,7 @@ properties and functions.
     \inputminted[numbers=left, firstline=405, lastline=461,
     fontsize=\scriptsize]{jsx}{../dev/som-browser/src/components/App.js}
   \end{mdframed}
-  \caption{som-browser/src/components/App.js:
-  \gls{gui} Components}
+  \caption{\texttt{dev/som-browser/src/components/App.js}: \gls{gui} Components}
   \label{lst:som-browser_app_content}
 \end{listing}
 
@@ -593,8 +593,9 @@ algorithm extension, please refer to Section \ref{subsubsec:results_final_fnp}.
     fontsize=\scriptsize]{jsx}
     {../dev/som-browser/src/background/calculateSOM.js}
   \end{mdframed}
-  \caption[FNP implementation]{som-browser/src/background/calculateSOM.js:
-  The \gls{som} algorithm extension \gls{fnp} (see Section
+  \caption[FNP implementation]
+  {\texttt{dev/som-browser/src/background/calculateSOM.js}: The \gls{som}
+  algorithm extension \gls{fnp} (see Section
   \ref{subsubsec:som_forced_population}) is implemented in
   \mintinline{jsx}{populateEmptyNeurons()}.}
   \label{lst:som-browser_fnp}
