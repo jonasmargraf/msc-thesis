@@ -69,7 +69,7 @@ effect does not appear to be dramatic, it is in line with \citet{kohonen1990},
 who suggests a starting value of $\alpha = 0.9$. We therefore choose
 $\alpha_{initial} = 0.9$ for the next maps.
 
-\begin{figure}[!htb]
+\begin{figure}[!hb]
   \centering
   % \frame{
   \includegraphics[width=0.95\textwidth, trim = 60mm 15mm 60mm 15mm, clip]
@@ -166,6 +166,22 @@ $m$ and is generally larger than for $m < 0$. In order to strike a balance
 between a small median quantization error and a narrow error distribution,
 $m = -0.2$ was chosen for the final map.
 
+\begin{figure}[!htb]
+  \centering
+  % \frame{
+  \includegraphics[width=0.6\textwidth, clip]
+  {som_learningRateFactor_comparison}
+  % }
+  \caption[Comparison of \gls{som} learning rate types]
+  {\textit{SOM Browser}: comparison of linearly decreasing,
+  reciprocally decreasing ("Inverse") and \gls{bdh} learning rate factors.
+  \gls{som} parameters: $\texttt{mapSize} = 32\times32$,
+  training duration $ = 10^4$ steps,
+  $\alpha_{initial} = 0.9$,
+  $r_{start} = 2$, $r_{end} = 0.1$}
+  \label{fig:som_learning_rate_comparison}
+\end{figure}
+
 \begin{table}[!htb]
   \renewcommand{\arraystretch}{1.2}
   \centering
@@ -187,22 +203,6 @@ $m = -0.2$ was chosen for the final map.
   \caption{Comparison of \gls{som} Learning Rate Types}
   \label{table:som_learning_rate_comparison}
 \end{table}
-
-\begin{figure}[!htb]
-  \centering
-  % \frame{
-  \includegraphics[width=0.6\textwidth, clip]
-  {som_learningRateFactor_comparison}
-  % }
-  \caption[Comparison of \gls{som} learning rate types]
-  {\textit{SOM Browser}: comparison of linearly decreasing,
-  reciprocally decreasing ("Inverse") and \gls{bdh} learning rate factors.
-  \gls{som} parameters: $\texttt{mapSize} = 32\times32$,
-  training duration $ = 10^4$ steps,
-  $\alpha_{initial} = 0.9$,
-  $r_{start} = 2$, $r_{end} = 0.1$}
-  \label{fig:som_learning_rate_comparison}
-\end{figure}
 
 
 \begin{figure}[!htb]
@@ -333,7 +333,7 @@ Subject responses to the ratings questions described in Section
 
 \begin{figure}[!htb]
   \centering
-  \includegraphics[width=0.68\textwidth, trim = 25mm 10mm 10mm 10mm, clip]
+  \includegraphics[width=0.70\textwidth, trim = 25mm 10mm 10mm 10mm, clip]
   {eval_ratings_median}
   \caption[Interview Ratings]{Likert scale ratings by interview subjects for
   questions concerning satisfaction with their current sample library workflow
