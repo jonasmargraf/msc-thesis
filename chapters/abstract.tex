@@ -1,8 +1,45 @@
 % !TEX root = ../thesis.tex
 
 \begin{abstract}
-  An english abstract.
+
+Large collections of audio files --- \textit{sound corpora} --- have never been
+more readily available, as sample libraries are easily accessible online and
+cheap storage media effectively eradicate concerns of storage capacity for
+contemporary music producers. At the same time, tools for navigating, searching
+and organizing these increasingly unmanageable audio file collections have not
+kept pace. Currently, arguably the most common tool with which producers search
+their sample libraries are file browsers that simply present lists of file names
+in alphabetical order.
+
+The present thesis approaches this problem from a practical perspective. We
+implement the Self-Organizing Map (SOM), an established machine learning
+algorithm for dimensionality reduction and data visualization, and apply it to
+sound corpus organization. We present \textit{SOM Browser}, a fast, visual
+interface for sample library exploration that offers an alternative to the
+established music production workflow by incorporating the SOM algorithm, which
+to our knowledge is not available in any commercial audio software. It is a
+standalone application that organizes a collection of sound files completely
+unsupervised and presents a two-dimensional map of the sounds in an interactive
+grid interface with which the user can audition files in rapid succession,
+allowing for a quick way to gain an overview of the analyzed sound corpus. To
+optimize the space alloted to the map interface, we extend the SOM algorithm
+with a new method, which we call Forced Node Population (FNP). FNP reduces
+unpopulated (``empty'') areas of the map at the cost of some additional map
+distortion. Using a representative sample library of drum sounds, we search for
+a set of optimal algorithm parameters according to objective measures of map
+quality and produce a map for the chosen sound corpus. We then conduct a series
+of qualitative interviews with audio professionals to gain some understanding of
+the complex situation that is sample library interaction in a music production
+environment and to gauge initial reactions to the alternative software we
+developed. Participants' responses allow us to identify a prevalent method of
+working with sample libraries, which we codify into a generalized model of the
+established workflow. We confirm the need for and interest in alternate
+interfaces. Although the organization of sounds in the map interface is seen as
+not easily comprehensible, overall interview feedback was sufficiently positive
+to warrant further work.
+
 \end{abstract}
+
 \newpage
 
 \begin{otherlanguage}{ngerman}
