@@ -254,7 +254,7 @@ sounds.
 When launching \textit{SOM Browser}, the application opens with no sounds or map
 loaded (see Figure \ref{fig:som-browser_empty}). In order to create a map of
 a collection of sound files, the user can go to the menu bar at the top of the
-window and click the \textit{"Import Files..."} button to load several audio
+window and click the \textit{``Import Files...''} button to load several audio
 files.
 
 \begin{figure}[!htb]
@@ -266,7 +266,7 @@ files.
 
 \paragraph*{Calculating a Map}
 Once files are selected, the \textit{Sounds} list on the left side of the
-application will be populated. Next, by clicking \textit{"Analyze"}, the program
+application will be populated. Next, by clicking \textit{``Analyze''}, the program
 will start to analyze the audio files in the background, first extracting
 audio features (see section \ref{subsec:feature_extraction}) and then using this
 information to calculate a \gls{som} using default settings. Alternatively,
@@ -297,17 +297,17 @@ values can be found in the \textit{FileInfo} panel to the right of the map.
 The bottom of the window is taken up by the \textit{Favorites} bar. If a sample
 is found on the map that the user would like to save for further usage, they can
 drag the square from the map down into one of the slots labeled
-\textit{"Sample \#1 - \#8"}. Samples can also be also be played from the
+\textit{``Sample \#1 - \#8''}. Samples can also be also be played from the
 \textit{Favorites} bar by clicking on them. If the user is satisfied with their
 selection of samples, they can export the selected \textit{Favorites} (e.g. for
-further usage in a \gls{daw}) by clicking on \textit{"Export Selection"} in the
+further usage in a \gls{daw}) by clicking on \textit{``Export Selection''} in the
 top menu bar. This will open a file dialog window to select a location where the
 files should be stored.
 
 \paragraph*{Saving and Loading Maps}
 \textit{SOM Browser} also offers the ability to save entire maps to disk for
 recall in a later session or import previously stored maps by clicking on the
-menu bar buttons \textit{"Save"} and \textit{"Load Map"}.
+menu bar buttons \textit{``Save''} and \textit{``Load Map''}.
 
 \subsubsection{Libraries and Frameworks Used}
 \label{subsubsec:som-browser_libraries}
@@ -319,10 +319,10 @@ paragraphs outline the tools chosen for this application and their benefits.
 
 \paragraph*{Electron}
 \label{para:electron}
-"is an open source library developed by GitHub for building cross-platform
+``is an open source library developed by GitHub for building cross-platform
 desktop applications with HTML, CSS, and JavaScript. Electron accomplishes this
 by combining Chromium and Node.js into a single runtime and apps can be
-packaged for Mac, Windows, and Linux" \citep{electron2019}. It offers a variety
+packaged for Mac, Windows, and Linux'' \citep{electron2019}. It offers a variety
 of \glspl{api} to offer native menus, interact with the file system and more.
 Its \texttt{ipcMain} and \texttt{ipcRenderer} \glspl{api} are used for
 asynchronous communication between the \gls{gui} and processes running in the
@@ -341,16 +341,16 @@ enables audio processing and synthesis in (web) applications
 audio processing code for the presented work in JavaScript. Its core concept is
 the \textit{audio routing graph}, made up of \textit{audio nodes} (simple
 building blocks such as an oscillator or a recording). This graph connects
-sources to other other nodes (e.g. effects or filters) and finally to an output
+sources to other nodes (e.g. effects or filters) and finally to an output
 destination.
 
 \paragraph*{Meyda}
 \label{para:meyda}
-"is a Javascript audio feature extraction library. Meyda supports both offline
+``is a Javascript audio feature extraction library. Meyda supports both offline
 feature extraction as well as real-time feature extraction using the Web Audio
-API" \citep{web:meyda2019}. Its effectiveness has been validated by researchers
-at Queen Mary University ("Meyda [...] provide[s] excellent real time feature
-extraction tools", \citet{moffat2015}).
+API'' \citep{web:meyda2019}. Its effectiveness has been validated by researchers
+at Queen Mary University (``Meyda [...] provide[s] excellent real time feature
+extraction tools'', \citet{moffat2015}).
 
 \subsubsection{Application Structure}
 \label{subsubsec:som-browser_structure}
@@ -392,7 +392,7 @@ Phillip Barbiero \citep{barbiero2017}.
 \smallskip
 
 The entry point of any Electron application is the \texttt{main.js} file, which
-in the presented work can be found in \texttt{dev/som-browser/src/main.js}. This
+in the presented work can be found in \texttt{dev/som-browser/main.js}. This
 file creates an instance of the \mintinline{js}{BrowserWindow} class called
 \mintinline{js}{mainWindow} that serves as the single visible application
 window. \mintinline{js}{mainWindow} then loads
@@ -404,7 +404,7 @@ rest of the application logic and the entire \gls{gui} (see Listing
 \ref{lst:som-browser_app_content} and Section
 \ref{subsubsec:som-browser_components} for more details). From here, the
 structure of the source files branches out into the individual \gls{gui}
-elements in \texttt{dev/som-browser/src/ components/} and a set of files in
+elements in \texttt{dev/som-browser/src/components/} and a set of files in
 \texttt{dev/som-browser/src/background/} containing the code for audio feature
 extraction and \gls{som} calculation.
 
@@ -424,19 +424,18 @@ them, thereby creating an invisible window for a background process.
 \smallskip
 
 \textit{SOM Browser} initiates two consecutive background processes when the
-user clicks on \textit{"Analyze"}, one for feature extraction and one that runs
-the \gls{som} algorithm. This is handled by the function
+user clicks on \textit{``Analyze''}, one for feature extraction and one that
+runs the \gls{som} algorithm. This is handled by the function
 \mintinline{jsx}{handleAnalyzeClick()} (found in \\
 \texttt{dev/som-browser/src/components/App.js}), which passes the necessary data
 to these background processes by calling \mintinline{js}{processFiles(files)}
-and \\
-\mintinline{js}{createSOM(files, settings)} (see Listing
+and \mintinline{js}{createSOM(files, settings)} (see Listing
 \ref{lst:som-browser_analyze}). Note the chaining of commands using several
-\mintinline{js}{.then()} statements: \textit{SOM Browser} performs asynchronous
-operations using the \mintinline{js}{Promise} feature of ECMAScript 2015
+\mintinline{js}{.then()} statements:\\ \textit{SOM Browser} performs
+asynchronous operations using the \mintinline{js}{Promise} feature of ECMAScript
+2015
 \footnote{\href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global\_Objects/Promise}
-{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/ \\
-Global\_Objects/Promise}}.
+{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global\_Objects/Promise}}.
 
 \begin{listing}[!htb]
   \begin{mdframed}
@@ -542,22 +541,22 @@ reference or for later exporting.
 After the \gls{som} algorithm was first implemented in \textit{SOM Browser}, it
 became apparent that large parts of almost all created maps remained empty,
 which proved frustrating to interact with since these empty areas are
-essentially "dead" spots where no sounds are located and no interaction is
+essentially ``dead'' spots where no sounds are located and no interaction is
 possible. A method to counteract this phenomenon was deemed necessary.
 
 \smallskip
 
-In order to avoid "empty" nodes on the \gls{som} - meaning nodes to which no
-input vectors are mapped - a post-processing extension was added to the original
-algorithm that inverts the mapping process, explicitly iterates over empty nodes
-and assigns each one that input vector which is closest. This algorithm
-extension, which we call Forced Node Population (\gls{fnp}), executes the
-following sequence after the regular \gls{som} has been calculated (refer to
+In order to avoid ``empty'' nodes on the \gls{som} --- meaning nodes to which no
+input vectors are mapped --- a post-processing extension was added to the
+original algorithm that inverts the mapping process, explicitly iterates over
+empty nodes and assigns each one that input vector which is closest. This
+algorithm extension, which we call Forced Node Population (\gls{fnp}), executes
+the following sequence after the regular \gls{som} has been calculated (refer to
 Listing \ref{lst:som-browser_fnp} to see the actual source code implementation):
 
 \begin{enumerate}
   \item Select a random empty node.
-  \item Find closest vector for that node and assign it to this node.
+  \item Find the closest vector for that node and assign it to this node.
   \item Remove this vector from the possible choices.
   \item Repeat.
 \end{enumerate}
@@ -590,9 +589,10 @@ This process is only performed once for all nodes that are empty immediately
 after the initial \gls{som} calculation. It is possible that the forced node
 population creates new empty nodes, but in order to minimize distortion
 introduced by this procedure (see Section \ref{subsec:results_som_metrics}), it
-is not repeated. The effect of the \gls{fnp} extension be clearly seen in Figure
-\ref{fig:som-browser_fnp_comparison}. For a closer look at the results of this
-algorithm extension, please refer to Section \ref{subsubsec:results_final_fnp}.
+is not repeated. The effect of the \gls{fnp} extension can be clearly seen in
+Figure \ref{fig:som-browser_fnp_comparison}. For a closer look at the results of
+this algorithm extension, please refer to Section
+\ref{subsubsec:results_final_fnp}.
 
 \begin{listing}[!htb]
   \begin{mdframed}

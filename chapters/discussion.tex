@@ -29,8 +29,8 @@ optimal set of parameters for a \gls{som} of the \textit{Drum Essentials} sample
 library. Unsurprisingly, the longer the algorithm is trained, the better it
 performs. Noticeable is the jump in quality for both quantization errors and
 map emptiness when going from a training duration of $10^4$ to $10^5$. These
-findings coincide with \citet{kohonen1990}, whose section on "Practical Hints
-for the Application of the Algorithm" offers the following advice:
+findings coincide with \citet{kohonen1990}, whose section on ``Practical Hints
+for the Application of the Algorithm'' offers the following advice:
 
 \begin{quotation}
 “Typically we have used up to 100 000 steps in our simulations, but for
@@ -81,18 +81,18 @@ the \gls{som}.
 \smallskip
 
 When comparing the three different types of learning rate factors that were
-implemented, the reciprocally decreasing function ("Inverse") was outperformed
+implemented, the reciprocally decreasing function (``Inverse'') was outperformed
 by the two other methods. We believe the reason behind this to be that $\alpha$
-drops off too strongly before the map has gained its global structure. \gls{bdh} on
-the other hand performs best out of all three methods, which most likely has to
-be attributed to its ability to adapt the size of $\alpha$ locally. As to why
-\gls{bdh} delivered the smallest median quantization error with a choice of $m = 0$,
-which effectively cancels out all adaptive local learning and results in a
-constant $\alpha = \alpha_{initial}$, we are uncertain at this time.
-The simulations presented in the original paper introducing the method obtain
-best results for other values (see Figure 2 in \citep[p.18]{bauer1996}).
-It should be noted however that the authors only examine one- and two-
-dimensional input data.
+drops off too strongly before the map has gained its global structure. \gls{bdh}
+on the other hand performs best out of all three methods, which most likely has
+to be attributed to its ability to adapt the size of $\alpha$ locally. As to why
+\gls{bdh} delivered the smallest median quantization error with a choice of $m =
+0$, which effectively cancels out all adaptive local learning and results in a
+constant $\alpha = \alpha_{initial}$, we are uncertain at this time. The
+simulations presented in the original paper introducing the method obtain best
+results for other values (see Figure 2 in \citep[p.18]{bauer1996}). It should be
+noted however that the authors only examine one- and two-dimensional input
+data.
 
 \smallskip
 
@@ -192,7 +192,7 @@ found in commercial audio software.
 \paragraph*{Weaknesses}
 \label{par:discussion_weaknesses}
 It stands to reason that the collection of audio features used in this work can
-be improved upon, or should at least be reevaluated critically in order to
+be improved upon, or should at least be re-evaluated critically in order to
 improve the quality of the produced maps. Interview participants struggled with
 the presented map layout, which could be due to a lack of information, but also
 due to insufficient quality of the \gls{som} they saw. \glspl{mfcc} could be

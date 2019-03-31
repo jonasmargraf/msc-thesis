@@ -61,7 +61,7 @@ steps.
 \subsubsection{Effects of $\alpha_{initial}$}
 \label{subsubsec:som_alpha_effects}
 The effect of the choice of $\alpha_{initial}$, the starting value for the
-"gain control" of the node adjustment in response to each vector during
+``gain control'' of the node adjustment in response to each vector during
 training, is shown in Figure \ref{fig:som_alpha_effects}.
 Higher $\alpha_{initial}$ values yield slightly better results on quantization
 errors, but don't improve vector node counts or map emptiness. Although this
@@ -145,11 +145,11 @@ progresses.
 \label{subsubsec:som_learning_rate_comparison}
 There are three different approaches to the learning rate factor $\alpha$ that
 are implemented in \textit{SOM Browser}: linearly decreasing, reciprocally
-decreasing ("Inverse"), and the local adaptive learning rate as proposed by
-\citet{bauer1996} ("\gls{bdh}"). Differences between these are shown in Figure
+decreasing (``Inverse''), and the local adaptive learning rate as proposed by
+\citet{bauer1996} (``\gls{bdh}''). Differences between these are shown in Figure
 \ref{fig:som_learning_rate_comparison} and Table
-\ref{table:som_learning_rate_comparison}. While "Inverse" shows worse results
-than "Linear", improvements can be seen when using \gls{bdh}.
+\ref{table:som_learning_rate_comparison}. While ``Inverse'' shows worse results
+than ``Linear'', improvements can be seen when using \gls{bdh}.
 
 \bigskip
 
@@ -174,7 +174,7 @@ $m = -0.2$ was chosen for the final map.
   % }
   \caption[Comparison of \gls{som} learning rate types]
   {\textit{SOM Browser}: comparison of linearly decreasing,
-  reciprocally decreasing ("Inverse") and \gls{bdh} learning rate factors.
+  reciprocally decreasing (``Inverse'') and \gls{bdh} learning rate factors.
   \gls{som} parameters: $\texttt{mapSize} = 32\times32$,
   training duration $ = 10^4$ steps,
   $\alpha_{initial} = 0.9$,
@@ -183,7 +183,7 @@ $m = -0.2$ was chosen for the final map.
 \end{figure}
 
 \begin{table}[!htb]
-  \renewcommand{\arraystretch}{1.2}
+  \renewcommand{\arraystretch}{1.4}
   \centering
   \textbf{Comparison of \gls{som} Learning Rate Types} \\ [3mm]
   \footnotesize
@@ -192,11 +192,11 @@ $m = -0.2$ was chosen for the final map.
   \hline
     & \textbf{\gls{bdh}} & \textbf{Linear} & \textbf{Inverse} \\
     \hline
-    \textbf{Median Quantization Error ($\sigma$)}
+    \textbf{Median Quantization Error $\widetilde{\Delta}$}
     & 0.29 & 0.36 & 0.71 \\
-    \textbf{Mean Vector Node Count}
+    \textbf{Mean Vector Node Count $\overline{C}$}
     & 1.61 & 1.49 & 3.16 \\
-    \textbf{Map Emptiness}
+    \textbf{Map Emptiness $ME$}
     & 0.35 & 0.29 & 0.67 \\
   \end{tabular}
   % }
@@ -224,20 +224,20 @@ $m = -0.2$ was chosen for the final map.
 
 \subsubsection{Final Map and Influence of \gls{fnp}}
 \label{subsubsec:results_final_fnp}
-Based on the results presented above, a final map for the
-\textit{Drum Essentials} sound corpus was created with the parameters
-$\texttt{mapSize} = 32\times32$, training duration $ = 10^4$ steps,
-$\alpha_{initial} = 0.9$, \gls{bdh} learning rate factor, $m = -0.2$, $r_{start} = 2$,
-and $r_{end} = 0.1$. A second map was calculated using the same parameters,
-but also using the \gls{fnp} algorithm extension we developed. Comparisons
-of the map with and without \gls{fnp} are shown in Table
-\ref{table:som_fnp_comparison} and Figures \ref{fig:som_fnp_comparison} and
-\ref{fig:results_fnp_comparison}. It can be seen that while \gls{fnp} introduces
-more distortion into the map (indicated by higher quantization errors), it does
-improve both mean vector node counts and map emptiness.
+Based on the results presented above, a final map for the \textit{Drum
+Essentials} sound corpus was created with the parameters $\texttt{mapSize} =
+32\times32$, training duration $ = 10^4$ steps, $\alpha_{initial} = 0.9$,
+\gls{bdh} learning rate factor, $m = -0.2$, $r_{start} = 2$, and $r_{end} =
+0.1$. A second map was calculated using the same parameters, but also using the
+\gls{fnp} algorithm extension we developed. Comparisons of the map with and
+without \gls{fnp} are shown in Table \ref{table:som_fnp_comparison} and Figures
+\ref{fig:som_fnp_comparison} and \ref{fig:results_fnp_comparison}. It can be
+seen that while \gls{fnp} introduces more distortion into the map (indicated by
+higher quantization errors), it does improve both mean vector node counts and
+map emptiness.
 
 \begin{table}[!htb]
-  \renewcommand{\arraystretch}{1.2}
+  \renewcommand{\arraystretch}{1.4}
   \centering
   \textbf{Influence of Forced Node Population (FNP)} \\ [3mm]
   \footnotesize
@@ -246,11 +246,11 @@ improve both mean vector node counts and map emptiness.
   \hline
     & \textbf{With \gls{fnp}} & \textbf{Without \gls{fnp}} \\
     \hline
-    \textbf{Median Quantization Error ($\sigma$)}
+    \textbf{Median Quantization Error $\widetilde{\Delta}$}
     & 0.25 & 0.20 \\
-    \textbf{Mean Vector Node Count}
+    \textbf{Mean Vector Node Count $\overline{C}$}
     & 1.29 & 1.45 \\
-    \textbf{Map Emptiness}
+    \textbf{Map Emptiness $ME$}
     & 0.18 & 0.27 \\
   \end{tabular}
   % }
@@ -345,8 +345,8 @@ Recordings of the conducted interviews were transcribed by the author. These
 transcriptions were examined for instances relating to the interview questions
 and the relevant instances marked and subsequently coded using an
 \textit{emergent coding} approach \citep[p.304]{lazar2017}. These codes are
-presented here using matrix data displays (\citet[p.254]{saldana2015},
-\citet{henwood2003}).
+presented here using matrix data displays as proposed by
+\citet[p.254]{saldana2015} and \citet{henwood2003}.
 
 % \clearpage
 
@@ -375,46 +375,46 @@ and is displayed in Figure \ref{fig:results_current_workflow}.
     \hline
     \textbf{Mental Representation (3)}
     &
-    "I know exactly what I'm looking for"
+    ``I know exactly what I'm looking for''
     &
     Subjects often have a clear \textbf{mental representation} of the sound they
     are searching.
     \\
     \textbf{Goal Pursuit (3)}
     &
-    [I listen to sounds] "[u]ntil I find the one that I want"
+    [I listen to sounds] ``[u]ntil I find the one that I want''
     &
     Subjects will only look for sounds until they find something that satisfies
     their immediate needs.
     \\
     \textbf{Search Algorithm (5)}
     &
-    "I would just go through every folder [...] and listen carefully to every
-    sound"
+    ``I would just go through every folder [...] and listen carefully to every
+    sound''
     &
-    Subjects describe three \textbf{search "algorithms"}: sequential
+    Subjects describe three \textbf{search ``algorithms''}: sequential
     (listening in alphabetical order), name-based (looking at file or subfolder
     names) and random search (arbitrarily selecting samples).
     \\
     \textbf{Contextual Evaluation (3)}
     &
-    "quickly go through the sounds while the track is playing and then find
-    one that kind of fits"
+    ``quickly go through the sounds while the track is playing and then find
+    one that kind of fits''
     &
     The ability to audition sounds in the \textbf{context} of the relevant
     project is important.
     \\
     \textbf{Iteration (4)}
     &
-    "I will have like eight different kick drums [...] and then I go through
-    them again as another iteration of choice."
+    ``I will have like eight different kick drums [...] and then I go through
+    them again as another iteration of choice.''
     &
     Subjects will select a variety of samples as potential candidates and then
     perform another search among the selected subset.
     \\
     \textbf{Frustration (5)}
     &
-    "it takes a lot of time actually and it's not the most fun part"
+    ``it takes a lot of time actually and it's not the most fun part''
     &
     Looking through lists of samples sequentially is perceived to cause
     \textbf{frustration}.
@@ -444,8 +444,8 @@ and is displayed in Figure \ref{fig:results_current_workflow}.
     \hline
     \textbf{Requires Organization (2)}
     &
-    "if I was organized and I had my 5000 sounds from the past five years it
-    [would] be really nice"
+    ``if I was organized and I had my 5000 sounds from the past five years it
+    [would] be really nice''
     &
     Subjects note that their current workflow relies on sample libraries that
     are organized in some way and note sources of \textbf{frustration} such as
@@ -453,7 +453,7 @@ and is displayed in Figure \ref{fig:results_current_workflow}.
     \\
     \textbf{Requires Experience (1)}
     &
-    "experience [...] is probably the key"
+    ``experience [...] is probably the key''
     &
     \textbf{Experience} (both in a general professional sense and specific to
     the sample libraries at hand) is mentioned as a factor for an efficient,
@@ -461,28 +461,28 @@ and is displayed in Figure \ref{fig:results_current_workflow}.
     \\
     \textbf{Good Enough (3)}
     &
-    "It could be better but it's okay. Like, it works in most of cases."
+    ``It could be better but it's okay. Like, it works in most of cases.''
     &
-    Current workflow practices are deemed \textbf{"good enough"}, but subjects
+    Current workflow practices are deemed \textbf{``good enough''}, but subjects
     are interested in alternative approaches.
     \\
     \textbf{Time-Consuming (3)}
     &
-    "[H]ow to listen to all this?"
+    ``[H]ow to listen to all this?''
     &
     Subjects remark upon the amount of time and effort that go into searching
     through sample libraries.
     \\
     \textbf{Overwhelming (2)}
     &
-    "it was overwhelming [...] to look through all this"
+    ``it was overwhelming [...] to look through all this''
     &
     Finding relevant samples in a library is described as \textbf{overwhelming}.
     \\
     \textbf{Alphabetic Bias (1)}
     &
-    "I think it makes no sense that I'm mainly choosing from the first half of
-    the alphabet"
+    ``I think it makes no sense that I'm mainly choosing from the first half of
+    the alphabet''
     &
     Sample selection is influenced by alphabetical name ordering. Typically,
     samples positioned towards the beginning of an alphabetical list are more
@@ -490,7 +490,7 @@ and is displayed in Figure \ref{fig:results_current_workflow}.
     \\
   \end{tabular}}
   \caption[Established Sample Library Workflow Assessment: Response Codes]
-  {Subjects' assessment of established sample library workflow. Shown are
+  {Subjects' assessment of their established sample library workflow. Shown are
   response codes along with example data and interpretive summary. The number
   shown in parentheses behind each code denotes how many individual subjects
   gave responses corresponding to that code.}
@@ -587,7 +587,7 @@ the \textbf{gestural interaction} it facilitates. Looking at participants'
 \textit{negative} responses, the organization of the map interface was seen as
 \textbf{incomprehensible}, with subjects not able to directly discern an
 overarching order (although some areas of similarity were identified), which in
-turn let to some questioning of the app's \textbf{usefulness} in its current
+turn led to some questioning of the app's \textbf{usefulness} in its current
 state.
 
 \pagebreak
@@ -604,22 +604,22 @@ state.
     \hline
     \textbf{Visual Design (4)}
     &
-    "Visually, it makes sense."
+    ``Visually, it makes sense.''
     &
     Subjects characterize the \textbf{visual design} of the software as
     appealing.
     \\
     \textbf{Gestural Interaction (2)}
     &
-    "for expressive gestures as a performance tool, it’s fantastic as a
-    continuous thing"
+    ``for expressive gestures as a performance tool, it’s fantastic as a
+    continuous thing''
     &
     Continuous playback with trackpad/mouse gestures (while holding down Shift)
     is seen positively when using \textit{SOM Browser} more like an instrument.
     \\
     \textbf{App as Instrument (2)}
     &
-    "this is an instrument"
+    ``this is an instrument''
     &
     Subjects remark upon potential creative use of the software by not just
     using it to select samples, but also treating it as an \textbf{instrument}
@@ -627,13 +627,13 @@ state.
     \\
     \textbf{User-Friendly (3)}
     &
-    "Even if I would be starting, like, it's not confusing, [...] it’s clear"
+    ``Even if I would be starting, like, it's not confusing, [...] it’s clear''
     &
     Subjects describe use of the software as \textbf{user-friendly}.
     \\
     \textbf{Favorites Selection (2)}
     &
-    "I also find the favorites pretty good"
+    ``I also find the favorites pretty good''
     &
     The \textit{Favorites} bar at the bottom of \textit{SOM Browser} can be seen
     as positive.
@@ -659,40 +659,40 @@ state.
     \hline
     \textbf{Incomprehensible Map Organization (5)}
     &
-    "I don't get the order, that’s frustrating."
+    ``I don't get the order, that’s frustrating.''
     &
     Subjects are not able to discern any logical order within the map.
     \\
     \textbf{Usefulness (2)}
     &
-    "right now it's beautiful but it makes no sense unfortunately"
+    ``right now it's beautiful but it makes no sense unfortunately''
     &
     Subjects question the \textbf{usefulness} of the software in its current
     state.
     \\
     \textbf{Confused by Empty Nodes (3)}
     &
-    "Why are there a few grayed out?"
+    ``Why are there a few grayed out?''
     &
     Empty nodes on the map confuse subjects.
     \\
     \textbf{Overwhelming (1)}
     &
-    "looking at these many, many tiny squares gives me anxiety"
+    ``looking at these many, many tiny squares gives me anxiety''
     &
     The map interface is seen by some subjects as \textbf{overwhelming}.
     \\
     \textbf{No File Labels (1)}
     &
-    "here it’s just white bricks"
+    ``here it’s just white bricks''
     &
     The fact that no files besides the current selection are labelled on the map
     is seen negatively by some subjects.
     \\
     \textbf{Unnecessary Interface Elements (2)}
     &
-    "Eliminate the top bar, eliminate all the bottom just keep this [points to
-    map in center]"
+    ``Eliminate the top bar, eliminate all the bottom just keep this [points to
+    map in center]''
     &
     Subjects question the need for interface elements besides the central map
     display.
@@ -730,15 +730,15 @@ stated a clear preference for their established workflows, but remarked upon the
     \hline
     \textbf{Preference for Established Workflow (4)}
     &
-    "I wouldn't want to miss my old way of looking for stuff."
+    ``I wouldn't want to miss my old way of looking for stuff.''
     &
     Subjects state a preference for their established way of working with
     samples.
     \\
     \textbf{Optional Workflow (3)}
     &
-    "I would go for the traditional and just be presented with this like [an]
-    alternative"
+    ``I would go for the traditional and just be presented with this like [an]
+    alternative''
     &
     Subjects would like to incorporate \textit{SOM Browser} into their workflow
     if it was well-integrated into their existing tools and could be used as an
@@ -746,14 +746,14 @@ stated a clear preference for their established workflows, but remarked upon the
     \\
     \textbf{Potential (4)}
     &
-    "I could imagine, that this if you use it a bit and you get used to it,
-    yeah, it could make things faster actually"
+    ``I could imagine, that this if you use it a bit and you get used to it,
+    yeah, it could make things faster actually''
     &
     The potential for certain workflow improvements such as increased speed and
     removal of alphabetical bias is acknowledged.
     \\
   \end{tabular}}
-  \caption[Workflow Comparison \textit{SOM Browser} vs. Established Workflow]
+  \caption[Workflow Comparison: \textit{SOM Browser} vs. Established Workflow]
   {Subjects' responses when asked to compare \textit{SOM Browser} to their
   established workflows and state a preference. Shown are response codes along
   with example data and interpretive summary. The number shown in parentheses
@@ -784,9 +784,9 @@ were the desire for \textbf{\gls{daw} integration} of the functionality of
     \hline
     \textbf{\gls{daw} Integration (2)}
     &
-    "I would really like to see it as a plug-in or inserted in the production
-    environment that I have. I would definitely not use, it if it's a
-    standalone thing."
+    ``I would really like to see it as a plug-in or inserted in the production
+    environment that I have. I would definitely not use it if it's a
+    standalone thing.''
     &
     Subjects want to \textbf{integrate} the functionality of
     \textit{SOM Browser} into their established production environment, either
@@ -794,27 +794,27 @@ were the desire for \textbf{\gls{daw} integration} of the functionality of
     \\
     \textbf{Arrow Key Navigation (3)}
     &
-    "You need the arrows."
+    ``You need the arrows.''
     &
     The need for granular map navigation using the keyboard's
     \textbf{Arrow keys} was mentioned repeatedly by subjects.
     \\
     \textbf{User-Definable Map Organization (3)}
     &
-    "be able to choose what each axis is"
+    ``be able to choose what each axis is''
     &
     The ability to more explicitly control how maps are organized.
     \\
     \textbf{Pre-Categorization (2)}
     &
-    "a pre-categorization would be nice"
+    ``a pre-categorization would be nice''
     &
     Subjects express the wish to incorporate some sort of
     \textbf{categorization} to precede map calculation into the software.
     \\
     \textbf{File Limit (2)}
     &
-    "it’s about limiting the squares"
+    ``it’s about limiting the squares''
     &
     Subjects would like to \textbf{limit} the total number of files that can be
     displayed on a map. By preventing larger maps, the interface would
@@ -822,57 +822,57 @@ were the desire for \textbf{\gls{daw} integration} of the functionality of
     \\
     \textbf{Multi-Page Maps (1)}
     &
-    "[...] something that’s like a page based. Like, you go through the folders
+    ``[...] something that’s like a page based. Like, you go through the folders
     or you just type in quickly, just give here all the kicks or only all the
-    snares"
+    snares''
     &
     Larger sample libraries could be spread out across several \textbf{pages},
     potentially based on the previously mentioned \textbf{pre-categorization}.
     \\
     \textbf{Feature Filters (2)}
     &
-    "[If] I'm looking for a sample that [...] is very short, then you
-    would have to be able to filter this somehow"
+    ``[If] I'm looking for a sample that [...] is very short, then you
+    would have to be able to filter this somehow''
     &
     Incorporate the option to \textbf{filter} samples on the map based on
     certain feature values or ranges.
     \\
     \textbf{Color Coding (3)}
     &
-    "all the dark and bass heavy stuff [...] in another color than [...] all the
-    tsh-tsh-tsh stuff [makes high frequency noises]"
+    ``all the dark and bass heavy stuff [...] in another color than [...] all the
+    tsh-tsh-tsh stuff [makes high frequency noises]''
     &
     Introduce \textbf{color} as an additional dimension to display information
     about the files on the map.
     \\
     \textbf{Touchscreen Support (1)}
     &
-    "Only if it's like on a touchscreen"
+    ``Only if it's like on a touchscreen''
     &
     Support for \textit{SOM Browser} on \textbf{touchscreen} devices.
     \\
     \textbf{Color Customization (1)}
     &
-    "maybe people can choose their colors"
+    ``maybe people can choose their colors''
     &
     Give users the option to \textbf{customize} interface \textbf{colors}.
     \\
     \textbf{Sample Retriggering (1)}
     &
-    "when I'm on a square I need a way to retrigger"
+    ``when I'm on a square I need a way to retrigger''
     &
     Ability to trigger the same sample repeatedly without clicking multiple
     times (presumably by pressing the Spacebar).
     \\
     \textbf{Larger Font Size (2)}
     &
-    "the letters [need] to be a bit more prominent"
+    ``the letters [need] to be a bit more prominent''
     &
     Increase font sizes across the interface.
     \\
   \end{tabular}}
-  \caption[SOM Browser: Feature Requests]{Subjects' feature requests for
-  \textit{SOM Browser}. Shown are response codes along with example data and
+  \caption[\textit{SOM Browser}: Feature Requests]{Subjects' feature requests
+  for \textit{SOM Browser}. Shown are response codes along with example data and
   interpretive summary. The number shown in parentheses behind each code denotes
   how many individual subjects gave responses corresponding to that code.}
   \label{table:responses_feature_requests}
