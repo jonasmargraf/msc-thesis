@@ -13,6 +13,15 @@ important for the development process.
 
 \subsection{Groundwork: CataRT Extension}
 \label{subsec:implementation_catart}
+
+\begin{figure}[!htb]
+  \centering
+  \includegraphics[width=0.8\linewidth, clip]
+  {mubu-som-js}
+  \caption{mubu-SOM-js}
+  \label{fig:mubu-som}
+\end{figure}
+
 For the purpose of laying the groundwork for a bigger standalone application
 (see section \ref{subsec:implementation_som-browser}), a proof-of-concept
 implementation of the core \gls{som} algorithm was written in JavaScript to
@@ -25,14 +34,6 @@ concatenative synthesis based on the original \textit{CataRT} software
 \citep{schwarz2006}. The developed extension is a Max patch called
 \textit{mubu-SOM-js} (see Figure \ref{fig:mubu-som}) and can be found as part of
 the digital submission of this thesis in the directory \texttt{dev/mubu-som-js}.
-
-\begin{figure}[!htb]
-  \centering
-  \includegraphics[width=0.8\linewidth, clip]
-  {mubu-som-js}
-  \caption{mubu-SOM-js}
-  \label{fig:mubu-som}
-\end{figure}
 
 \begin{figure}[!htb]
   \centering
@@ -87,7 +88,7 @@ are spaced in a more even fashion (see Figure \ref{fig:catart_som_vs_no_som}).
 \ref{table:catart_som_messages} to the \\ \texttt{[js descriptor\_som.js]}
 object.
 
-\pagebreak
+% \pagebreak
 
 \begin{table}[!ht]
   \renewcommand{\arraystretch}{1.2}
@@ -137,7 +138,7 @@ object.
 \subsubsection{Code Overview}
 \label{subsubsec:mubu-som_overview}
 The core of the \textit{mubu-SOM-js} Max patch is a JavaScript program (see the
-file \texttt{dev/mubu-som-js/descriptor\_som.js}). The choice of programming
+file \\\texttt{dev/mubu-som-js/descriptor\_som.js}). The choice of programming
 language was determined by the fact that \textit{CataRT} is a Max patch and
 JavaScript (via the built-in \texttt{[js]} object) can be used to script most
 aspects of the Max environment. This JavaScript version of the \gls{som} is in
