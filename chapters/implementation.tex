@@ -377,6 +377,8 @@ in lower case, e.g. \textit{show map}) and the next state to transition into
   \label{fig:som-browser_states}
 \end{figure}
 
+\pagebreak
+
 \paragraph*{Code Overview}
 \label{para:som-browser_overview}
 \textit{SOM Browser} was developed using the \textit{git} version control
@@ -471,6 +473,8 @@ to what was previously discussed, we refer to Section
   \label{lst:som-browser_exctract_features}
 \end{listing}
 
+\pagebreak
+
 \subsubsection{User Interface Components}
 \label{subsubsec:som-browser_components}
 The following paragraphs give an overview of the different React components
@@ -481,7 +485,7 @@ which contains most of the \mintinline{jsx}{render()} function of
 \texttt{dev/som-browser/src/components/App.js}, including all components, their
 properties and functions.
 
-\begin{listing}[!htb]
+\begin{listing}[!p]
   \begin{mdframed}
     \inputminted[numbers=left, firstline=405, lastline=461,
     fontsize=\scriptsize]{jsx}{../dev/som-browser/src/components/App.js}
@@ -560,14 +564,14 @@ Listing \ref{lst:som-browser_fnp} to see the actual source code implementation):
 
 \begin{figure}[!htb]
   \centering
-\begin{subfigure}{0.45\textwidth}
+\begin{subfigure}{0.38\textwidth}
   \centering
   \includegraphics[width=\textwidth]{SOM-Browser_no-FNP}
   \caption{\textit{SOM Browser} without FNP}
   \label{fig:som-browser_no_fnp}
 \end{subfigure}
 ~
-\begin{subfigure}{0.45\textwidth}
+\begin{subfigure}{0.38\textwidth}
   \centering
   \includegraphics[width=\textwidth]{SOM-Browser_FNP}
   \caption{\textit{SOM Browser} with FNP}
