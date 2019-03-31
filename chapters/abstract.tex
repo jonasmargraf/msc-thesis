@@ -3,11 +3,11 @@
 \begin{abstract}
 
 Large collections of audio files --- \textit{sound corpora} --- have never been
-more readily available, as sample libraries are easily accessible online and
+more readily available. Sample libraries are easily accessible online and
 cheap storage media effectively eradicate concerns of storage capacity for
 contemporary music producers. At the same time, tools for navigating, searching
 and organizing these increasingly unmanageable audio file collections have not
-kept pace. Currently, arguably the most common tool with which producers search
+kept pace. At present, arguably the most common tool with which producers search
 their sample libraries are file browsers that simply present lists of file names
 in alphabetical order.
 
@@ -15,25 +15,25 @@ The present thesis approaches this problem from a practical perspective. We
 implement the Self-Organizing Map (SOM), an established machine learning
 algorithm for dimensionality reduction and data visualization, and apply it to
 sound corpus organization. We present \textit{SOM Browser}, a fast, visual
-interface for sample library exploration that offers an alternative to the
+interface for sample library exploration. It offers an alternative to the
 established music production workflow by incorporating the SOM algorithm, which
 to our knowledge is not available in any commercial audio software. It is a
 standalone application that organizes a collection of sound files completely
-unsupervised and presents a two-dimensional map of the sounds in an interactive
-grid interface with which the user can audition files in rapid succession,
-allowing for a quick way to gain an overview of the analyzed sound corpus. To
-optimize the space alloted to the map interface, we extend the SOM algorithm
-with a new method, which we call Forced Node Population (FNP). FNP reduces
-unpopulated (``empty'') areas of the map at the cost of some additional map
-distortion. Using a representative sample library of drum sounds, we search for
-a set of optimal algorithm parameters according to objective measures of map
+unsupervised and presents a two-dimensional map of the sounds. The map forms an
+interactive grid interface with which the user can audition files in rapid
+succession. This allows for a quick way to gain an overview of the analyzed
+sound corpus. To optimize the space alloted to the map interface, we extend the
+SOM algorithm with a new method, which we call Forced Node Population (FNP). FNP
+reduces unpopulated (``empty'') areas of the map at the cost of some additional
+map distortion. Using a representative sample library of drum sounds, we search
+for a set of optimal algorithm parameters according to objective measures of map
 quality and produce a map for the chosen sound corpus. We then conduct a series
 of qualitative interviews with audio professionals to gain some understanding of
 the complex situation that is sample library interaction in a music production
 environment and to gauge initial reactions to the alternative software we
 developed. Participants' responses allow us to identify a prevalent method of
 working with sample libraries, which we codify into a generalized model of the
-established workflow. We confirm the need for and interest in alternate
+established workflow. The results confirm the need for and interest in alternate
 interfaces. Although the organization of sounds in the map interface is seen as
 not easily comprehensible, overall interview feedback was sufficiently positive
 to warrant further work.
@@ -48,23 +48,23 @@ to warrant further work.
 Umfangreiche Sammlungen von Audiodateien --- \textit{Klangkorpora} --- sind so
 leicht zugänglich wie nie zuvor. Online verfügbare Sample Libraries und
 kostengünstige Datenträger haben Speicherplatz als Einschränkung für moderne
-Musikproduzenten effektiv beseitigt. Zugleich hat das verfügbare Instrumentarium
-zur Navigation, Durchsuchung und Organisation dieser zunehmend unüberschaubaren
-Datensammlungen nicht Schritt gehalten. Das derzeit wohl gängigste Werkzeug, mit
-dem Produzenten ihre Sample Libraries durchsuchen, sind Dateimanager, welche
-alphabetisch sortierte Listen von Dateinamen anzeigen.
+Musikproduzenten effektiv beseitigt. Zugleich hat jedoch das verfügbare
+Instrumentarium zur Navigation, Durchsuchung und Organisation dieser zunehmend
+unüberschaubaren Datensammlungen nicht Schritt gehalten. Das derzeit wohl
+gängigste Werkzeug, mit dem Produzenten ihre Sample Libraries durchsuchen, sind
+Dateimanager, welche alphabetisch sortierte Listen von Dateinamen anzeigen.
 
 Die vorliegende Masterarbeit geht dieses Problem praktisch an. Wir
 implementieren die Self-Organizing Map (SOM), einen bewährten Algorithmus des
 maschinellen Lernens zur Dimensionsreduktion und Datenvisualisierung, und
 verwenden diese zur Organisation von Klangkorpora. Wir präsentieren \textit{SOM
 Browser}, ein Programm mit einer schnellen, visuellen Bedienoberfläche zur
-Erkundung von Sample Libraries, welches eine Alternative zum etablierten
-Musikproduktionsprozess darstellt, da es den SOM Algorithmus integriert, welcher
+Erkundung von Sample Libraries. Es bietet eine Alternative zum etablierten
+Musikproduktionsprozess, da es den SOM Algorithmus integriert, welcher
 nach unserem Wissen in keiner kommerziellen Audiosoftware zur Verfügung steht.
 \textit{SOM Browser} ist eine Standalone-Anwendung, welche einen Klangkorpus
 komplett unüberwacht organisiert und eine zweidimensionale Karte der Klänge in
-einer interaktiven, rasterbasierten Oberfläche präsentiert. Mit dieser können
+einer interaktiven, rasterbasierten Oberfläche präsentiert. Damit können
 Klangdateien in schneller Abfolge angespielt werden, was es ermöglicht, rasch
 einen Überblick der analysierten Dateien zu bekommen. Um den von der Karte
 eingenommenen Platz zu optimieren, erweitern wir den SOM Algorithmus mit einer
@@ -73,17 +73,17 @@ unbesiedelte (``leere'') Bereiche der Karte auf Kosten zusätzlicher Verzerrung.
 Unter Verwendung einer repräsentativen Sample Library von Schlagzeug- und
 Perkussionsklängen suchen wir nach einer Reihe von optimalen Parametern des
 Algorithmus gemäß objektiver Maße für die Qualität der SOM und erzeugen eine
-Karte für den gewählten Klangkorpus. Danach führen wir eine Reihe qualitativer
-Interviews mit professionellen Produzenten und Künstlern, um ein besseres
-Verständnis der Komplexität der Interaktion mit Sample Libraries zu gewinnen,
-sowie um erste Reaktionen auf die von uns entwickelte Softwarealternative zu
-erfassen. Basierend auf Antworten der Befragten identifizieren wir eine
-prävalenten Umgang mit Sample Libraries, kodifizieren diesen und erstellen ein
-generalisiertes Modell der etablierten Arbeitsmethode. Die erfassten Antworten
-bestätigen außerdem Bedarf und Interesse an alternativen Bedienoberflächen.
-Obwohl die Organisation der Klänge in unserer Software als nicht leicht
-nachvollziehbar eingeschätzt wird, sind die Interviewrückmeldungen hinreichend
-positiv für weiterführende Arbeiten.
+Karte für den gewählten Klangkorpus. Danach führen wir qualitative Interviews
+mit fünf professionellen Produzenten und Künstlern, um ein besseres Verständnis
+der Komplexität der Interaktion mit Sample Libraries zu gewinnen und um erste
+Reaktionen auf die von uns entwickelte Softwarealternative zu erfassen.
+Basierend auf Antworten der Befragten identifizieren wir einen typischen Umgang
+mit Sample Libraries, kodifizieren diesen und erstellen ein generalisiertes
+Modell der etablierten Arbeitsmethode. Die erfassten Antworten bestätigen
+außerdem Bedarf und Interesse an alternativen Bedienoberflächen. Obwohl die
+Organisation der Klänge in unserer Software als nicht leicht nachvollziehbar
+eingeschätzt wird, sind die Interviewrückmeldungen hinreichend positiv für
+weiterführende Arbeiten.
 
 
 \end{abstract}
