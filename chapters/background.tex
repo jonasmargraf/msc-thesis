@@ -94,7 +94,7 @@ and as a simple pitch detection method for monophonic signals \citep{web:pitchde
 \label{subsubsec:spectral_features}
 Frequency domain features or \textit{spectral} features are derived from the
 discrete complex spectrum $X(k)$, where $k$ refers to the frequency bin number.
-$X(k)$ is calculated from $x[n]$ by performing an \gls{fft} (for information on
+$X(k)$ is calculated from $x[n]$ by performing a \gls{fft} (for information on
 the Fourier transform, refer to any signal processing textbook, such as
 \citet{oppenheim2014}).
 
@@ -104,8 +104,8 @@ is a measure of the center of gravity of a
 spectrum. A higher value indicates a brighter, sharper sound \citep{lerch2012}.
 The spectral centroid is defined as
 \begin{equation}
-  v_{SC} = \frac{ \sum\limits_{k=0}^{N_{FFT}/2-1} k\cdot{|X(k)]^2} }
-  { \sum\limits_{k=0}^{N_{FFT}/2-1} |X(k)]^2 }.
+  v_{SC} = \frac{ \sum\limits_{k=0}^{N_{FFT}/2-1} k\cdot{|X(k)|^2} }
+  { \sum\limits_{k=0}^{N_{FFT}/2-1} |X(k)|^2 }.
 \end{equation}
 
 \paragraph*{Spectral Flatness}
@@ -244,7 +244,7 @@ shortest Euclidean distance from it:
 \label{eq:bmu}
   ||x(t) - m_c|| \leq ||x(t) - m_i|| \; \forall{i}.
 \end{equation}
-This "winning" node $m_c$ is referred to as the \gls{bmu} for $x(t)$.
+This ``winning'' node $m_c$ is referred to as the \gls{bmu} for $x(t)$.
 \bigskip
 
 During the learning or adaptation phase of the algorithm, all nodes $m_i$ are
@@ -255,21 +255,21 @@ adjusted by a recursive regression process
 \end{equation}
 where $t$ is the index of the current regression step, $x(t)$ is an input vector
 chosen randomly from the input data at this step, $c$ is the index of the
-\gls{bmu} for the current input vector $x(t)$ according to equation \ref{eq:bmu}
+\gls{bmu} for the current input vector $x(t)$ according to Equation \ref{eq:bmu}
 and $h_{c(x),i}$ represents a so-called \textit{neighborhood function}. The
 name-giving \textit{neighborhood} is a subset $N_c$ of nodes centered on $m_c$.
 At each learning step $t$, those nodes that are within $N_c$ will be adjusted,
 whereas those outside of it will not. The reason for employing such a
-neighborhood function is so that the nodes "doing the learning are not affected
-independently of each other" \citep[p.1467]{kohonen1990} and "the topography of
-the map is ensured" \citep[p.5]{bauer1996}. At its most basic, the
+neighborhood function is so that the nodes ``doing the learning are not affected
+independently of each other'' \citep[p.1467]{kohonen1990} and ``the topography of
+the map is ensured'' \citep[p.5]{bauer1996}. At its most basic, the
 neighborhood function is a decreasing distance function between neurons $m_i$
 and $m_c$. Its most common form, which is also employed in this work, is that of
 a Gaussian function with its peak at $m_c$ such that
 \begin{equation}
   h_{c(x),i} = \alpha(t) \exp\bigg(- \frac{||r_i - r_c||^2}{2\sigma^2(t)}\bigg).
 \end{equation}
-Here, $\alpha$ denotes a learning rate factor or adaptation "gain control"
+Here, $\alpha$ denotes a learning rate factor or adaptation ``gain control''
 $0 < \alpha(t) < 1$, which decreases over the course of the regression,
 $r_i \in \mathbb{R}^2$ and $r_c \in \mathbb{R}^2$ are the locations of $m_i$ and
 $m_c$ on the \gls{som} grid (the lower-dimensional output map, not the input
@@ -297,10 +297,11 @@ across the literature on whether or not normalization of input data is strictly
 necessary (\citet[p.34]{vesanto2000}, \citet[p.1470]{kohonen1990},
 \citet{web:kohonen2007}).
 
-Because the range of the data derived from the audio
-feature analysis used in this work varies considerably between features, the
-data for feature $n$ is rescaled to have unit variance by dividing by the
-features' standard deviation $\sigma_n$:
+Because the range of the data derived from the audio feature analysis used in
+this work varies considerably between features, the data for feature $n$ is
+rescaled to have unit variance by dividing by the feature's standard deviation
+$\sigma_n$:
+
 \begin{equation}
   x_{n} = \frac{x_{n}}{\sigma_n}.
 \end{equation}
