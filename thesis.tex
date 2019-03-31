@@ -171,7 +171,11 @@ plural=IDs
 
 \clearpage
 
-\pagestyle{plain}
+\thispagestyle{plain}
+\fancypagestyle{plain}{%
+\fancyhf{}
+\fancyfoot[LE,RO]{\footnotesize{\thepage}}
+}
 \pagenumbering{Roman}
 \setcounter{page}{1}
 \bookmarksetupnext{level=part}
@@ -181,6 +185,7 @@ plural=IDs
 
 \bookmarksetupnext{startatroot}
 % \pagestyle{plain}
+\thispagestyle{plain}
 \printglossaries
 \newpage
 
